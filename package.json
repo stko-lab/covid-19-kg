@@ -1,0 +1,22 @@
+{
+  "name": "Wuhan-ncov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "case.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "emk": "^1.7.2",
+    "eslint": "^6.8.0"
+  },
+  "dependencies": {
+    "@graphy/content.ttl.write": "^4.0.5",
+    "@graphy/core.data.factory": "^4.0.5",
+    "JSONStream": "^1.3.5",
+    "csv-parse": "^4.8.5"
+  }
+}
