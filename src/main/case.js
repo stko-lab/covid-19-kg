@@ -5,10 +5,8 @@ const ttl_write = require('@graphy/content.ttl.write');
 
 const H_PREFIXES = require('../common/prefixes.js');
 
-// const people = require('../common/people.js');
-// const {
-// 	person_suffix,
-// } = require('../common/share.js');
+let a_argv = process.argv.slice(2);
+let b_tz_eastern = a_argv.includes('--eastern-tz');
 
 {
 	stream.pipeline(...[
@@ -23,28 +21,30 @@ const H_PREFIXES = require('../common/prefixes.js');
 
 			transform(g_row, s_encoding, fk_transform) {
 				let {
-					"Province/State": state,
-					"Country/Region": region,
-					"Last Update": time_stamp,
-					"Confirmed": confirmed,
-					"Deaths": deaths,
-					"Recovered": recovered,
-					"Suspected": suspected,
-					"ConfnSusp": confnsusp,
+					'Province/State': s_state,
+					'Country/Region': s_region,
+					'Last Update': s_last_update,
+					'Confirmed': s_confirmed,
+					'Deaths': s_deaths,
+					'Recovered': s_recovered,
+					'Suspected': s_suspected,
+					'ConfnSusp': s_confnsusp,
 				} = g_row;
 
-				let {
-					first: s_author_name_first,
-					last: s_author_name_last,
-				} = people.info(s_author_name)[0];
+				// adjust last updated timestamp for altered timezone
+				let dt_updated = new Date(s_last_update+` ${b_tz_eastern? 'GMT -5': 'UTC'}`);
 
-				let p_person = `spex-person:${person_suffix(s_author_name)}`;
+				// format date string for record IRI
+				let s_date_formatted = dt_updated.toISOString().slice(0, '2020-01-01'.length);
+
+				// create record IRI
+				let sc1_record = `covid19-record:${s_region}.${s_state}.${s_date_formatted}`;
 
 				this.push({
 					type: 'c3',
 					value: {
-						[p_person]: {
-							a: 'spex:Person',
+						[sc1_record]: {
+							a: 'covid19:Record',
 							'rdfs:label': '"'+s_author_name,
 							'spex:personFullName': '"'+s_author_name,
 							'spex:personFirstName': '"'+s_author_name_first,
