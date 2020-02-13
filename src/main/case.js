@@ -20,6 +20,8 @@ let b_tz_eastern = a_argv.includes('--eastern-tz');
 			objectMode: true,
 
 			transform(g_row, s_encoding, fk_transform) {
+				console.log("A");
+				console.log(g_row);
 				let {
 					'Province/State': s_state,
 					'Country/Region': s_region,
