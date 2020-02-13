@@ -1,4 +1,4 @@
-# COVID-19 Knowledge Graph by STKO Lab
+# COVID-19 Knowledge Graph by STKO Lab, UC Santa Barbara
 
 ### Authors
  - Blake Regalia

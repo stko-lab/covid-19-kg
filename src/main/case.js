@@ -32,10 +32,12 @@ let b_tz_eastern = a_argv.includes('--eastern-tz');
 				} = g_row;
 
 				// adjust last updated timestamp for altered timezone
-				let dt_updated = new Date(s_last_update+` ${b_tz_eastern? 'GMT -5': 'UTC'}`);
+				// 1. The "Last Update" is in US Eastern Time (GMT -5) for all files before Feb 1 12:00 (ET).
+				// 2. The "Last Update" is in UTC (GMT +0) for all files after Feb 1 12:00 (ET).
+				let dt_updated = new Date(s_last_update+` ${b_tz_eastern? ' GMT-5': ' GMT+0'}`);
 
 				// format date string for record IRI
-				let s_date_formatted = dt_updated.toISOString().slice(0, '2020-01-01'.length);
+				let s_date_formatted = dt_updated.toISOString(); //.slice(0, '2020-01-01'.length);
 
 				// create record IRI
 				let sc1_record = `covid19-record:${s_region}.${s_state}.${s_date_formatted}`;
@@ -45,16 +47,20 @@ let b_tz_eastern = a_argv.includes('--eastern-tz');
 					value: {
 						[sc1_record]: {
 							a: 'covid19:Record',
-							'rdfs:label': '"'+s_author_name,
-							'spex:personFullName': '"'+s_author_name,
-							'spex:personFirstName': '"'+s_author_name_first,
-							'spex:personLastName': '"'+s_author_name_last,
+							'rdfs:label': '@en"'+`The COVID-19 record of ${s_state}, ${s_region}, at ${dt_updated.toGMTString()}`,
+							'covid19:administrativeAreaLevel1': '>'+`covid19-state:${s_state}`,
+							'covid19:region': '>'+`covid19-region:${s_region}`,
+							'covid19:dateTime': '^xsd:dateTime"'+s_date_formatted,
+							'covid19:confirmed': '^xsd:integer"'+int(s_confirmed),
+							'covid19:death': '^xsd:integer"'+int(s_deaths),
+							'covid19:recovered': '^xsd:integer"'+int(s_recovered),
 
-							...(p_author_page
-								? {
-									'spex:personPage': '^xsd:anyURI"'+p_author_page,
-								}
-								: {}),
+
+							// ...(p_author_page
+							// 	? {
+							// 		'spex:personPage': '^xsd:anyURI"'+p_author_page,
+							// 	}
+							// 	: {}),
 						},
 					},
 				});
