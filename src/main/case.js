@@ -3,12 +3,46 @@ const csv_parse = require('csv-parse');
 
 const ttl_write = require('@graphy/content.ttl.write');
 
-const H_PREFIXES = require('../common/prefixes.js');
+// const H_PREFIXES = require('../common/prefixes.js');
+const P_NAMESPACE = 'https://stko-covid19.geog.ucsb.edu/lod/';
+
+const covid19s = a_ns => a_ns.reduce((h_out, s_ns) => ({
+	...h_out,
+	[`covid19-${s_ns}`]: `${P_NAMESPACE}${s_ns}/`,
+}), {});
+
+let ds_writer = ttl_write({
+	prefixes: {
+		rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+		rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
+		xsd: 'http://www.w3.org/2001/XMLSchema#',
+		owl: 'http://www.w3.org/2002/07/owl#',
+		dct: 'http://purl.org/dc/terms/',
+		foaf: 'http://xmlns.com/foaf/0.1/',
+		time: 'http://www.w3.org/2006/time#',
+		timezone: 'https://www.timeanddate.com/worldclock/results.html?query=',
+		geosparql: 'http://www.opengis.net/ont/geosparql#',
+		covid19: `${P_NAMESPACE}ontology/`,
+		...covid19s([
+			'airline',
+			'airport',
+			'route',
+			'city',
+			'country',
+			'continent',
+			'region',
+			'state',
+			'record'
+		]),
+	},
+});
 
 const R_WS = /\s+/g;
 
 let a_argv = process.argv.slice(2);
 let b_tz_eastern = a_argv.includes('--eastern-tz');
+
+let b_new_daily = a_argv.includes('--new-daily');
 
 let hc3_flush = {};
 
@@ -54,6 +88,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 
 				let sc1_state;
 				if(s_state) {
+					s_state = s_state === "Cruise Ship" ? "Diamond Princess cruise ship" : s_state;
 					sc1_state = `covid19-state:${suffix(s_state)}`;
 
 					hc3_flush[sc1_state] = {
@@ -72,9 +107,9 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					return ((+s_hour) + ('pm' === s_meridian.toLowerCase()? 12: 0))+':00';
 				});
 
-
+				debugger
 				// fix eastern time-zone offset
-				let dt_updated = new Date(s_last_update+` ${b_tz_eastern? ' GMT-5': ' GMT+0'}`);
+				let dt_updated = new Date(s_last_update+`${b_new_daily? "" : b_tz_eastern? ' GMT-5': ' GMT+0'}`);
 
 				// format date string for record IRI
 				let s_date_formatted = dt_updated.toISOString();
@@ -133,9 +168,10 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 			},
 		}),
 
-		ttl_write({
-			prefixes: H_PREFIXES,
-		}),
+		// ttl_write({
+		// 	prefixes: H_PREFIXES,
+		// }),
+		ds_writer,
 
 		process.stdout,
 
