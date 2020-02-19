@@ -4,6 +4,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix timezone: <https://www.timeanddate.com/worldclock/results.html?query=> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
@@ -15,14 +16,14 @@
 @prefix covid19-country: <https://stko-covid19.geog.ucsb.edu/lod/country/> .
 @prefix covid19-continent: <https://stko-covid19.geog.ucsb.edu/lod/continent/> .
 @prefix covid19-region: <https://stko-covid19.geog.ucsb.edu/lod/region/> .
-@prefix covid19-state: <https://stko-covid19.geog.ucsb.edu/lod/state/> .
+@prefix covid19-subregion: <https://stko-covid19.geog.ucsb.edu/lod/subregion/> .
 @prefix covid19-record: <https://stko-covid19.geog.ucsb.edu/lod/record/> .
 
 covid19-record:Mainland_China.Hubei.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Hubei, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Hubei ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hubei ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 761 ;
 	covid19:death 40 ;
 	covid19:recovered 32 .
@@ -30,446 +31,481 @@ covid19-record:Mainland_China.Hubei.2020-01-26T01:00:00.000Z a covid19:Record ;
 covid19-record:Mainland_China.Guangdong.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Guangdong, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Guangdong ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guangdong ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 78 ;
 	covid19:recovered 2 .
 
 covid19-record:Mainland_China.Zhejiang.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Zhejiang, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Zhejiang ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Zhejiang ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 62 ;
 	covid19:recovered 1 .
 
 covid19-record:Mainland_China.Chongqing.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Chongqing, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Chongqing ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Chongqing ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 57 .
 
 covid19-record:Mainland_China.Hunan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Hunan, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Hunan ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hunan ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 43 .
 
 covid19-record:Mainland_China.Beijing.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Beijing, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Beijing ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Beijing ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 41 ;
 	covid19:recovered 2 .
 
 covid19-record:Mainland_China.Anhui.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Anhui, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Anhui ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Anhui ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 39 .
 
 covid19-record:Mainland_China.Shanghai.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Shanghai, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Shanghai ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shanghai ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 33 ;
 	covid19:recovered 1 .
 
 covid19-record:Mainland_China.Henan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Henan, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Henan ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Henan ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 32 .
 
 covid19-record:Mainland_China.Sichuan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Sichuan, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Sichuan ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Sichuan ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 28 .
 
 covid19-record:Mainland_China.Shandong.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Shandong, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Shandong ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shandong ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 27 .
 
 covid19-record:Mainland_China.Guangxi.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Guangxi, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Guangxi ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guangxi ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 23 .
 
 covid19-record:Mainland_China.Hainan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Hainan, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Hainan ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hainan ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 19 .
 
 covid19-record:Mainland_China.Jiangxi.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Jiangxi, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Jiangxi ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jiangxi ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 18 .
 
 covid19-record:Mainland_China.Fujian.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Fujian, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Fujian ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Fujian ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 18 .
 
 covid19-record:Mainland_China.Jiangsu.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Jiangsu, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Jiangsu ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jiangsu ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 18 ;
 	covid19:recovered 1 .
 
 covid19-record:Mainland_China.Liaoning.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Liaoning, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Liaoning ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Liaoning ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 17 .
 
 covid19-record:Mainland_China.Shaanxi.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Shaanxi, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Shaanxi ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shaanxi ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 15 .
 
 covid19-record:Mainland_China.Yunnan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Yunnan, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Yunnan ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Yunnan ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 11 .
 
 covid19-record:Mainland_China.Tianjin.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Tianjin, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Tianjin ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Tianjin ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 10 .
 
 covid19-record:Mainland_China.Heilongjiang.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Heilongjiang, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Heilongjiang ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Heilongjiang ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 9 ;
 	covid19:death 1 .
 
 covid19-record:Mainland_China.Hebei.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Hebei, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Hebei ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hebei ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 8 ;
 	covid19:death 1 .
 
 covid19-record:Mainland_China.Inner_Mongolia.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Inner Mongolia, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Inner_Mongolia ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Inner_Mongolia ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 7 .
 
 covid19-record:Mainland_China.Shanxi.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Shanxi, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Shanxi ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shanxi ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 6 .
 
 covid19-record:Hong_Kong.Hong_Kong.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Hong Kong, Hong Kong, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Hong_Kong ;
-	covid19:region covid19-region:Hong_Kong ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hong_Kong ;
+	covid19:region covid19-region:HK ;
 	covid19:confirmed 5 .
 
 covid19-record:Mainland_China.Guizhou.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Guizhou, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Guizhou ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guizhou ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 4 .
 
 covid19-record:Mainland_China.Jilin.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Jilin, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Jilin ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jilin ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 4 .
 
 covid19-record:Mainland_China.Gansu.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Gansu, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Gansu ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Gansu ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 4 .
 
 covid19-record:Mainland_China.Ningxia.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Ningxia, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Ningxia ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Ningxia ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 3 .
 
 covid19-record:Taiwan.Taiwan.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Taiwan, Taiwan, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Taiwan ;
-	covid19:region covid19-region:Taiwan ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Taiwan ;
+	covid19:region covid19-region:TW ;
 	covid19:confirmed 3 .
 
 covid19-record:Mainland_China.Xinjiang.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Xinjiang, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Xinjiang ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Xinjiang ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 3 .
 
 covid19-record:Macau.Macau.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Macau, Macau, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Macau ;
-	covid19:region covid19-region:Macau ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Macau ;
+	covid19:region covid19-region:MO ;
 	covid19:confirmed 2 .
 
 covid19-record:Mainland_China.Qinghai.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Qinghai, Mainland China, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Qinghai ;
-	covid19:region covid19-region:Mainland_China ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Qinghai ;
+	covid19:region covid19-region:CN ;
 	covid19:confirmed 1 .
 
 covid19-record:US.Washington.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Washington, US, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Washington ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Washington ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 .
 
 covid19-record:US.Illinois.2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Illinois, US, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:administrativeAreaLevel1 covid19-state:Illinois ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Illinois ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 .
 
 covid19-record:Japan..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Japan, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Japan ;
+	covid19:region covid19-region:JP ;
 	covid19:confirmed 2 .
 
 covid19-record:Thailand..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Thailand, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Thailand ;
+	covid19:region covid19-region:TH ;
 	covid19:confirmed 7 .
 
 covid19-record:South_Korea..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of South Korea, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:South_Korea ;
+	covid19:region covid19-region:KR ;
 	covid19:confirmed 2 .
 
 covid19-record:Singapore..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Singapore, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Singapore ;
+	covid19:region covid19-region:SG ;
 	covid19:confirmed 3 .
 
 covid19-record:Vietnam..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Vietnam, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Vietnam ;
+	covid19:region covid19-region:VN ;
 	covid19:confirmed 2 .
 
 covid19-record:France..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of France, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:France ;
+	covid19:region covid19-region:FR ;
 	covid19:confirmed 3 .
 
 covid19-record:Australia..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Australia, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Australia ;
+	covid19:region covid19-region:AU ;
 	covid19:confirmed 4 .
 
 covid19-record:Nepal..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Nepal, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Nepal ;
+	covid19:region covid19-region:NP ;
 	covid19:confirmed 1 .
 
 covid19-record:Malaysia..2020-01-26T01:00:00.000Z a covid19:Record ;
 	rdfs:label "The COVID-19 record of Malaysia, on Sun, 26 Jan 2020 01:00:00 GMT"@en ;
 	covid19:lastUpdate "2020-01-26T01:00:00.000Z"^^xsd:dateTime ;
-	covid19:region covid19-region:Malaysia ;
+	covid19:region covid19-region:MY ;
 	covid19:confirmed 3 .
 
-covid19-region:Mainland_China a covid19:Region ;
+covid19-region:CN a covid19:Region ;
 	rdfs:label "Mainland China"@en .
 
-covid19-state:Hubei a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Hubei"@en .
+covid19-subregion:Hubei a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hubei"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Guangdong a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Guangdong"@en .
+covid19-subregion:Guangdong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guangdong"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Zhejiang a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Zhejiang"@en .
+covid19-subregion:Zhejiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Zhejiang"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Chongqing a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Chongqing"@en .
+covid19-subregion:Chongqing a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Chongqing"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Hunan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Hunan"@en .
+covid19-subregion:Hunan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hunan"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Beijing a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Beijing"@en .
+covid19-subregion:Beijing a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Beijing"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Anhui a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Anhui"@en .
+covid19-subregion:Anhui a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Anhui"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Shanghai a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Shanghai"@en .
+covid19-subregion:Shanghai a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shanghai"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Henan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Henan"@en .
+covid19-subregion:Henan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Henan"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Sichuan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Sichuan"@en .
+covid19-subregion:Sichuan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Sichuan"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Shandong a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Shandong"@en .
+covid19-subregion:Shandong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shandong"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Guangxi a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Guangxi"@en .
+covid19-subregion:Guangxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guangxi"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Hainan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Hainan"@en .
+covid19-subregion:Hainan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hainan"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Jiangxi a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Jiangxi"@en .
+covid19-subregion:Jiangxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jiangxi"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Fujian a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Fujian"@en .
+covid19-subregion:Fujian a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Fujian"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Jiangsu a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Jiangsu"@en .
+covid19-subregion:Jiangsu a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jiangsu"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Liaoning a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Liaoning"@en .
+covid19-subregion:Liaoning a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Liaoning"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Shaanxi a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Shaanxi"@en .
+covid19-subregion:Shaanxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shaanxi"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Yunnan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Yunnan"@en .
+covid19-subregion:Yunnan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Yunnan"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Tianjin a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Tianjin"@en .
+covid19-subregion:Tianjin a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Tianjin"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Heilongjiang a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Heilongjiang"@en .
+covid19-subregion:Heilongjiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Heilongjiang"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Hebei a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Hebei"@en .
+covid19-subregion:Hebei a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hebei"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Inner_Mongolia a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Inner_Mongolia"@en .
+covid19-subregion:Inner_Mongolia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Inner Mongolia"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Shanxi a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Shanxi"@en .
+covid19-subregion:Shanxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shanxi"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-region:Hong_Kong a covid19:Region ;
+covid19-region:HK a covid19:Region ;
 	rdfs:label "Hong Kong"@en .
 
-covid19-state:Hong_Kong a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Hong_Kong"@en .
+covid19-subregion:Hong_Kong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hong Kong"@en ;
+	dbo:isPartOf covid19-region:HK .
 
-covid19-state:Guizhou a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Guizhou"@en .
+covid19-subregion:Guizhou a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guizhou"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Jilin a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Jilin"@en .
+covid19-subregion:Jilin a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jilin"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Gansu a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Gansu"@en .
+covid19-subregion:Gansu a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Gansu"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-state:Ningxia a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Ningxia"@en .
+covid19-subregion:Ningxia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Ningxia"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-region:Taiwan a covid19:Region ;
+covid19-region:TW a covid19:Region ;
 	rdfs:label "Taiwan"@en .
 
-covid19-state:Taiwan a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Taiwan"@en .
+covid19-subregion:Taiwan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Taiwan"@en ;
+	dbo:isPartOf covid19-region:TW .
 
-covid19-state:Xinjiang a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Xinjiang"@en .
+covid19-subregion:Xinjiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Xinjiang"@en ;
+	dbo:isPartOf covid19-region:CN .
 
-covid19-region:Macau a covid19:Region ;
+covid19-region:MO a covid19:Region ;
 	rdfs:label "Macau"@en .
 
-covid19-state:Macau a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Macau"@en .
+covid19-subregion:Macau a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Macau"@en ;
+	dbo:isPartOf covid19-region:MO .
 
-covid19-state:Qinghai a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Qinghai"@en .
+covid19-subregion:Qinghai a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Qinghai"@en ;
+	dbo:isPartOf covid19-region:CN .
 
 covid19-region:US a covid19:Region ;
 	rdfs:label "US"@en .
 
-covid19-state:Washington a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Washington"@en .
+covid19-subregion:Washington a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Washington"@en ;
+	dbo:isPartOf covid19-region:US .
 
-covid19-state:Illinois a covid19:administrativeAreaLevel1 ;
-	rdfs:label "Illinois"@en .
+covid19-subregion:Illinois a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Illinois"@en ;
+	dbo:isPartOf covid19-region:US .
 
-covid19-region:Japan a covid19:Region ;
+covid19-region:JP a covid19:Region ;
 	rdfs:label "Japan"@en .
 
-covid19-region:Thailand a covid19:Region ;
+covid19-region:TH a covid19:Region ;
 	rdfs:label "Thailand"@en .
 
-covid19-region:South_Korea a covid19:Region ;
+covid19-region:KR a covid19:Region ;
 	rdfs:label "South Korea"@en .
 
-covid19-region:Singapore a covid19:Region ;
+covid19-region:SG a covid19:Region ;
 	rdfs:label "Singapore"@en .
 
-covid19-region:Vietnam a covid19:Region ;
+covid19-region:VN a covid19:Region ;
 	rdfs:label "Vietnam"@en .
 
-covid19-region:France a covid19:Region ;
+covid19-region:FR a covid19:Region ;
 	rdfs:label "France"@en .
 
-covid19-region:Australia a covid19:Region ;
+covid19-region:AU a covid19:Region ;
 	rdfs:label "Australia"@en .
 
-covid19-region:Nepal a covid19:Region ;
+covid19-region:NP a covid19:Region ;
 	rdfs:label "Nepal"@en .
 
-covid19-region:Malaysia a covid19:Region ;
+covid19-region:MY a covid19:Region ;
 	rdfs:label "Malaysia"@en .
 
