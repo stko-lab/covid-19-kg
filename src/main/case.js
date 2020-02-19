@@ -3,6 +3,28 @@ const csv_parse = require('csv-parse');
 
 const ttl_write = require('@graphy/content.ttl.write');
 
+const fs = require('fs');
+const path = require('path');
+
+let a_code2regionnames = fs.readFileSync(path.join(__dirname, '../common/code2regionnames.json'));
+let d_code2regionnames = JSON.parse(a_code2regionnames);
+
+function swap(json){
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
+}
+
+let d_regionnames2code = {
+		...swap(d_code2regionnames),
+		"Mainland China": "CN",
+		"Macau": "MO",
+		"US": "US",
+		"UK": "GB"
+	};
+
 // const H_PREFIXES = require('../common/prefixes.js');
 const P_NAMESPACE = 'https://stko-covid19.geog.ucsb.edu/lod/';
 
@@ -19,6 +41,7 @@ let ds_writer = ttl_write({
 		owl: 'http://www.w3.org/2002/07/owl#',
 		dct: 'http://purl.org/dc/terms/',
 		foaf: 'http://xmlns.com/foaf/0.1/',
+		dbo: 'http://dbpedia.org/ontology/',
 		time: 'http://www.w3.org/2006/time#',
 		timezone: 'https://www.timeanddate.com/worldclock/results.html?query=',
 		geosparql: 'http://www.opengis.net/ont/geosparql#',
@@ -31,7 +54,7 @@ let ds_writer = ttl_write({
 			'country',
 			'continent',
 			'region',
-			'state',
+			'subregion',
 			'record'
 		]),
 	},
@@ -79,7 +102,14 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				} = g_row;
 
 
-				let sc1_country = `covid19-region:${suffix(s_region)}`;
+				// let sc1_country = `covid19-region:${suffix(s_region)}`;
+				let sc1_country;
+				if(d_regionnames2code.hasOwnProperty(s_region.trim())){
+					sc1_country = `covid19-region:${d_regionnames2code[s_region.trim()]}`;
+				}else{
+					// console.log(s_region);
+					sc1_country = `covid19-region:${suffix(s_region)}`;
+				}
 
 				hc3_flush[sc1_country] = {
 					a: 'covid19:Region',
@@ -89,11 +119,12 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				let sc1_state;
 				if(s_state) {
 					s_state = s_state === "Cruise Ship" ? "Diamond Princess cruise ship" : s_state;
-					sc1_state = `covid19-state:${suffix(s_state)}`;
+					sc1_state = `covid19-subregion:${suffix(s_state)}`;
 
 					hc3_flush[sc1_state] = {
-						a: 'covid19:administrativeAreaLevel1',
-						'rdfs:label': '@en"'+suffix(s_state),
+						a: 'covid19:AdministrativeAreaLevel1',
+						'rdfs:label': '@en"'+s_state,
+						'dbo:isPartOf': sc1_country,
 					};
 				}
 
