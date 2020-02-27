@@ -25,39 +25,10 @@ let d_regionnames2code = {
 		"UK": "GB"
 	};
 
-// const H_PREFIXES = require('../common/prefixes.js');
-const P_NAMESPACE = 'https://stko-covid19.geog.ucsb.edu/lod/';
-
-const covid19s = a_ns => a_ns.reduce((h_out, s_ns) => ({
-	...h_out,
-	[`covid19-${s_ns}`]: `${P_NAMESPACE}${s_ns}/`,
-}), {});
+const H_PREFIXES = require('../common/prefixes.js');
 
 let ds_writer = ttl_write({
-	prefixes: {
-		rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-		rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
-		xsd: 'http://www.w3.org/2001/XMLSchema#',
-		owl: 'http://www.w3.org/2002/07/owl#',
-		dct: 'http://purl.org/dc/terms/',
-		foaf: 'http://xmlns.com/foaf/0.1/',
-		dbo: 'http://dbpedia.org/ontology/',
-		time: 'http://www.w3.org/2006/time#',
-		timezone: 'https://www.timeanddate.com/worldclock/results.html?query=',
-		geosparql: 'http://www.opengis.net/ont/geosparql#',
-		covid19: `${P_NAMESPACE}ontology/`,
-		...covid19s([
-			'airline',
-			'airport',
-			'route',
-			'city',
-			'country',
-			'continent',
-			'region',
-			'subregion',
-			'record'
-		]),
-	},
+	prefixes: H_PREFIXES,
 });
 
 const R_WS = /\s+/g;
@@ -124,7 +95,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					hc3_flush[sc1_state] = {
 						a: 'covid19:AdministrativeAreaLevel1',
 						'rdfs:label': '@en"'+s_state,
-						'dbo:isPartOf': sc1_country,
+						'covid19:superdivision': sc1_country,
 					};
 				}
 
@@ -140,10 +111,16 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 
 				debugger
 				// fix eastern time-zone offset
-				let dt_updated = new Date(s_last_update+`${b_new_daily? "" : b_tz_eastern? ' GMT-5': ' GMT+0'}`);
+				let dt_updated = new Date(s_last_update+`${b_new_daily? "Z" : b_tz_eastern? ' GMT-5': ' GMT+0'}`);
 
 				// format date string for record IRI
 				let s_date_formatted = dt_updated.toISOString();
+
+				let s_time_instant = `covid19-instant:${s_date_formatted}`;
+				hc3_flush[s_time_instant] = {
+					a: 'time:Instant',
+					'time:inXSDDateTime': dt_updated,
+				};
 
 				// create record IRI
 				let sc1_record = `covid19-record:${s_region? suffix(s_region):''}.${s_state? suffix(s_state):''}.${suffix(s_date_formatted)}`;
@@ -154,7 +131,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 						[sc1_record]: {
 							a: 'covid19:Record',
 							'rdfs:label': `@en"The COVID-19 record of ${s_state? s_state+', ': ''}${s_region}, on ${dt_updated.toGMTString()}`,
-							'covid19:lastUpdate': dt_updated,
+							'covid19:lastUpdate': s_time_instant,
 
 							...inject(s_state, {
 								'covid19:administrativeAreaLevel1': sc1_state,
