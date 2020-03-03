@@ -1,4 +1,4 @@
-const P_NAMESPACE = 'https://stko-covid19.geog.ucsb.edu/lod/';
+const P_NAMESPACE = 'https://covid.geog.ucsb.edu/lod/';
 
 const covid19s = a_ns => a_ns.reduce((h_out, s_ns) => ({
 	...h_out,

@@ -7,18 +7,18 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix timezone: <https://www.timeanddate.com/worldclock/results.html?query=> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix covid19: <https://stko-covid19.geog.ucsb.edu/lod/ontology/> .
-@prefix covid19-airline: <https://stko-covid19.geog.ucsb.edu/lod/airline/> .
-@prefix covid19-airport: <https://stko-covid19.geog.ucsb.edu/lod/airport/> .
-@prefix covid19-route: <https://stko-covid19.geog.ucsb.edu/lod/route/> .
-@prefix covid19-city: <https://stko-covid19.geog.ucsb.edu/lod/city/> .
-@prefix covid19-region: <https://stko-covid19.geog.ucsb.edu/lod/region/> .
-@prefix covid19-subregion: <https://stko-covid19.geog.ucsb.edu/lod/subregion/> .
-@prefix covid19-continent: <https://stko-covid19.geog.ucsb.edu/lod/continent/> .
-@prefix covid19-suspension: <https://stko-covid19.geog.ucsb.edu/lod/suspension/> .
-@prefix covid19-record: <https://stko-covid19.geog.ucsb.edu/lod/record/> .
-@prefix covid19-interval: <https://stko-covid19.geog.ucsb.edu/lod/interval/> .
-@prefix covid19-instant: <https://stko-covid19.geog.ucsb.edu/lod/instant/> .
+@prefix covid19: <https://covid.geog.ucsb.edu/lod/ontology/> .
+@prefix covid19-airline: <https://covid.geog.ucsb.edu/lod/airline/> .
+@prefix covid19-airport: <https://covid.geog.ucsb.edu/lod/airport/> .
+@prefix covid19-route: <https://covid.geog.ucsb.edu/lod/route/> .
+@prefix covid19-city: <https://covid.geog.ucsb.edu/lod/city/> .
+@prefix covid19-region: <https://covid.geog.ucsb.edu/lod/region/> .
+@prefix covid19-subregion: <https://covid.geog.ucsb.edu/lod/subregion/> .
+@prefix covid19-continent: <https://covid.geog.ucsb.edu/lod/continent/> .
+@prefix covid19-suspension: <https://covid.geog.ucsb.edu/lod/suspension/> .
+@prefix covid19-record: <https://covid.geog.ucsb.edu/lod/record/> .
+@prefix covid19-interval: <https://covid.geog.ucsb.edu/lod/interval/> .
+@prefix covid19-instant: <https://covid.geog.ucsb.edu/lod/instant/> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 
 covid19-record:Mainland_China.Hubei.2020-02-09T23:33:02.000Z a covid19:Record ;
@@ -476,10 +476,10 @@ covid19-record:Australia.South_Australia.2020-02-02T22:33:07.000Z a covid19:Reco
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/Canada.Toronto,_ON.2020-02-04T00:13:06.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/Canada.Toronto,_ON.2020-02-04T00:13:06.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Toronto, ON, Canada, on Tue, 04 Feb 2020 00:13:06 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-04T00:13:06.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Toronto,_ON> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Toronto,_ON> ;
 	covid19:region covid19-region:CA ;
 	covid19:confirmed 2 ;
 	covid19:death 0 ;
@@ -501,28 +501,28 @@ covid19-record:Spain..2020-02-09T20:33:03.000Z a covid19:Record ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Chicago,_IL.2020-02-09T19:03:03.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Chicago,_IL.2020-02-09T19:03:03.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Chicago, IL, US, on Sun, 09 Feb 2020 19:03:03 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-09T19:03:03.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Chicago,_IL> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Chicago,_IL> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 2 ;
 	covid19:death 0 ;
 	covid19:recovered 2 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.San_Benito,_CA.2020-02-03T03:53:02.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.San_Benito,_CA.2020-02-03T03:53:02.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of San Benito, CA, US, on Mon, 03 Feb 2020 03:53:02 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-03T03:53:02.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/San_Benito,_CA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/San_Benito,_CA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 2 ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Santa_Clara,_CA.2020-02-03T00:43:02.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Santa_Clara,_CA.2020-02-03T00:43:02.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Santa Clara, CA, US, on Mon, 03 Feb 2020 00:43:02 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-03T00:43:02.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 2 ;
 	covid19:death 0 ;
@@ -544,10 +544,10 @@ covid19-record:Cambodia..2020-01-31T08:15:53.000Z a covid19:Record ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/Canada.London,_ON.2020-02-04T00:03:11.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/Canada.London,_ON.2020-02-04T00:03:11.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of London, ON, Canada, on Tue, 04 Feb 2020 00:03:11 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-04T00:03:11.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/London,_ON> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/London,_ON> ;
 	covid19:region covid19-region:CA ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
@@ -594,55 +594,55 @@ covid19-record:Sweden..2020-02-01T02:13:26.000Z a covid19:Record ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Boston,_MA.2020-02-01T19:43:03.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Boston,_MA.2020-02-01T19:43:03.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Boston, MA, US, on Sat, 01 Feb 2020 19:43:03 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-01T19:43:03.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Boston,_MA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Boston,_MA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Los_Angeles,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Los_Angeles,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Los Angeles, CA, US, on Sat, 01 Feb 2020 19:53:03 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-01T19:53:03.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Madison,_WI.2020-02-05T21:53:02.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Madison,_WI.2020-02-05T21:53:02.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Madison, WI, US, on Wed, 05 Feb 2020 21:53:02 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-05T21:53:02.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Madison,_WI> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Madison,_WI> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Orange,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Orange,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Orange, CA, US, on Sat, 01 Feb 2020 19:53:03 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-01T19:53:03.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Orange,_CA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Orange,_CA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
 	covid19:recovered 0 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Seattle,_WA.2020-02-09T07:03:04.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Seattle,_WA.2020-02-09T07:03:04.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Seattle, WA, US, on Sun, 09 Feb 2020 07:03:04 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-09T07:03:04.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Seattle,_WA> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Seattle,_WA> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
 	covid19:recovered 1 .
 
-<https://stko-covid19.geog.ucsb.edu/lod/record/US.Tempe,_AZ.2020-02-01T19:43:03.000Z> a covid19:Record ;
+<https://covid.geog.ucsb.edu/lod/record/US.Tempe,_AZ.2020-02-01T19:43:03.000Z> a covid19:Record ;
 	rdfs:label "The COVID-19 record of Tempe, AZ, US, on Sat, 01 Feb 2020 19:43:03 GMT"@en ;
 	covid19:lastUpdate covid19-instant:2020-02-01T19:43:03.000Z ;
-	covid19:administrativeAreaLevel1 <https://stko-covid19.geog.ucsb.edu/lod/subregion/Tempe,_AZ> ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Tempe,_AZ> ;
 	covid19:region covid19-region:US ;
 	covid19:confirmed 1 ;
 	covid19:death 0 ;
@@ -996,7 +996,7 @@ covid19-subregion:South_Australia a covid19:AdministrativeAreaLevel1 ;
 covid19-instant:2020-02-02T22:33:07.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-02T22:33:07.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Toronto,_ON> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Toronto,_ON> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Toronto, ON"@en ;
 	covid19:superdivision covid19-region:CA .
 
@@ -1018,21 +1018,21 @@ covid19-instant:2020-02-09T20:33:03.000Z a time:Instant ;
 covid19-region:US a covid19:Region ;
 	rdfs:label "US"@en .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Chicago,_IL> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Chicago,_IL> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Chicago, IL"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-09T19:03:03.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-09T19:03:03.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/San_Benito,_CA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/San_Benito,_CA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "San Benito, CA"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-03T03:53:02.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-03T03:53:02.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Santa Clara, CA"@en ;
 	covid19:superdivision covid19-region:US .
 
@@ -1051,7 +1051,7 @@ covid19-region:KH a covid19:Region ;
 covid19-instant:2020-01-31T08:15:53.000Z a time:Instant ;
 	time:inXSDDateTime "2020-01-31T08:15:53.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/London,_ON> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/London,_ON> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "London, ON"@en ;
 	covid19:superdivision covid19-region:CA .
 
@@ -1083,39 +1083,39 @@ covid19-region:SE a covid19:Region ;
 covid19-instant:2020-02-01T02:13:26.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-01T02:13:26.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Boston,_MA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Boston,_MA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Boston, MA"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-01T19:43:03.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-01T19:43:03.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Los Angeles, CA"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-01T19:53:03.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-01T19:53:03.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Madison,_WI> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Madison,_WI> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Madison, WI"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-05T21:53:02.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-05T21:53:02.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Orange,_CA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Orange,_CA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Orange, CA"@en ;
 	covid19:superdivision covid19-region:US .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Seattle,_WA> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Seattle,_WA> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Seattle, WA"@en ;
 	covid19:superdivision covid19-region:US .
 
 covid19-instant:2020-02-09T07:03:04.000Z a time:Instant ;
 	time:inXSDDateTime "2020-02-09T07:03:04.000Z"^^xsd:dateTime .
 
-<https://stko-covid19.geog.ucsb.edu/lod/subregion/Tempe,_AZ> a covid19:AdministrativeAreaLevel1 ;
+<https://covid.geog.ucsb.edu/lod/subregion/Tempe,_AZ> a covid19:AdministrativeAreaLevel1 ;
 	rdfs:label "Tempe, AZ"@en ;
 	covid19:superdivision covid19-region:US .
 

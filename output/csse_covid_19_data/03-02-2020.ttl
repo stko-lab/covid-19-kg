@@ -1,0 +1,1962 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix timezone: <https://www.timeanddate.com/worldclock/results.html?query=> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix covid19: <https://covid.geog.ucsb.edu/lod/ontology/> .
+@prefix covid19-airline: <https://covid.geog.ucsb.edu/lod/airline/> .
+@prefix covid19-airport: <https://covid.geog.ucsb.edu/lod/airport/> .
+@prefix covid19-route: <https://covid.geog.ucsb.edu/lod/route/> .
+@prefix covid19-city: <https://covid.geog.ucsb.edu/lod/city/> .
+@prefix covid19-region: <https://covid.geog.ucsb.edu/lod/region/> .
+@prefix covid19-subregion: <https://covid.geog.ucsb.edu/lod/subregion/> .
+@prefix covid19-continent: <https://covid.geog.ucsb.edu/lod/continent/> .
+@prefix covid19-suspension: <https://covid.geog.ucsb.edu/lod/suspension/> .
+@prefix covid19-record: <https://covid.geog.ucsb.edu/lod/record/> .
+@prefix covid19-interval: <https://covid.geog.ucsb.edu/lod/interval/> .
+@prefix covid19-instant: <https://covid.geog.ucsb.edu/lod/instant/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+covid19-record:Mainland_China.Hubei.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hubei, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hubei ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 67103 ;
+	covid19:death 2803 ;
+	covid19:recovered 33934 .
+
+covid19-record:South_Korea..2020-03-02T20:23:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of South Korea, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:region covid19-region:KR ;
+	covid19:confirmed 4335 ;
+	covid19:death 28 ;
+	covid19:recovered 30 .
+
+covid19-record:Italy..2020-03-02T20:23:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Italy, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:region covid19-region:IT ;
+	covid19:confirmed 2036 ;
+	covid19:death 52 ;
+	covid19:recovered 149 .
+
+covid19-record:Iran..2020-03-02T20:23:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Iran, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:region covid19-region:IR ;
+	covid19:confirmed 1501 ;
+	covid19:death 66 ;
+	covid19:recovered 291 .
+
+covid19-record:Mainland_China.Guangdong.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Guangdong, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guangdong ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 1350 ;
+	covid19:death 7 ;
+	covid19:recovered 1059 .
+
+covid19-record:Mainland_China.Henan.2020-03-02T11:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Henan, Mainland China, on Mon, 02 Mar 2020 11:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T11:43:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Henan ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 1272 ;
+	covid19:death 22 ;
+	covid19:recovered 1205 .
+
+covid19-record:Mainland_China.Zhejiang.2020-03-02T11:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Zhejiang, Mainland China, on Mon, 02 Mar 2020 11:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T11:43:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Zhejiang ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 1206 ;
+	covid19:death 1 ;
+	covid19:recovered 1069 .
+
+covid19-record:Mainland_China.Hunan.2020-03-02T11:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hunan, Mainland China, on Mon, 02 Mar 2020 11:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T11:43:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hunan ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 1018 ;
+	covid19:death 4 ;
+	covid19:recovered 887 .
+
+covid19-record:Mainland_China.Anhui.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Anhui, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Anhui ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 990 ;
+	covid19:death 6 ;
+	covid19:recovered 917 .
+
+covid19-record:Mainland_China.Jiangxi.2020-03-02T01:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Jiangxi, Mainland China, on Mon, 02 Mar 2020 01:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T01:33:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jiangxi ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 935 ;
+	covid19:death 1 ;
+	covid19:recovered 850 .
+
+covid19-record:Mainland_China.Shandong.2020-03-02T08:03:12.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Shandong, Mainland China, on Mon, 02 Mar 2020 08:03:12 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T08:03:12.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shandong ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 758 ;
+	covid19:death 6 ;
+	covid19:recovered 460 .
+
+covid19-record:Others.Diamond_Princess_cruise_ship.2020-03-02T14:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Diamond Princess cruise ship, Others, on Mon, 02 Mar 2020 14:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T14:33:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Diamond_Princess_cruise_ship ;
+	covid19:region covid19-region:Others ;
+	covid19:confirmed 705 ;
+	covid19:death 6 ;
+	covid19:recovered 10 .
+
+covid19-record:Mainland_China.Jiangsu.2020-03-02T12:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Jiangsu, Mainland China, on Mon, 02 Mar 2020 12:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T12:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jiangsu ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 631 ;
+	covid19:death 0 ;
+	covid19:recovered 543 .
+
+covid19-record:Mainland_China.Chongqing.2020-03-02T23:23:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Chongqing, Mainland China, on Mon, 02 Mar 2020 23:23:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T23:23:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Chongqing ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 576 ;
+	covid19:death 6 ;
+	covid19:recovered 469 .
+
+covid19-record:Mainland_China.Sichuan.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sichuan, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Sichuan ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 538 ;
+	covid19:death 3 ;
+	covid19:recovered 386 .
+
+covid19-record:Mainland_China.Heilongjiang.2020-03-02T12:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Heilongjiang, Mainland China, on Mon, 02 Mar 2020 12:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T12:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Heilongjiang ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 480 ;
+	covid19:death 13 ;
+	covid19:recovered 356 .
+
+covid19-record:Mainland_China.Beijing.2020-03-02T02:13:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Beijing, Mainland China, on Mon, 02 Mar 2020 02:13:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T02:13:16.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Beijing ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 414 ;
+	covid19:death 8 ;
+	covid19:recovered 282 .
+
+covid19-record:Mainland_China.Shanghai.2020-03-02T04:03:13.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Shanghai, Mainland China, on Mon, 02 Mar 2020 04:03:13 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T04:03:13.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shanghai ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 337 ;
+	covid19:death 3 ;
+	covid19:recovered 292 .
+
+covid19-record:Mainland_China.Hebei.2020-03-02T09:43:05.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hebei, Mainland China, on Mon, 02 Mar 2020 09:43:05 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T09:43:05.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hebei ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 318 ;
+	covid19:death 6 ;
+	covid19:recovered 296 .
+
+covid19-record:Mainland_China.Fujian.2020-03-02T12:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Fujian, Mainland China, on Mon, 02 Mar 2020 12:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T12:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Fujian ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 296 ;
+	covid19:death 1 ;
+	covid19:recovered 255 .
+
+covid19-record:Japan..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Japan, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:JP ;
+	covid19:confirmed 274 ;
+	covid19:death 6 ;
+	covid19:recovered 32 .
+
+covid19-record:Mainland_China.Guangxi.2020-03-02T12:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Guangxi, Mainland China, on Mon, 02 Mar 2020 12:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T12:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guangxi ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 252 ;
+	covid19:death 2 ;
+	covid19:recovered 192 .
+
+covid19-record:Mainland_China.Shaanxi.2020-03-02T08:03:12.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Shaanxi, Mainland China, on Mon, 02 Mar 2020 08:03:12 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T08:03:12.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shaanxi ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 245 ;
+	covid19:death 1 ;
+	covid19:recovered 216 .
+
+covid19-record:France..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of France, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:FR ;
+	covid19:confirmed 191 ;
+	covid19:death 3 ;
+	covid19:recovered 12 .
+
+covid19-record:Mainland_China.Yunnan.2020-03-02T06:23:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Yunnan, Mainland China, on Mon, 02 Mar 2020 06:23:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T06:23:04.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Yunnan ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 174 ;
+	covid19:death 2 ;
+	covid19:recovered 168 .
+
+covid19-record:Mainland_China.Hainan.2020-03-02T02:03:18.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hainan, Mainland China, on Mon, 02 Mar 2020 02:03:18 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T02:03:18.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hainan ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 168 ;
+	covid19:death 5 ;
+	covid19:recovered 151 .
+
+covid19-record:Germany..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Germany, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:DE ;
+	covid19:confirmed 159 ;
+	covid19:death 0 ;
+	covid19:recovered 16 .
+
+covid19-record:Mainland_China.Guizhou.2020-03-02T01:13:06.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Guizhou, Mainland China, on Mon, 02 Mar 2020 01:13:06 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T01:13:06.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Guizhou ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 146 ;
+	covid19:death 2 ;
+	covid19:recovered 114 .
+
+covid19-record:Mainland_China.Tianjin.2020-03-01T12:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Tianjin, Mainland China, on Sun, 01 Mar 2020 12:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T12:43:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Tianjin ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 136 ;
+	covid19:death 3 ;
+	covid19:recovered 111 .
+
+covid19-record:Mainland_China.Shanxi.2020-03-02T23:23:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Shanxi, Mainland China, on Mon, 02 Mar 2020 23:23:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T23:23:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Shanxi ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 133 ;
+	covid19:death 0 ;
+	covid19:recovered 119 .
+
+covid19-record:Mainland_China.Liaoning.2020-03-01T12:23:06.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Liaoning, Mainland China, on Sun, 01 Mar 2020 12:23:06 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T12:23:06.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Liaoning ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 122 ;
+	covid19:death 1 ;
+	covid19:recovered 103 .
+
+covid19-record:Spain..2020-03-02T14:43:05.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Spain, on Mon, 02 Mar 2020 14:43:05 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T14:43:05.000Z ;
+	covid19:region covid19-region:ES ;
+	covid19:confirmed 120 ;
+	covid19:death 0 ;
+	covid19:recovered 2 .
+
+covid19-record:Singapore..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Singapore, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:SG ;
+	covid19:confirmed 108 ;
+	covid19:death 0 ;
+	covid19:recovered 78 .
+
+covid19-record:Hong_Kong.Hong_Kong.2020-03-02T23:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hong Kong, Hong Kong, on Mon, 02 Mar 2020 23:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T23:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Hong_Kong ;
+	covid19:region covid19-region:HK ;
+	covid19:confirmed 100 ;
+	covid19:death 2 ;
+	covid19:recovered 36 .
+
+covid19-record:Mainland_China.Jilin.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Jilin, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Jilin ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 93 ;
+	covid19:death 1 ;
+	covid19:recovered 83 .
+
+covid19-record:Mainland_China.Gansu.2020-03-02T15:03:23.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Gansu, Mainland China, on Mon, 02 Mar 2020 15:03:23 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:03:23.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Gansu ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 91 ;
+	covid19:death 2 ;
+	covid19:recovered 85 .
+
+covid19-record:Mainland_China.Xinjiang.2020-03-02T15:43:31.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Xinjiang, Mainland China, on Mon, 02 Mar 2020 15:43:31 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T15:43:31.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Xinjiang ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 76 ;
+	covid19:death 3 ;
+	covid19:recovered 66 .
+
+covid19-record:Mainland_China.Inner_Mongolia.2020-03-02T10:23:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Inner Mongolia, Mainland China, on Mon, 02 Mar 2020 10:23:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T10:23:04.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Inner_Mongolia ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 75 ;
+	covid19:death 0 ;
+	covid19:recovered 54 .
+
+covid19-record:Mainland_China.Ningxia.2020-03-02T01:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Ningxia, Mainland China, on Mon, 02 Mar 2020 01:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T01:33:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Ningxia ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 74 ;
+	covid19:death 0 ;
+	covid19:recovered 69 .
+
+covid19-record:Kuwait..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Kuwait, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:KW ;
+	covid19:confirmed 56 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Bahrain..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Bahrain, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:BH ;
+	covid19:confirmed 49 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Unassigned_Location_(From_Diamond_Princess).2020-03-02T19:53:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Unassigned Location (From Diamond Princess), US, on Mon, 02 Mar 2020 19:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T19:53:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Unassigned_Location_(From_Diamond_Princess)> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 45 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Thailand..2020-03-02T06:23:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Thailand, on Mon, 02 Mar 2020 06:23:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T06:23:04.000Z ;
+	covid19:region covid19-region:TH ;
+	covid19:confirmed 43 ;
+	covid19:death 1 ;
+	covid19:recovered 31 .
+
+covid19-record:Switzerland..2020-03-02T22:33:09.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Switzerland, on Mon, 02 Mar 2020 22:33:09 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T22:33:09.000Z ;
+	covid19:region covid19-region:CH ;
+	covid19:confirmed 42 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Taiwan.Taiwan.2020-03-02T08:03:12.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Taiwan, Taiwan, on Mon, 02 Mar 2020 08:03:12 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T08:03:12.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Taiwan ;
+	covid19:region covid19-region:TW ;
+	covid19:confirmed 41 ;
+	covid19:death 1 ;
+	covid19:recovered 12 .
+
+covid19-record:UK..2020-03-02T20:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of UK, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:region covid19-region:GB ;
+	covid19:confirmed 40 ;
+	covid19:death 0 ;
+	covid19:recovered 8 .
+
+covid19-record:Malaysia..2020-03-01T12:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Malaysia, on Sun, 01 Mar 2020 12:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T12:53:02.000Z ;
+	covid19:region covid19-region:MY ;
+	covid19:confirmed 29 ;
+	covid19:death 0 ;
+	covid19:recovered 18 .
+
+covid19-record:Iraq..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Iraq, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:IQ ;
+	covid19:confirmed 26 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Norway..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Norway, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:NO ;
+	covid19:confirmed 25 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:United_Arab_Emirates..2020-02-29T12:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of United Arab Emirates, on Sat, 29 Feb 2020 12:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T12:33:03.000Z ;
+	covid19:region covid19-region:AE ;
+	covid19:confirmed 21 ;
+	covid19:death 0 ;
+	covid19:recovered 5 .
+
+covid19-record:Austria..2020-03-02T21:23:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Austria, on Mon, 02 Mar 2020 21:23:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T21:23:04.000Z ;
+	covid19:region covid19-region:AT ;
+	covid19:confirmed 18 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Mainland_China.Qinghai.2020-02-21T04:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Qinghai, Mainland China, on Fri, 21 Feb 2020 04:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-21T04:43:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Qinghai ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 18 ;
+	covid19:death 0 ;
+	covid19:recovered 18 .
+
+covid19-record:Netherlands..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Netherlands, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:NL ;
+	covid19:confirmed 18 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/Canada.Toronto,_ON.2020-03-02T20:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Toronto, ON, Canada, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Toronto,_ON> ;
+	covid19:region covid19-region:CA ;
+	covid19:confirmed 17 ;
+	covid19:death 0 ;
+	covid19:recovered 2 .
+
+covid19-record:Vietnam..2020-02-25T08:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Vietnam, on Tue, 25 Feb 2020 08:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-25T08:53:02.000Z ;
+	covid19:region covid19-region:VN ;
+	covid19:confirmed 16 ;
+	covid19:death 0 ;
+	covid19:recovered 16 .
+
+covid19-record:Sweden..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sweden, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:SE ;
+	covid19:confirmed 15 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.King_County,_WA.2020-03-02T20:23:16.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of King County, WA, US, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/King_County,_WA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 14 ;
+	covid19:death 5 ;
+	covid19:recovered 1 .
+
+covid19-record:Lebanon..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Lebanon, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:LB ;
+	covid19:confirmed 13 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Israel..2020-03-01T23:23:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Israel, on Sun, 01 Mar 2020 23:23:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:23:02.000Z ;
+	covid19:region covid19-region:IL ;
+	covid19:confirmed 10 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Macau.Macau.2020-02-27T12:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Macau, Macau, on Thu, 27 Feb 2020 12:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-27T12:43:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Macau ;
+	covid19:region covid19-region:MO ;
+	covid19:confirmed 10 ;
+	covid19:death 0 ;
+	covid19:recovered 8 .
+
+covid19-record:Australia.Queensland.2020-02-29T02:03:10.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Queensland, Australia, on Sat, 29 Feb 2020 02:03:10 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T02:03:10.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Queensland ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 9 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Australia.Victoria.2020-03-02T00:53:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Victoria, Australia, on Mon, 02 Mar 2020 00:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T00:53:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Victoria ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 9 ;
+	covid19:death 0 ;
+	covid19:recovered 4 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Santa_Clara,_CA.2020-03-02T20:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Santa Clara, CA, US, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 9 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Belgium..2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Belgium, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:region covid19-region:BE ;
+	covid19:confirmed 8 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Canada.British_Columbia.2020-02-29T23:23:13.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of British Columbia, Canada, on Sat, 29 Feb 2020 23:23:13 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T23:23:13.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:British_Columbia ;
+	covid19:region covid19-region:CA ;
+	covid19:confirmed 8 ;
+	covid19:death 0 ;
+	covid19:recovered 3 .
+
+covid19-record:San_Marino..2020-03-02T01:03:12.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of San Marino, on Mon, 02 Mar 2020 01:03:12 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T01:03:12.000Z ;
+	covid19:region covid19-region:SM ;
+	covid19:confirmed 8 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Croatia..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Croatia, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:HR ;
+	covid19:confirmed 7 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Greece..2020-03-01T23:23:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Greece, on Sun, 01 Mar 2020 23:23:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:23:02.000Z ;
+	covid19:region covid19-region:GR ;
+	covid19:confirmed 7 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Australia.New_South_Wales.2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of New South Wales, Australia, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:New_South_Wales ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 6 ;
+	covid19:death 0 ;
+	covid19:recovered 4 .
+
+covid19-record:Ecuador..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Ecuador, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:EC ;
+	covid19:confirmed 6 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Finland..2020-03-01T23:23:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Finland, on Sun, 01 Mar 2020 23:23:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:23:02.000Z ;
+	covid19:region covid19-region:FI ;
+	covid19:confirmed 6 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Iceland..2020-03-02T22:33:09.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Iceland, on Mon, 02 Mar 2020 22:33:09 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T22:33:09.000Z ;
+	covid19:region covid19-region:IS ;
+	covid19:confirmed 6 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Oman..2020-02-29T12:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Oman, on Sat, 29 Feb 2020 12:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T12:33:03.000Z ;
+	covid19:region covid19-region:OM ;
+	covid19:confirmed 6 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:India..2020-03-02T22:33:09.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of India, on Mon, 02 Mar 2020 22:33:09 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T22:33:09.000Z ;
+	covid19:region covid19-region:IN ;
+	covid19:confirmed 5 ;
+	covid19:death 0 ;
+	covid19:recovered 3 .
+
+covid19-record:Mexico..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Mexico, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:MX ;
+	covid19:confirmed 5 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Denmark..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Denmark, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:DK ;
+	covid19:confirmed 4 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Pakistan..2020-02-29T18:03:05.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Pakistan, on Sat, 29 Feb 2020 18:03:05 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T18:03:05.000Z ;
+	covid19:region covid19-region:PK ;
+	covid19:confirmed 4 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Cook_County,_IL.2020-03-02T20:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Cook County, IL, US, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Cook_County,_IL> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 4 ;
+	covid19:death 0 ;
+	covid19:recovered 2 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Snohomish_County,_WA.2020-03-02T20:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Snohomish County, WA, US, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Snohomish_County,_WA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 4 ;
+	covid19:death 1 ;
+	covid19:recovered 0 .
+
+covid19-record:Algeria..2020-03-02T00:53:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Algeria, on Mon, 02 Mar 2020 00:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T00:53:03.000Z ;
+	covid19:region covid19-region:DZ ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Australia.South_Australia.2020-02-29T02:03:10.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of South Australia, Australia, on Sat, 29 Feb 2020 02:03:10 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T02:03:10.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:South_Australia ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 2 .
+
+covid19-record:Azerbaijan..2020-03-01T02:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Azerbaijan, on Sun, 01 Mar 2020 02:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T02:43:03.000Z ;
+	covid19:region covid19-region:AZ ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Czech_Republic..2020-03-02T16:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Czech Republic, on Mon, 02 Mar 2020 16:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T16:33:02.000Z ;
+	covid19:region covid19-region:CZ ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Georgia..2020-03-01T15:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Georgia, on Sun, 01 Mar 2020 15:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T15:43:03.000Z ;
+	covid19:region covid19-region:GE ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Philippines..2020-02-12T07:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Philippines, on Wed, 12 Feb 2020 07:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-12T07:43:02.000Z ;
+	covid19:region covid19-region:PH ;
+	covid19:confirmed 3 ;
+	covid19:death 1 ;
+	covid19:recovered 1 .
+
+covid19-record:Qatar..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Qatar, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:QA ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Romania..2020-02-28T15:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Romania, on Fri, 28 Feb 2020 15:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T15:33:03.000Z ;
+	covid19:region covid19-region:RO ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Russia..2020-03-02T21:23:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Russia, on Mon, 02 Mar 2020 21:23:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T21:23:04.000Z ;
+	covid19:region covid19-region:RU ;
+	covid19:confirmed 3 ;
+	covid19:death 0 ;
+	covid19:recovered 2 .
+
+covid19-record:Australia.Western_Australia.2020-03-01T02:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Western Australia, Australia, on Sun, 01 Mar 2020 02:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T02:43:03.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Western_Australia ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 2 ;
+	covid19:death 1 ;
+	covid19:recovered 0 .
+
+covid19-record:Brazil..2020-02-29T21:03:05.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Brazil, on Sat, 29 Feb 2020 21:03:05 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T21:03:05.000Z ;
+	covid19:region covid19-region:BR ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Egypt..2020-03-01T23:33:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Egypt, on Sun, 01 Mar 2020 23:33:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T23:33:03.000Z ;
+	covid19:region covid19-region:EG ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Indonesia..2020-03-02T18:03:04.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Indonesia, on Mon, 02 Mar 2020 18:03:04 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T18:03:04.000Z ;
+	covid19:region covid19-region:ID ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Portugal..2020-03-02T22:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Portugal, on Mon, 02 Mar 2020 22:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T22:43:02.000Z ;
+	covid19:region covid19-region:PT ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Portland,_OR.2020-03-02T03:33:08.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Portland, OR, US, on Mon, 02 Mar 2020 03:33:08 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T03:33:08.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Portland,_OR> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Providence,_RI.2020-03-02T03:43:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Providence, RI, US, on Mon, 02 Mar 2020 03:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T03:43:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Providence,_RI> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Sacramento_County,_CA.2020-02-27T20:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sacramento County, CA, US, on Thu, 27 Feb 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-27T20:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Sacramento_County,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.San_Benito,_CA.2020-02-03T03:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of San Benito, CA, US, on Mon, 03 Feb 2020 03:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-03T03:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/San_Benito,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.San_Diego_County,_CA.2020-02-21T05:43:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of San Diego County, CA, US, on Fri, 21 Feb 2020 05:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-21T05:43:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/San_Diego_County,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 2 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Afghanistan..2020-02-24T23:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Afghanistan, on Mon, 24 Feb 2020 23:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-24T23:33:02.000Z ;
+	covid19:region covid19-region:AF ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Andorra..2020-03-02T20:23:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Andorra, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:region covid19-region:AD ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Armenia..2020-03-01T19:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Armenia, on Sun, 01 Mar 2020 19:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T19:53:02.000Z ;
+	covid19:region covid19-region:AM ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Australia.Tasmania.2020-03-02T20:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Tasmania, Australia, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Tasmania ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Belarus..2020-02-28T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Belarus, on Fri, 28 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T16:23:03.000Z ;
+	covid19:region covid19-region:BY ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Cambodia..2020-02-12T07:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Cambodia, on Wed, 12 Feb 2020 07:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-12T07:43:02.000Z ;
+	covid19:region covid19-region:KH ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+<https://covid.geog.ucsb.edu/lod/record/Canada.Montreal,_QC.2020-02-28T05:23:07.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Montreal, QC, Canada, on Fri, 28 Feb 2020 05:23:07 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T05:23:07.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Montreal,_QC> ;
+	covid19:region covid19-region:CA ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/Canada.London,_ON.2020-02-12T18:53:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of London, ON, Canada, on Wed, 12 Feb 2020 18:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-12T18:53:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/London,_ON> ;
+	covid19:region covid19-region:CA ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Dominican_Republic..2020-03-02T16:33:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Dominican Republic, on Mon, 02 Mar 2020 16:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T16:33:02.000Z ;
+	covid19:region covid19-region:DO ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Estonia..2020-02-27T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Estonia, on Thu, 27 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-27T16:23:03.000Z ;
+	covid19:region covid19-region:EE ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Ireland..2020-03-01T07:13:07.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Ireland, on Sun, 01 Mar 2020 07:13:07 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T07:13:07.000Z ;
+	covid19:region covid19-region:IE ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Latvia..2020-03-02T20:13:49.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Latvia, on Mon, 02 Mar 2020 20:13:49 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:13:49.000Z ;
+	covid19:region covid19-region:LV ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Lithuania..2020-02-28T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Lithuania, on Fri, 28 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T16:23:03.000Z ;
+	covid19:region covid19-region:LT ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Luxembourg..2020-03-01T07:13:07.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Luxembourg, on Sun, 01 Mar 2020 07:13:07 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-01T07:13:07.000Z ;
+	covid19:region covid19-region:LU ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Mainland_China.Tibet.2020-02-12T06:43:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Tibet, Mainland China, on Wed, 12 Feb 2020 06:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-12T06:43:02.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:Tibet ;
+	covid19:region covid19-region:CN ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:Monaco..2020-02-29T00:33:01.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Monaco, on Sat, 29 Feb 2020 00:33:01 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T00:33:01.000Z ;
+	covid19:region covid19-region:MC ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Morocco..2020-03-02T22:33:09.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Morocco, on Mon, 02 Mar 2020 22:33:09 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T22:33:09.000Z ;
+	covid19:region covid19-region:MA ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Nepal..2020-02-12T14:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Nepal, on Wed, 12 Feb 2020 14:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-12T14:43:03.000Z ;
+	covid19:region covid19-region:NP ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+covid19-record:New_Zealand..2020-02-28T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of New Zealand, on Fri, 28 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T16:23:03.000Z ;
+	covid19:region covid19-region:NZ ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Nigeria..2020-02-28T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Nigeria, on Fri, 28 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T16:23:03.000Z ;
+	covid19:region covid19-region:NG ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:North_Macedonia..2020-02-27T16:23:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of North Macedonia, on Thu, 27 Feb 2020 16:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-27T16:23:03.000Z ;
+	covid19:region covid19-region:North_Macedonia ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Saudi_Arabia..2020-03-02T23:53:02.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Saudi Arabia, on Mon, 02 Mar 2020 23:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T23:53:02.000Z ;
+	covid19:region covid19-region:SA ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Senegal..2020-03-02T20:23:16.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Senegal, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:region covid19-region:SN ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Sri_Lanka..2020-02-08T03:43:03.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sri Lanka, on Sat, 08 Feb 2020 03:43:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-08T03:43:03.000Z ;
+	covid19:region covid19-region:LK ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Boston,_MA.2020-02-28T21:13:12.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Boston, MA, US, on Fri, 28 Feb 2020 21:13:12 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-28T21:13:12.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Boston,_MA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Grafton_County,_NH.2020-03-02T20:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Grafton County, NH, US, on Mon, 02 Mar 2020 20:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Grafton_County,_NH> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Hillsborough,_FL.2020-03-02T03:13:25.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Hillsborough, FL, US, on Mon, 02 Mar 2020 03:13:25 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T03:13:25.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Hillsborough,_FL> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Humboldt_County,_CA.2020-02-21T05:13:09.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Humboldt County, CA, US, on Fri, 21 Feb 2020 05:13:09 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-21T05:13:09.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Humboldt_County,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Los_Angeles,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Los Angeles, CA, US, on Sat, 01 Feb 2020 19:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-01T19:53:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Madison,_WI.2020-02-05T21:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Madison, WI, US, on Wed, 05 Feb 2020 21:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-05T21:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Madison,_WI> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.New_York_City,_NY.2020-03-02T01:53:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of New York City, NY, US, on Mon, 02 Mar 2020 01:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T01:53:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/New_York_City,_NY> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Orange,_CA.2020-02-01T19:53:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Orange, CA, US, on Sat, 01 Feb 2020 19:53:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-01T19:53:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Orange,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Placer_County,_CA.2020-03-02T23:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Placer County, CA, US, on Mon, 02 Mar 2020 23:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T23:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Placer_County,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.San_Antonio,_TX.2020-02-13T18:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of San Antonio, TX, US, on Thu, 13 Feb 2020 18:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-13T18:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/San_Antonio,_TX> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.San_Mateo,_CA.2020-03-02T20:43:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of San Mateo, CA, US, on Mon, 02 Mar 2020 20:43:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:43:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/San_Mateo,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Sarasota,_FL.2020-03-02T03:23:06.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sarasota, FL, US, on Mon, 02 Mar 2020 03:23:06 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T03:23:06.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Sarasota,_FL> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Sonoma_County,_CA.2020-03-02T20:53:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Sonoma County, CA, US, on Mon, 02 Mar 2020 20:53:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:53:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Sonoma_County,_CA> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Tempe,_AZ.2020-02-25T21:23:03.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Tempe, AZ, US, on Tue, 25 Feb 2020 21:23:03 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-25T21:23:03.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Tempe,_AZ> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 1 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Umatilla,_OR.2020-03-02T20:23:16.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Umatilla, OR, US, on Mon, 02 Mar 2020 20:23:16 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-03-02T20:23:16.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Umatilla,_OR> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 1 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-record:Australia.From_Diamond_Princess.2020-02-29T02:03:10.000Z a covid19:Record ;
+	rdfs:label "The COVID-19 record of From Diamond Princess, Australia, on Sat, 29 Feb 2020 02:03:10 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-29T02:03:10.000Z ;
+	covid19:administrativeAreaLevel1 covid19-subregion:From_Diamond_Princess ;
+	covid19:region covid19-region:AU ;
+	covid19:confirmed 0 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Lackland,_TX_(From_Diamond_Princess).2020-02-24T23:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Lackland, TX (From Diamond Princess), US, on Mon, 24 Feb 2020 23:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-24T23:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Lackland,_TX_(From_Diamond_Princess)> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 0 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Omaha,_NE_(From_Diamond_Princess).2020-02-24T23:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Omaha, NE (From Diamond Princess), US, on Mon, 24 Feb 2020 23:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-24T23:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Omaha,_NE_(From_Diamond_Princess)> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 0 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+<https://covid.geog.ucsb.edu/lod/record/US.Travis,_CA_(From_Diamond_Princess).2020-02-24T23:33:02.000Z> a covid19:Record ;
+	rdfs:label "The COVID-19 record of Travis, CA (From Diamond Princess), US, on Mon, 24 Feb 2020 23:33:02 GMT"@en ;
+	covid19:lastUpdate covid19-instant:2020-02-24T23:33:02.000Z ;
+	covid19:administrativeAreaLevel1 <https://covid.geog.ucsb.edu/lod/subregion/Travis,_CA_(From_Diamond_Princess)> ;
+	covid19:region covid19-region:US ;
+	covid19:confirmed 0 ;
+	covid19:death 0 ;
+	covid19:recovered 0 .
+
+covid19-region:CN a covid19:Region ;
+	rdfs:label "Mainland China"@en .
+
+covid19-subregion:Hubei a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hubei"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T15:03:23.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T15:03:23.000Z"^^xsd:dateTime .
+
+covid19-region:KR a covid19:Region ;
+	rdfs:label "South Korea"@en .
+
+covid19-instant:2020-03-02T20:23:16.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T20:23:16.000Z"^^xsd:dateTime .
+
+covid19-region:IT a covid19:Region ;
+	rdfs:label "Italy"@en .
+
+covid19-region:IR a covid19:Region ;
+	rdfs:label "Iran"@en .
+
+covid19-subregion:Guangdong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guangdong"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Henan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Henan"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T11:43:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T11:43:03.000Z"^^xsd:dateTime .
+
+covid19-subregion:Zhejiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Zhejiang"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Hunan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hunan"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Anhui a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Anhui"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Jiangxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jiangxi"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T01:33:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T01:33:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Shandong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shandong"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T08:03:12.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T08:03:12.000Z"^^xsd:dateTime .
+
+covid19-region:Others a covid19:Region ;
+	rdfs:label "Others"@en .
+
+covid19-subregion:Diamond_Princess_cruise_ship a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Diamond Princess cruise ship"@en ;
+	covid19:superdivision covid19-region:Others .
+
+covid19-instant:2020-03-02T14:33:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T14:33:03.000Z"^^xsd:dateTime .
+
+covid19-subregion:Jiangsu a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jiangsu"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T12:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T12:53:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Chongqing a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Chongqing"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T23:23:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T23:23:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Sichuan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Sichuan"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Heilongjiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Heilongjiang"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Beijing a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Beijing"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T02:13:16.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T02:13:16.000Z"^^xsd:dateTime .
+
+covid19-subregion:Shanghai a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shanghai"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T04:03:13.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T04:03:13.000Z"^^xsd:dateTime .
+
+covid19-subregion:Hebei a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hebei"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T09:43:05.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T09:43:05.000Z"^^xsd:dateTime .
+
+covid19-subregion:Fujian a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Fujian"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-region:JP a covid19:Region ;
+	rdfs:label "Japan"@en .
+
+covid19-instant:2020-03-02T20:33:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T20:33:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Guangxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guangxi"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Shaanxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shaanxi"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-region:FR a covid19:Region ;
+	rdfs:label "France"@en .
+
+covid19-subregion:Yunnan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Yunnan"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T06:23:04.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T06:23:04.000Z"^^xsd:dateTime .
+
+covid19-subregion:Hainan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hainan"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T02:03:18.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T02:03:18.000Z"^^xsd:dateTime .
+
+covid19-region:DE a covid19:Region ;
+	rdfs:label "Germany"@en .
+
+covid19-subregion:Guizhou a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Guizhou"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T01:13:06.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T01:13:06.000Z"^^xsd:dateTime .
+
+covid19-subregion:Tianjin a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Tianjin"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-01T12:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T12:43:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Shanxi a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Shanxi"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Liaoning a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Liaoning"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-01T12:23:06.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T12:23:06.000Z"^^xsd:dateTime .
+
+covid19-region:ES a covid19:Region ;
+	rdfs:label "Spain"@en .
+
+covid19-instant:2020-03-02T14:43:05.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T14:43:05.000Z"^^xsd:dateTime .
+
+covid19-region:SG a covid19:Region ;
+	rdfs:label "Singapore"@en .
+
+covid19-region:HK a covid19:Region ;
+	rdfs:label "Hong Kong"@en .
+
+covid19-subregion:Hong_Kong a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hong Kong"@en ;
+	covid19:superdivision covid19-region:HK .
+
+covid19-instant:2020-03-02T23:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T23:53:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Jilin a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Jilin"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Gansu a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Gansu"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-subregion:Xinjiang a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Xinjiang"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T15:43:31.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T15:43:31.000Z"^^xsd:dateTime .
+
+covid19-subregion:Inner_Mongolia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Inner Mongolia"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-03-02T10:23:04.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T10:23:04.000Z"^^xsd:dateTime .
+
+covid19-subregion:Ningxia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Ningxia"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-region:KW a covid19:Region ;
+	rdfs:label "Kuwait"@en .
+
+covid19-region:BH a covid19:Region ;
+	rdfs:label "Bahrain"@en .
+
+covid19-region:US a covid19:Region ;
+	rdfs:label "US"@en .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Unassigned_Location_(From_Diamond_Princess)> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Unassigned Location (From Diamond Princess)"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T19:53:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T19:53:03.000Z"^^xsd:dateTime .
+
+covid19-region:TH a covid19:Region ;
+	rdfs:label "Thailand"@en .
+
+covid19-region:CH a covid19:Region ;
+	rdfs:label "Switzerland"@en .
+
+covid19-instant:2020-03-02T22:33:09.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T22:33:09.000Z"^^xsd:dateTime .
+
+covid19-region:TW a covid19:Region ;
+	rdfs:label "Taiwan"@en .
+
+covid19-subregion:Taiwan a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Taiwan"@en ;
+	covid19:superdivision covid19-region:TW .
+
+covid19-region:GB a covid19:Region ;
+	rdfs:label "UK"@en .
+
+covid19-region:MY a covid19:Region ;
+	rdfs:label "Malaysia"@en .
+
+covid19-instant:2020-03-01T12:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T12:53:02.000Z"^^xsd:dateTime .
+
+covid19-region:IQ a covid19:Region ;
+	rdfs:label "Iraq"@en .
+
+covid19-instant:2020-03-02T20:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T20:53:02.000Z"^^xsd:dateTime .
+
+covid19-region:NO a covid19:Region ;
+	rdfs:label "Norway"@en .
+
+covid19-region:AE a covid19:Region ;
+	rdfs:label "United Arab Emirates"@en .
+
+covid19-instant:2020-02-29T12:33:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T12:33:03.000Z"^^xsd:dateTime .
+
+covid19-region:AT a covid19:Region ;
+	rdfs:label "Austria"@en .
+
+covid19-instant:2020-03-02T21:23:04.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T21:23:04.000Z"^^xsd:dateTime .
+
+covid19-subregion:Qinghai a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Qinghai"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-02-21T04:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-21T04:43:02.000Z"^^xsd:dateTime .
+
+covid19-region:NL a covid19:Region ;
+	rdfs:label "Netherlands"@en .
+
+covid19-region:CA a covid19:Region ;
+	rdfs:label "Canada"@en .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Toronto,_ON> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Toronto, ON"@en ;
+	covid19:superdivision covid19-region:CA .
+
+covid19-region:VN a covid19:Region ;
+	rdfs:label "Vietnam"@en .
+
+covid19-instant:2020-02-25T08:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-25T08:53:02.000Z"^^xsd:dateTime .
+
+covid19-region:SE a covid19:Region ;
+	rdfs:label "Sweden"@en .
+
+<https://covid.geog.ucsb.edu/lod/subregion/King_County,_WA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "King County, WA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-region:LB a covid19:Region ;
+	rdfs:label "Lebanon"@en .
+
+covid19-region:IL a covid19:Region ;
+	rdfs:label "Israel"@en .
+
+covid19-instant:2020-03-01T23:23:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T23:23:02.000Z"^^xsd:dateTime .
+
+covid19-region:MO a covid19:Region ;
+	rdfs:label "Macau"@en .
+
+covid19-subregion:Macau a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Macau"@en ;
+	covid19:superdivision covid19-region:MO .
+
+covid19-instant:2020-02-27T12:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-27T12:43:02.000Z"^^xsd:dateTime .
+
+covid19-region:AU a covid19:Region ;
+	rdfs:label "Australia"@en .
+
+covid19-subregion:Queensland a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Queensland"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-instant:2020-02-29T02:03:10.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T02:03:10.000Z"^^xsd:dateTime .
+
+covid19-subregion:Victoria a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Victoria"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-instant:2020-03-02T00:53:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T00:53:03.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Santa_Clara,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Santa Clara, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-region:BE a covid19:Region ;
+	rdfs:label "Belgium"@en .
+
+covid19-subregion:British_Columbia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "British Columbia"@en ;
+	covid19:superdivision covid19-region:CA .
+
+covid19-instant:2020-02-29T23:23:13.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T23:23:13.000Z"^^xsd:dateTime .
+
+covid19-region:SM a covid19:Region ;
+	rdfs:label "San Marino"@en .
+
+covid19-instant:2020-03-02T01:03:12.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T01:03:12.000Z"^^xsd:dateTime .
+
+covid19-region:HR a covid19:Region ;
+	rdfs:label "Croatia"@en .
+
+covid19-instant:2020-03-01T23:33:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T23:33:03.000Z"^^xsd:dateTime .
+
+covid19-region:GR a covid19:Region ;
+	rdfs:label "Greece"@en .
+
+covid19-subregion:New_South_Wales a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "New South Wales"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-region:EC a covid19:Region ;
+	rdfs:label "Ecuador"@en .
+
+covid19-region:FI a covid19:Region ;
+	rdfs:label "Finland"@en .
+
+covid19-region:IS a covid19:Region ;
+	rdfs:label "Iceland"@en .
+
+covid19-region:OM a covid19:Region ;
+	rdfs:label "Oman"@en .
+
+covid19-region:IN a covid19:Region ;
+	rdfs:label "India"@en .
+
+covid19-region:MX a covid19:Region ;
+	rdfs:label "Mexico"@en .
+
+covid19-region:DK a covid19:Region ;
+	rdfs:label "Denmark"@en .
+
+covid19-region:PK a covid19:Region ;
+	rdfs:label "Pakistan"@en .
+
+covid19-instant:2020-02-29T18:03:05.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T18:03:05.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Cook_County,_IL> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Cook County, IL"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Snohomish_County,_WA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Snohomish County, WA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-region:DZ a covid19:Region ;
+	rdfs:label "Algeria"@en .
+
+covid19-subregion:South_Australia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "South Australia"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-region:AZ a covid19:Region ;
+	rdfs:label "Azerbaijan"@en .
+
+covid19-instant:2020-03-01T02:43:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T02:43:03.000Z"^^xsd:dateTime .
+
+covid19-region:CZ a covid19:Region ;
+	rdfs:label "Czech Republic"@en .
+
+covid19-instant:2020-03-02T16:33:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T16:33:02.000Z"^^xsd:dateTime .
+
+covid19-region:GE a covid19:Region ;
+	rdfs:label "Georgia"@en .
+
+covid19-instant:2020-03-01T15:43:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T15:43:03.000Z"^^xsd:dateTime .
+
+covid19-region:PH a covid19:Region ;
+	rdfs:label "Philippines"@en .
+
+covid19-instant:2020-02-12T07:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-12T07:43:02.000Z"^^xsd:dateTime .
+
+covid19-region:QA a covid19:Region ;
+	rdfs:label "Qatar"@en .
+
+covid19-region:RO a covid19:Region ;
+	rdfs:label "Romania"@en .
+
+covid19-instant:2020-02-28T15:33:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-28T15:33:03.000Z"^^xsd:dateTime .
+
+covid19-region:RU a covid19:Region ;
+	rdfs:label "Russia"@en .
+
+covid19-subregion:Western_Australia a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Western Australia"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-region:BR a covid19:Region ;
+	rdfs:label "Brazil"@en .
+
+covid19-instant:2020-02-29T21:03:05.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T21:03:05.000Z"^^xsd:dateTime .
+
+covid19-region:EG a covid19:Region ;
+	rdfs:label "Egypt"@en .
+
+covid19-region:ID a covid19:Region ;
+	rdfs:label "Indonesia"@en .
+
+covid19-instant:2020-03-02T18:03:04.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T18:03:04.000Z"^^xsd:dateTime .
+
+covid19-region:PT a covid19:Region ;
+	rdfs:label "Portugal"@en .
+
+covid19-instant:2020-03-02T22:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T22:43:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Portland,_OR> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Portland, OR"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T03:33:08.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T03:33:08.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Providence,_RI> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Providence, RI"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T03:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T03:43:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Sacramento_County,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Sacramento County, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-27T20:33:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-27T20:33:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/San_Benito,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "San Benito, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-03T03:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-03T03:53:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/San_Diego_County,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "San Diego County, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-21T05:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-21T05:43:02.000Z"^^xsd:dateTime .
+
+covid19-region:AF a covid19:Region ;
+	rdfs:label "Afghanistan"@en .
+
+covid19-instant:2020-02-24T23:33:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-24T23:33:02.000Z"^^xsd:dateTime .
+
+covid19-region:AD a covid19:Region ;
+	rdfs:label "Andorra"@en .
+
+covid19-region:AM a covid19:Region ;
+	rdfs:label "Armenia"@en .
+
+covid19-instant:2020-03-01T19:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T19:53:02.000Z"^^xsd:dateTime .
+
+covid19-subregion:Tasmania a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Tasmania"@en ;
+	covid19:superdivision covid19-region:AU .
+
+covid19-region:BY a covid19:Region ;
+	rdfs:label "Belarus"@en .
+
+covid19-instant:2020-02-28T16:23:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-28T16:23:03.000Z"^^xsd:dateTime .
+
+covid19-region:KH a covid19:Region ;
+	rdfs:label "Cambodia"@en .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Montreal,_QC> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Montreal, QC"@en ;
+	covid19:superdivision covid19-region:CA .
+
+covid19-instant:2020-02-28T05:23:07.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-28T05:23:07.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/London,_ON> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "London, ON"@en ;
+	covid19:superdivision covid19-region:CA .
+
+covid19-instant:2020-02-12T18:53:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-12T18:53:03.000Z"^^xsd:dateTime .
+
+covid19-region:DO a covid19:Region ;
+	rdfs:label "Dominican Republic"@en .
+
+covid19-region:EE a covid19:Region ;
+	rdfs:label "Estonia"@en .
+
+covid19-instant:2020-02-27T16:23:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-27T16:23:03.000Z"^^xsd:dateTime .
+
+covid19-region:IE a covid19:Region ;
+	rdfs:label "Ireland"@en .
+
+covid19-instant:2020-03-01T07:13:07.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-01T07:13:07.000Z"^^xsd:dateTime .
+
+covid19-region:LV a covid19:Region ;
+	rdfs:label "Latvia"@en .
+
+covid19-instant:2020-03-02T20:13:49.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T20:13:49.000Z"^^xsd:dateTime .
+
+covid19-region:LT a covid19:Region ;
+	rdfs:label "Lithuania"@en .
+
+covid19-region:LU a covid19:Region ;
+	rdfs:label "Luxembourg"@en .
+
+covid19-subregion:Tibet a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Tibet"@en ;
+	covid19:superdivision covid19-region:CN .
+
+covid19-instant:2020-02-12T06:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-12T06:43:02.000Z"^^xsd:dateTime .
+
+covid19-region:MC a covid19:Region ;
+	rdfs:label "Monaco"@en .
+
+covid19-instant:2020-02-29T00:33:01.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-29T00:33:01.000Z"^^xsd:dateTime .
+
+covid19-region:MA a covid19:Region ;
+	rdfs:label "Morocco"@en .
+
+covid19-region:NP a covid19:Region ;
+	rdfs:label "Nepal"@en .
+
+covid19-instant:2020-02-12T14:43:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-12T14:43:03.000Z"^^xsd:dateTime .
+
+covid19-region:NZ a covid19:Region ;
+	rdfs:label "New Zealand"@en .
+
+covid19-region:NG a covid19:Region ;
+	rdfs:label "Nigeria"@en .
+
+covid19-region:North_Macedonia a covid19:Region ;
+	rdfs:label "North Macedonia"@en .
+
+covid19-region:SA a covid19:Region ;
+	rdfs:label "Saudi Arabia"@en .
+
+covid19-region:SN a covid19:Region ;
+	rdfs:label "Senegal"@en .
+
+covid19-region:LK a covid19:Region ;
+	rdfs:label "Sri Lanka"@en .
+
+covid19-instant:2020-02-08T03:43:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-08T03:43:03.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Boston,_MA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Boston, MA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-28T21:13:12.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-28T21:13:12.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Grafton_County,_NH> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Grafton County, NH"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Hillsborough,_FL> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Hillsborough, FL"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T03:13:25.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T03:13:25.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Humboldt_County,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Humboldt County, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-21T05:13:09.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-21T05:13:09.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Los_Angeles,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Los Angeles, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-01T19:53:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-01T19:53:03.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Madison,_WI> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Madison, WI"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-05T21:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-05T21:53:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/New_York_City,_NY> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "New York City, NY"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T01:53:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T01:53:03.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Orange,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Orange, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Placer_County,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Placer County, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/San_Antonio,_TX> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "San Antonio, TX"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-13T18:53:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-13T18:53:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/San_Mateo,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "San Mateo, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T20:43:02.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T20:43:02.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Sarasota,_FL> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Sarasota, FL"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-03-02T03:23:06.000Z a time:Instant ;
+	time:inXSDDateTime "2020-03-02T03:23:06.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Sonoma_County,_CA> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Sonoma County, CA"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Tempe,_AZ> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Tempe, AZ"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-instant:2020-02-25T21:23:03.000Z a time:Instant ;
+	time:inXSDDateTime "2020-02-25T21:23:03.000Z"^^xsd:dateTime .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Umatilla,_OR> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Umatilla, OR"@en ;
+	covid19:superdivision covid19-region:US .
+
+covid19-subregion:From_Diamond_Princess a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "From Diamond Princess"@en ;
+	covid19:superdivision covid19-region:AU .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Lackland,_TX_(From_Diamond_Princess)> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Lackland, TX (From Diamond Princess)"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Omaha,_NE_(From_Diamond_Princess)> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Omaha, NE (From Diamond Princess)"@en ;
+	covid19:superdivision covid19-region:US .
+
+<https://covid.geog.ucsb.edu/lod/subregion/Travis,_CA_(From_Diamond_Princess)> a covid19:AdministrativeAreaLevel1 ;
+	rdfs:label "Travis, CA (From Diamond Princess)"@en ;
+	covid19:superdivision covid19-region:US .
+
