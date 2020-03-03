@@ -1,29 +1,23 @@
 const stream = require('stream');
 const csv_parse = require('csv-parse');
-
 const ttl_write = require('@graphy/content.ttl.write');
 
-const fs = require('fs');
-const path = require('path');
+const H_NORMALIZE_REGIONS = {
+	'Cruise Ship': 'Diamond Princess cruise ship',
+};
 
-let a_code2regionnames = fs.readFileSync(path.join(__dirname, '../common/code2regionnames.json'));
-let d_code2regionnames = JSON.parse(a_code2regionnames);
+const H_CODES_TO_NAMES_REGIONS = require('../common/regions_codes-to-names.json');
 
-function swap(json){
-  var ret = {};
-  for(var key in json){
-    ret[json[key]] = key;
-  }
-  return ret;
-}
-
-let d_regionnames2code = {
-		...swap(d_code2regionnames),
-		"Mainland China": "CN",
-		"Macau": "MO",
-		"US": "US",
-		"UK": "GB"
-	};
+const H_NAMES_TO_CODES_REGIONS = Object.entries(H_CODES_TO_NAMES_REGIONS)
+	.reduce((h_out, [si_key, s_value]) => ({
+		...h_out,
+		[s_value]: si_key,
+	}), {
+		'Mainland China': 'CN',
+		Macau: 'MO',
+		US: 'US',
+		UK: 'GB',
+	});
 
 const H_PREFIXES = require('../common/prefixes.js');
 
@@ -73,15 +67,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				} = g_row;
 
 
-				// let sc1_country = `covid19-region:${suffix(s_region)}`;
-				let sc1_country;
-				if(d_regionnames2code.hasOwnProperty(s_region.trim())){
-					sc1_country = `covid19-region:${d_regionnames2code[s_region.trim()]}`;
-				}else{
-					// console.log(s_region);
-					sc1_country = `covid19-region:${suffix(s_region)}`;
-				}
-
+				let sc1_country = `covid19-region:${H_NAMES_TO_CODES_REGIONS[s_region] || suffix(s_region)}`;
 				hc3_flush[sc1_country] = {
 					a: 'covid19:Region',
 					'rdfs:label': '@en"'+s_region,
@@ -89,9 +75,10 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 
 				let sc1_state;
 				if(s_state) {
-					s_state = s_state === "Cruise Ship" ? "Diamond Princess cruise ship" : s_state;
-					sc1_state = `covid19-subregion:${suffix(s_state)}`;
+					// normalize
+					if(s_state in H_NORMALIZE_REGIONS) s_state = H_NORMALIZE_REGIONS[s_state];
 
+					sc1_state = `covid19-subregion:${suffix(s_state)}`;
 					hc3_flush[sc1_state] = {
 						a: 'covid19:AdministrativeAreaLevel1',
 						'rdfs:label': '@en"'+s_state,
@@ -105,13 +92,11 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				// 2. The "Last Update" is in UTC (GMT +0) for all files after Feb 1 12:00 (ET).
 
 				// fix stupid timestamp string
-				s_last_update = s_last_update.replace(/(\d+)(?::\d+)?\s*([ap]m)/i, (s_ignore, s_hour, s_meridian) => {
-					return ((+s_hour) + ('pm' === s_meridian.toLowerCase()? 12: 0))+':00';
-				});
+				s_last_update = s_last_update.replace(/(\d+)(?::\d+)?\s*([ap]m)/i, (s_ignore, s_hour, s_meridian) => ((+s_hour) + ('pm' === s_meridian.toLowerCase()? 12: 0))+':00');
 
-				debugger
+				debugger;
 				// fix eastern time-zone offset
-				let dt_updated = new Date(s_last_update+`${b_new_daily? "Z" : b_tz_eastern? ' GMT-5': ' GMT+0'}`);
+				let dt_updated = new Date(s_last_update+`${b_new_daily? 'Z' : b_tz_eastern? ' GMT-5': ' GMT+0'}`);
 
 				// format date string for record IRI
 				let s_date_formatted = dt_updated.toISOString();
@@ -133,7 +118,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 							'rdfs:label': `@en"The COVID-19 record of ${s_state? s_state+', ': ''}${s_region}, on ${dt_updated.toGMTString()}`,
 							'covid19:lastUpdate': s_time_instant,
 
-							...inject(s_state, {
+							...inject(sc1_state, {
 								'covid19:administrativeAreaLevel1': sc1_state,
 							}),
 
