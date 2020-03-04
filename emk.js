@@ -3,6 +3,10 @@ const path = require('path');
 
 const P_URI_API_AVIATION_EDGE = 'https://aviation-edge.com/v2/public';
 
+if(!process.env.AVIATION_EDGE_API_KEY) {
+	throw new Error(`Environment variables not set. Use: $ source .env`);
+}
+
 const aviation_edge = si_database => () => ({
 	run: /* syntax: bash */ `
 		curl "${P_URI_API_AVIATION_EDGE}/${si_database}?key=${process.env.AVIATION_EDGE_API_KEY}&limit=${0xffffffff >>> 1}" -o $@
