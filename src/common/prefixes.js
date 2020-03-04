@@ -28,5 +28,6 @@ module.exports = {
 		'record',
 		'interval',
 		'instant',
+		'disease',
 	]),
 };
