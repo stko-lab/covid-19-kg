@@ -2,11 +2,17 @@
 /logs
 *.log
 
+# env files
+.env
+
 # auxillary git repositories
 .git-*
 
 # compiled distributions
 build
+
+# build outputs
+output
 
 # dependencies
 node_modules
