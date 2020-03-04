@@ -21,7 +21,7 @@ const H_RECIPES_DATA_AVIATION_EDGE = {
 	'routes.json': aviation_edge('routes'),
 };
 
-const A_DEPS_DATA_AVIATION_EDGE = Object.keys(H_RECIPES_DATA_AVIATION_EDGE).map(s => `data/${s}`);
+const A_DEPS_DATA_AVIATION_EDGE = Object.keys(H_RECIPES_DATA_AVIATION_EDGE).map(s => `data/aviation-edge/${s}`);
 
 module.exports = {
 	defs: {
@@ -42,15 +42,7 @@ module.exports = {
 			'aviation-edge': H_RECIPES_DATA_AVIATION_EDGE,
 		},
 
-		submodules: {
-			'COVID-19': () => ({
-				run: /* syntax: bash */ `
-					git submodule update --init --recursive
-				`,
-			}),
-		},
-
-		output: {
+		build: {
 			'air-travel': {
 				'global.ttl': () => ({
 					deps: [
@@ -70,10 +62,18 @@ module.exports = {
 						'submodules/COVID-19',
 					],
 					run: /* syntax: bash */ `
-						node $1 submodules/COVID-19/csse_covid_19_data/csse_covid19_daily_reports/*.csv > $@
+						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
 					`,
 				}),
 			},
+		},
+
+		submodules: {
+			'COVID-19': () => ({
+				run: /* syntax: bash */ `
+					git submodule update --init --recursive
+				`,
+			}),
 		},
 	},
 };

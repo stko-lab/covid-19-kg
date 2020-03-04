@@ -11,6 +11,9 @@
 # compiled distributions
 build
 
+# build outputs
+output
+
 # dependencies
 node_modules
 .npm-packages

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const stream = require('stream');
 const csv_parse = require('csv-parse');
 const ttl_write = require('@graphy/content.ttl.write');
@@ -25,20 +26,47 @@ const H_PREFIXES = require('../common/prefixes.js');
 
 const R_WS = /\s+/g;
 
+// CLI inputs
+let a_inputs = process.argv.slice(2);
+
+// convert directories into files
+{
+	// each input path
+	for(let pr_input of a_inputs) {
+		// stat file
+		let d_stat = fs.statSync(pr_input);
+
+		// directory
+		if(d_stat.isDirectory()) {
+			// remove path
+			a_inputs.splice(a_inputs.indexOf(pr_input), 1);
+
+			// push csv fiels
+			a_inputs.push(
+				...fs.readdirSync(pr_input)
+					.filter(s => s.endsWith('.csv'))
+					.map(s => path.join(pr_input, s)));
+		}
+	}
+}
+
+// create turtle writer
 let ds_writer = ttl_write({
 	prefixes: H_PREFIXES,
 });
 
+// pipe writer to stdout
+ds_writer.pipe(process.stdout);
 
-let a_inputs = process.argv.slice(2);
-
+// flush object for consolidating places
 let hc3_flush = {};
+
 
 const suffix = s => s.replace(R_WS, '_');
 
 const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 
-
+// main
 (async() => {
 	for(let pr_input of a_inputs) {
 		// make transform stream for converting flat files to triples
@@ -64,8 +92,11 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					Suspected: s_suspected,
 				} = g_row;
 
+				let si_iso3166_alpha2_country = H_NAMES_TO_CODES_REGIONS[s_region];
 
-				let sc1_country = `covid19-region:${H_NAMES_TO_CODES_REGIONS[s_region] || suffix(s_region)}`;
+				let sc1p_region = si_iso3166_alpha2_country || suffix(s_region);
+
+				let sc1_country = `covid19-region:${sc1p_region}`;
 				hc3_flush[sc1_country] = {
 					a: 'covid19:Region',
 					'rdfs:label': '@en"'+s_region,
@@ -76,7 +107,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					// normalize
 					if(s_state in H_NORMALIZE_REGIONS) s_state = H_NORMALIZE_REGIONS[s_state];
 
-					sc1_state = `covid19-subregion:${suffix(s_state)}`;
+					sc1_state = `covid19-subregion:${sc1p_region}.${suffix(s_state)}`;
 					hc3_flush[sc1_state] = {
 						a: 'covid19:AdministrativeAreaLevel1',
 						'rdfs:label': '@en"'+s_state,
@@ -100,7 +131,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				};
 
 				// create record IRI
-				let sc1_record = `covid19-record:${s_region? suffix(s_region):''}.${s_state? suffix(s_state):''}.${suffix(s_date_formatted)}`;
+				let sc1_record = `covid19-record:${sc1p_region}.${s_state? suffix(s_state):''}.${suffix(s_date_formatted)}`;
 
 				// push triples
 				this.push({
@@ -108,7 +139,8 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					value: {
 						[sc1_record]: {
 							a: 'covid19:Record',
-							'rdfs:label': `@en"The COVID-19 record of ${s_state? s_state+', ': ''}${s_region}, on ${dt_updated.toGMTString()}`,
+							'rdfs:label': `@en"${dt_updated.toISOString()} cases in ${s_state? s_state+', ': ''}${s_region}`,
+							'dct:description': `@en"The COVID-19 cases record for ${s_state? s_state+', ': ''}${s_region}, on ${dt_updated.toGMTString()}`,
 							'covid19:lastUpdate': s_time_instant,
 
 							...inject(sc1_state, {
@@ -151,30 +183,23 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 			},
 		});
 
-		// setup processing pipeline
-		stream.pipeline(...[
-			// read from file
-			fs.createReadStream(pr_input),
-
+		// read from file
+		fs.createReadStream(pr_input)
 			// parse csv
-			csv_parse({
+			.pipe(csv_parse({
 				columns: true,
-			}),
-
+			}))
 			// pipe thru transform
-			ds_transform,
-
-			// write to ttl
-			ds_writer,
-
-			// push to stdout
-			process.stdout,
-
+			.pipe(ds_transform)
 			// catch pipeline errors
-			(e_pipeline) => {
+			.on('error', (e_pipeline) => {
 				throw e_pipeline;
-			},
-		]);
+			});
+
+		// forward data to writer
+		ds_transform.on('data', (w_event) => {
+			ds_writer.write(w_event);
+		});
 
 		// await for transform to end
 		await once(ds_transform, 'finish');
