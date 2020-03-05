@@ -30,6 +30,7 @@ const R_WS = /\s+/g;
 let a_inputs = process.argv.slice(2);
 
 // convert directories into files
+// Given a list of directories, extract the CSV file paths from each of them as a list
 {
 	// each input path
 	for(let pr_input of a_inputs) {
@@ -61,6 +62,7 @@ ds_writer.pipe(process.stdout);
 // flush object for consolidating places
 let hc3_flush = {};
 
+let as_regions = new Set();
 
 const suffix = s => s.replace(R_WS, '_');
 
@@ -101,6 +103,8 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					a: 'covid19:Region',
 					'rdfs:label': '@en"'+s_region,
 				};
+
+				as_regions.add(sc1_country);
 
 				let sc1_state;
 				if(s_state) {
@@ -176,6 +180,10 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 
 			// once at the end
 			flush() {
+				hc3_flush[`covid19-disease:COVID-19_DiseaseOutbreak`] = {
+					'covid19:regionAffected': [...as_regions],
+				};
+				
 				this.push({
 					type: 'c3',
 					value: hc3_flush,
