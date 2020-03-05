@@ -4,7 +4,9 @@
   "description": "",
   "main": "case.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update": "git submodule update --recursive --remote",
+    "air-travel": "emk build/air-travel/global.ttl",
+    "cases": "emk -f build/cases/global.ttl"
   },
   "keywords": [],
   "author": "",

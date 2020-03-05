@@ -73,6 +73,7 @@ let h_cities = {};
 					a: 'covid19:City',
 					'rdfs:label': '@en"'+g_city.nameCity,
 					'covid19:region': `covid19-region:${g_city.codeIso2Country}`,
+					'covid19:iataCityCode': '"'+g_city.codeIataCity,
 					'time:timeZone': `timezone:${g_city.timezone}`,
 				},
 			},
@@ -104,6 +105,8 @@ let h_airports = {};
 					'rdfs:label': '@en"'+g_airport.nameAirport,
 					'covid19:city': `covid19-city:${g_airport.codeIataCity}`,
 					'covid19:region': `covid19-region:${g_airport.codeIso2Country}`,
+					'covid19:iataAirportCode': '"'+g_airport.codeIataAirport,
+					'covid19:icaoAirportCode': '"'+g_airport.codeIcaoAirport,
 					'time:timeZone': `timezone:${g_airport.timezone}`,
 					'geosparql:hasGeometry': {
 						'geosparql:asWKT': `^geosparql:wktLiteral"<http://www.opengis.net/def/crs/OGC/1.3/CRS84>POINT(${g_airport.longitudeAirport} ${g_airport.latitudeAirport})`,
