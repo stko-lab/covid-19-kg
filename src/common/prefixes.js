@@ -15,6 +15,8 @@ module.exports = {
 	time: 'http://www.w3.org/2006/time#',
 	timezone: 'https://www.timeanddate.com/worldclock/results.html?query=',
 	geosparql: 'http://www.opengis.net/ont/geosparql#',
+	fr24: 'https://www.flightradar24.com/data/airports/',
+	wdt: 'http://www.wikidata.org/prop/direct/',
 	covid19: `${P_NAMESPACE}ontology/`,
 	...covid19s([
 		'airline',
