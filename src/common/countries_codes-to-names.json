@@ -148,7 +148,7 @@
   "CI": "Ivory Coast",
   "CH": "Switzerland",
   "CO": "Colombia",
-  "CN": "China",
+  "CN": "Mainland China",
   "CM": "Cameroon",
   "CL": "Chile",
   "CC": "Cocos Islands",
@@ -248,5 +248,6 @@
   "ID": "Indonesia",
   "UA": "Ukraine",
   "QA": "Qatar",
-  "MZ": "Mozambique"
+  "MZ": "Mozambique",
+  "UK": "United Kingdom"
 }
