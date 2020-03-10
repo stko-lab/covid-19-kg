@@ -2,29 +2,25 @@ const fs = require('fs');
 const path = require('path');
 const stream = require('stream');
 const csv_parse = require('csv-parse');
+const util = require('util');
 const ttl_write = require('@graphy/content.ttl.write');
 const once = require('events').once;
+const pipeline = util.promisify(stream.pipeline);
 
-const H_NORMALIZE_REGIONS = {
-	'Cruise Ship': 'Diamond Princess cruise ship',
-};
-
-const H_CODES_TO_NAMES_REGIONS = require('../common/regions_codes-to-names.json');
-
-const H_NAMES_TO_CODES_REGIONS = Object.entries(H_CODES_TO_NAMES_REGIONS)
-	.reduce((h_out, [si_key, s_value]) => ({
-		...h_out,
-		[s_value]: si_key,
-	}), {
-		'Mainland China': 'CN',
-		Macau: 'MO',
-		US: 'US',
-		UK: 'GB',
-	});
+const geocoder = require('../common/geocoder.js');
 
 const H_PREFIXES = require('../common/prefixes.js');
 
-const R_WS = /\s+/g;
+
+// maps iso3166_alpha2_country codes to names
+const H_CODES_TO_NAMES_COUNTRIES = require('../common/countries_codes-to-names.json');
+
+// inverse mapping
+const H_NAMES_TO_CODES_COUNTRIES = Object.entries(H_CODES_TO_NAMES_COUNTRIES)
+	.reduce((h_out, [si_key, s_value]) => ({
+		...h_out,
+		[s_value]: si_key,
+	}), {});
 
 // CLI inputs
 let a_inputs = process.argv.slice(2);
@@ -62,22 +58,28 @@ ds_writer.pipe(process.stdout);
 // flush object for consolidating places
 let hc3_flush = {};
 
-let as_regions = new Set();
+// set of affected locations
+let as_affected = new Set();
 
-const suffix = s => s.replace(R_WS, '_');
+// normalize suffix string
+const suffix = s => s.trim().replace(/\s+/g, '_');
 
-const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
+// normalize place suffix string
+const place = s => suffix(s.replace(/^([^,]+),\s*(.+)$/, (s_, s_1, s_2) => (s_2? s_2+'.': '')+s_1));
+
+// inject hash based on test
+const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 // main
 (async() => {
 	for(let pr_input of a_inputs) {
-		// make transform stream for converting flat files to triples
-		let ds_transform = new stream.Transform({
-			// objects on readable and writable side
+		// make writable stream for converting flat files to triples
+		let ds_triplify = new stream.Writable({
+			// objects on writable side
 			objectMode: true,
 
-			// transform callback
-			transform(g_row, s_encoding, fk_transform) {
+			// writable callback
+			async write(g_row, s_encoding, fk_write) {
 				// normalize keys and vlaues
 				for(let [s_key, s_value] of Object.entries(g_row)) {
 					g_row[s_key.trim()] = 'string' === typeof s_value? s_value.trim(): null;
@@ -86,7 +88,7 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				// destructure row
 				let {
 					'Province/State': s_state,
-					'Country/Region': s_region,
+					'Country/Region': s_country,
 					'Last Update': s_last_update,
 					Confirmed: s_confirmed,
 					Deaths: s_deaths,
@@ -94,29 +96,195 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 					Suspected: s_suspected,
 				} = g_row;
 
-				let si_iso3166_alpha2_country = H_NAMES_TO_CODES_REGIONS[s_region];
 
-				let sc1p_region = si_iso3166_alpha2_country || suffix(s_region);
+				let hc2_record = {};
 
-				let sc1_country = `covid19-region:${sc1p_region}`;
-				hc3_flush[sc1_country] = {
-					a: 'covid19:Region',
-					'rdfs:label': '@en"'+s_region,
-				};
+				let si_iso3166_alpha2_country = H_NAMES_TO_CODES_COUNTRIES[s_country];
 
-				as_regions.add(sc1_country);
+				let sc1p_country = si_iso3166_alpha2_country || suffix(s_country);
 
-				let sc1_state;
-				if(s_state) {
-					// normalize
-					if(s_state in H_NORMALIZE_REGIONS) s_state = H_NORMALIZE_REGIONS[s_state];
+				let sc1_place;
 
-					sc1_state = `covid19-subregion:${sc1p_region}.${suffix(s_state)}`;
-					hc3_flush[sc1_state] = {
-						a: 'covid19:AdministrativeAreaLevel1',
+				// remove diamond princess qualifier
+				s_state = s_state.trim()
+					.replace(/(Unassigned Location(,\s*)?)/i, '').trim()
+					.replace(/\(?From Diamond Princess\)?/i, '').trim()
+					.replace(/\s{2,}/, ' ');
+
+				// cruise ships
+				if(/\b(cruise|ship)\b/i.test(s_state)) {
+					// diamond princess
+					if(/diamond\s+princess/i.test(s_state)) {
+						s_state = 'Diamond Princess Cruise Ship';
+					}
+					// grand princess
+					else if(/grand\s+princess/i.test(s_state)) {
+						s_state = 'Grand Princess Cruise Ship';
+					}
+					// unspecified
+					else if('Cruise Ship' === s_state) {
+						s_state = 'Unspecified Cruise Ship';
+					}
+					// other
+					else {
+						console.warn(`Unhandled cruise ship: '${s_state}'`);
+						debugger;
+					}
+
+					sc1_place = `covid19-place:${suffix(s_state)}`;
+
+					// make sure place exists
+					hc3_flush[sc1_place] = {
+						a: 'covid19:Place',
 						'rdfs:label': '@en"'+s_state,
-						'covid19:superdivision': sc1_country,
 					};
+
+					// relate record to place
+					Object.assign(hc2_record, {
+						'covid19:location': sc1_place,
+						// 'covid19:country': sc1_place,
+					});
+
+					// add to affeced
+					as_affected.add(sc1_place);
+				}
+				// geocode
+				else {
+					let sc1_country;
+
+					// geocode place
+					let s_place = `${s_state? s_state+', ': ''}${s_country}`;
+					let g_place = await geocoder.place(s_place);
+
+					if(!g_place) {
+						debugger;
+						console.warn(`No wikidata place for "${s_place}"`);
+
+						return fk_write();
+					}
+
+
+					// county
+					if(/\bCounty\b/i.test(s_state)) {
+						g_place.type = 'county';
+					}
+
+					// // coerce
+					// if('locality' === g_place.type) {
+					// }
+
+					// depending on place type
+					switch(g_place.type) {
+						// country
+						case 'country': {
+							// mint place iri
+							sc1_country = sc1_place = `covid19-country:${sc1p_country}`;
+
+							// make sure country exists
+							hc3_flush[sc1_place] = {
+								a: 'covid19:Country',
+								'rdfs:label': '@en"'+s_country,
+								'owl:sameAs': 'wd:'+g_place.place_wikidata,
+							};
+
+							break;
+						}
+
+						// region
+						case 'region': {
+							// mint place iri
+							sc1_place = `covid19-region:${sc1p_country}.${place(s_state)}`;
+
+							// mint country iri
+							sc1_country = `covid19-country:${sc1p_country}`;
+
+							// make sure country and region exist
+							Object.assign(hc3_flush, {
+								[sc1_country]: {
+									a: 'covid19:Country',
+									'rdfs:label': `@en"${s_country}`,
+									...inject(g_place.country_wikidata, {
+										'owl:sameAs': 'wd:'+g_place.country_wikidata,
+									}),
+								},
+
+								[sc1_place]: {
+									a: 'covid19:Region',
+									'rdfs:label': `@en"${s_state}, ${s_country}`,
+									'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									'covid19:country': sc1_country,
+								},
+							});
+
+							break;
+						}
+
+						// place
+						case 'airforce base':
+						case 'county':
+						case 'place': {
+							let sc1p_place_type = 'Place';
+
+							// us county
+							if('county' === g_place.type || ('place' === g_place.type && 'US' === sc1p_country)) {
+								// mint place iri
+								sc1_place = `covid19-county:${sc1p_country}.${place(s_state)}`;
+
+								sc1p_place_type = 'County';
+							}
+							// airforce base
+							else if('airforce base' === g_place.type) {
+								// mint place iri
+								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
+
+								sc1p_place_type = 'Airforce_Base';
+							}
+							// city
+							else {
+								// mint place iri
+								sc1_place = `covid19-city:${sc1p_country}.${place(s_state)}`;
+							}
+
+							// mint country iri
+							sc1_country = `covid19-country:${sc1p_country}`;
+
+							// make sure country and place exist
+							Object.assign(hc3_flush, {
+								[sc1_country]: {
+									a: 'covid19:Country',
+									'rdfs:label': `@en"${s_country}`,
+									...inject(g_place.country_wikidata, {
+										'owl:sameAs': 'wd:'+g_place.country_wikidata,
+									}),
+								},
+
+								[sc1_place]: {
+									a: 'covid19:'+sc1p_place_type,
+									'rdfs:label': `@en"${s_state}, ${s_country}`,
+									'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									'covid19:country': sc1_country,
+								},
+							});
+
+							break;
+						}
+
+						default: {
+							debugger;
+							console.warn(`place type not handled: "${g_place.type}"`);
+						}
+					}
+
+					// relate record to place
+					Object.assign(hc2_record, {
+						'covid19:location': sc1_place,
+						'covid19:country': sc1_country,
+					});
+
+					// add to affeced places
+					as_affected.add(sc1_place);
+
+					geocoder.save();
 				}
 
 				// fix stupid timestamp string
@@ -135,25 +303,19 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				};
 
 				// create record IRI
-				let sc1_record = `covid19-record:${sc1p_region}.${s_state? suffix(s_state):''}.${suffix(s_date_formatted)}`;
+				let sc1_record = `covid19-record:${sc1p_country}${s_state? '.'+place(s_state):''}.${suffix(s_date_formatted)}`;
 
 				// push triples
-				this.push({
+				ds_writer.write({
 					type: 'c3',
 					value: {
 						[sc1_record]: {
 							a: 'covid19:Record',
-							'rdfs:label': `@en"${dt_updated.toISOString()} cases in ${s_state? s_state+', ': ''}${s_region}`,
-							'dct:description': `@en"The COVID-19 cases record for ${s_state? s_state+', ': ''}${s_region}, on ${dt_updated.toGMTString()}`,
+							'rdfs:label': `@en"${dt_updated.toISOString()} cases in ${s_state? s_state+', ': ''}${s_country}`,
+							'dct:description': `@en"The COVID-19 cases record for ${s_state? s_state+', ': ''}${s_country}, on ${dt_updated.toGMTString()}`,
 							'covid19:lastUpdate': s_time_instant,
 
-							...inject(sc1_state, {
-								'covid19:administrativeAreaLevel1': sc1_state,
-							}),
-
-							...inject(s_region, {
-								'covid19:region': sc1_country,
-							}),
+							...hc2_record,
 
 							...inject(s_confirmed, {
 								'covid19:confirmed': +s_confirmed,
@@ -175,42 +337,47 @@ const inject = (s_test, hc3_inject) => s_test? hc3_inject: {};
 				});
 
 				// done with row
-				fk_transform();
-			},
-
-			// once at the end
-			flush() {
-				hc3_flush[`covid19-disease:COVID-19_DiseaseOutbreak`] = {
-					'covid19:regionAffected': [...as_regions],
-				};
-				
-				this.push({
-					type: 'c3',
-					value: hc3_flush,
-				});
+				fk_write();
 			},
 		});
 
-		// read from file
-		fs.createReadStream(pr_input)
-			// parse csv
-			.pipe(csv_parse({
-				columns: true,
-			}))
-			// pipe thru transform
-			.pipe(ds_transform)
-			// catch pipeline errors
-			.on('error', (e_pipeline) => {
-				throw e_pipeline;
-			});
 
-		// forward data to writer
-		ds_transform.on('data', (w_event) => {
-			ds_writer.write(w_event);
-		});
+		// pipeline
+		try {
+			await pipeline(...[
+				// read from file
+				fs.createReadStream(pr_input),
 
-		// await for transform to end
-		await once(ds_transform, 'finish');
+				// parse csv
+				csv_parse({
+					columns: true,
+				}),
+
+				// pipe thru transform
+				ds_triplify,
+			]);
+		}
+		catch(e_pipeline) {
+			debugger;
+		}
 	}
+
+
+	// flush all pending triples
+	ds_writer.write({
+		type: 'c3',
+		value: {
+			// about locations
+			...hc3_flush,
+
+			// disease outbreak node
+			[`covid19-disease:COVID-19_DiseaseOutbreak`]: {
+				'covid19:countryAffected': [...as_affected],
+			},
+		},
+	});
+
+	// end writer
+	ds_writer.end();
 })();
 
