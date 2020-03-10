@@ -53,6 +53,15 @@ module.exports = {
 						node $1 > $@
 					`,
 				}),
+				'suspensions.ttl': () => ({
+					deps: [
+						'src/air-travel/rules.js',
+						'src/air-travel/suspensions.js',
+					],
+					run: /* syntax: bash */ `
+						node $1 > $@
+					`,
+				}),
 			},
 
 			cases: {
