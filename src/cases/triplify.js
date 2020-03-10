@@ -372,7 +372,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 			// disease outbreak node
 			[`covid19-disease:COVID-19_DiseaseOutbreak`]: {
-				'covid19:regionAffected': [...as_affected],
+				'covid19:countryAffected': [...as_affected],
 			},
 		},
 	});
