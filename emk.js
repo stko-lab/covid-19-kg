@@ -75,6 +75,26 @@ module.exports = {
 					`,
 				}),
 			},
+
+			wikidata: {
+				'airports.ttl': () => ({
+					deps: [
+						'src/air-travel/align-wikidata.js',
+					],
+					run: /* syntax: bash */ `
+						node $1 > $@
+					`,
+				}),
+
+				'places.ttl': () => ({
+					deps: [
+						'src/wikidata/places.js',
+					],
+					run: /* syntax: bash */ `
+						node $1 > $@
+					`,
+				}),
+			},
 		},
 
 		submodules: {

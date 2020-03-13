@@ -154,6 +154,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 					// geocode place
 					let s_place = `${s_state? s_state+', ': ''}${s_country}`;
+
 					let g_place = await geocoder.place(s_place);
 
 					if(!g_place) {
@@ -281,8 +282,11 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						'covid19:country': sc1_country,
 					});
 
+					// // add to affeced places
+					// as_affected.add(sc1_place);
+
 					// add to affeced places
-					as_affected.add(sc1_place);
+					as_affected.add(sc1_country);
 
 					geocoder.save();
 				}

@@ -9,4 +9,9 @@ module.exports = {
 		place_wikidata: 'Q1416857',
 		country_wikidata: 'Q30',
 	},
+	'Fort Bend County, TX, US': {
+		type: 'county',
+		place_wikidata: 'Q26895',
+		country_wikidata: 'Q30',
+	},
 };

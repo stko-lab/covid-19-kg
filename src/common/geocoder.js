@@ -96,6 +96,19 @@ async function place(s_input) {
 	// place exists in cache
 	if(h_places[s_input]) return h_places[s_input];
 
+	// us county
+	let m_county = R_COUNTY.exec(s_input);
+	if(m_county) {
+		let [, s_county, s_state] = m_county;
+
+		let s_state_expand = H_CODES_TO_NAMES_STATES[s_state];
+
+		if(s_state_expand) {
+			let g_res = await wikidata_us_county(`${s_county} County, ${s_state_expand}`);
+			if(g_res) return g_res;
+		}
+	}
+
 	// next api key
 	let s_api_key = a_api_keys[(c_requests++)%nl_keys];
 

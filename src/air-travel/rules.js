@@ -53,7 +53,7 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 				info: 'All flights to China',
 				dates: [
 					'Jan 31, 2020 Z',
-					'Apr 24, 2020 Z',
+					'Jun 30, 2020 Z',
 				],
 				countries: [
 					'covid19-country:US',
@@ -64,7 +64,7 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 				info: 'Hong Kong service to Dallas and Los Angeles',
 				dates: [
 					'Jan 31, 2020 Z',
-					'Apr 24, 2020 Z',
+					'Jun 30, 2020 Z',
 				],
 				cities: [
 					'@en"Hong Kong',
@@ -73,11 +73,22 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 				],
 			},
 			{
+				info: 'Seoul service to Dallas',
+				dates: [
+					'Jan 31, 2020 Z',
+					'Jun 30, 2020 Z',
+				],
+				cities: [
+					'@en"Seoul',
+					'@en"Dallas',
+				],
+			},
+			{
 				// warn: '(various suspension dates)',
 				info: 'Milan service to New York and Miami',
 				dates: [
 					'Jan 31, 2020 Z',
-					'Apr 24, 2020 Z',
+					'Jun 30, 2020 Z',
 				],
 				cities: [
 					'@en"Milan',
@@ -85,10 +96,23 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 					'@en"Miami',
 				],
 			},
+			{
+				info: 'Rome service to Philadelphia, Chicago and Charlotte',
+				dates: [
+					'Jan 31, 2020 Z',
+					'Jun 30, 2020 Z',
+				],
+				cities: [
+					'@en"Rome',
+					'@en"Philadelphia',
+					'@en"Chicago',
+					'@en"Charlotte',
+				],
+			},
 		],
 		'@en"Delta': [
 			{
-				info: 'All flights to China',
+				info: 'All flights to China and Italy',
 				dates: [
 					'Feb 2, 2020 Z',
 					'Apr 30, 2020 Z',
@@ -96,17 +120,23 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 				countries: [
 					'covid19-country:US',
 					'covid19-country:CN',
+					'covid19-country:IT',
 				],
 			},
+		],
+		'@en"United Airlines': [
 			{
-				info: 'flights from New York to Milan',
+				info: 'Flights to Beijing, Shanghai, Chengdu and Hong Kong',
 				dates: [
-					'Jan 31, 2020 Z',
-					'Apr 24, 2020 Z',
+					'Feb 5, 2020, Z',
+					'Apr 30, 2020 Z',
 				],
 				cities: [
-					'@en"New York',
-					'@en"Milan',
+					'*',
+					'@en"Beijing',
+					'@en"Shanghai',
+					'@en"Chengdu',
+					'@en"Hong Kong',
 				],
 			},
 		],
