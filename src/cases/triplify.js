@@ -222,6 +222,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 						// place
 						case 'airforce base':
+						case 'locality':
+						case 'district':
 						case 'county':
 						case 'place': {
 							let sc1p_place_type = 'Place';
@@ -239,6 +241,13 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
 
 								sc1p_place_type = 'Airforce_Base';
+							}
+							// locality
+							else if('locality' === g_place.type || 'district' === g_place.type) {
+								// mint place iri
+								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
+
+								sc1p_place_type = g_place.type[0].toUpperCase()+g_place.type.substr(1);
 							}
 							// city
 							else {

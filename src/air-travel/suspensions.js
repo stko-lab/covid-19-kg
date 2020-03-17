@@ -260,7 +260,7 @@ module.exports = {
 				if(b_debug) console.warn(`[DEBUG] ${s_rule}: """\n${srq_query}\n"""`);
 
 				// fetch results
-				let a_results = await sparql.local(srq_query);
+				let a_results = await sparql.global(srq_query);
 
 				// no results
 				if(!a_results || !a_results.length) {

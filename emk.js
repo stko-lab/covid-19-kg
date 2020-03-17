@@ -57,9 +57,16 @@ module.exports = {
 					deps: [
 						'src/air-travel/rules.js',
 						'src/air-travel/suspensions.js',
+						'build/air-travel/global.ttl',
 					],
 					run: /* syntax: bash */ `
+						# launch routes global triplestore
+						./launch-routes-global.sh
+
 						node $1 > $@
+
+						# remove container
+						docker rm -f ncov-global
 					`,
 				}),
 			},
@@ -68,7 +75,7 @@ module.exports = {
 				'global.ttl': () => ({
 					deps: [
 						'src/cases/triplify.js',
-						'submodules/COVID-19',
+						'submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/*.csv',
 					],
 					run: /* syntax: bash */ `
 						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
@@ -80,18 +87,52 @@ module.exports = {
 				'airports.ttl': () => ({
 					deps: [
 						'src/air-travel/align-wikidata.js',
+						'build/air-travel/suspensions.ttl',
 					],
 					run: /* syntax: bash */ `
+						# launch routes suspensions triplestore
+						./launch-routes-suspensions.sh
+
 						node $1 > $@
+
+						# remove container
+						docker rm -f ncov-suspensions
 					`,
 				}),
 
 				'places.ttl': () => ({
 					deps: [
 						'src/wikidata/places.js',
+						'build/wikidata/airports.ttl',
 					],
 					run: /* syntax: bash */ `
+						# launch internal triplestore
+						./launch-internal.sh
+
 						node $1 > $@
+
+						# remove container
+						docker rm -f ncov-internal
+					`,
+				}),
+			},
+
+			output: {
+				'union.ttl': () => ({
+					deps: [
+						'src/wikidata/clean.js',
+						'build/air-travel/*.ttl',
+						'build/cases/*.ttl',
+						'build/wikidata/*.ttl',
+					],
+					run: /* syntax: bash */ `
+						# launch internal triplestore
+						./launch-internal.sh
+
+						node $1 > $@
+
+						# remove container
+						docker rm -f ncov-internal
 					`,
 				}),
 			},

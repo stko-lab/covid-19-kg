@@ -71,7 +71,7 @@ let AS_SEEN_SUPERS = new Set();
 				value: {
 					[fsr(g_place.airport)]: {
 						'owl:sameAs': fsr(g_place.wde),
-						'wdt:P131': kt_super,
+						'covid19:superDivision': kt_super,
 					},
 				},
 			});
@@ -116,7 +116,7 @@ let AS_SEEN_SUPERS = new Set();
 					type: 'c3',
 					value: {
 						[kt_wde.concise(H_PREFIXES)]: {
-							'wdt:P131': st1_super,
+							'covid19:superDivision': st1_super,
 						},
 
 						[st1_super]: {

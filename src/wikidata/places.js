@@ -100,7 +100,7 @@ let AS_SEEN_SUPERS = new Set();
 					type: 'c3',
 					value: {
 						[kt_place.concise(H_PREFIXES)]: {
-							'wdt:P131': st1_super,
+							'covid19:superDivision': st1_super,
 						},
 
 						[st1_super]: {
@@ -142,7 +142,7 @@ let AS_SEEN_SUPERS = new Set();
 					type: 'c3',
 					value: {
 						[kt_wde.concise(H_PREFIXES)]: {
-							'wdt:P131': st1_super,
+							'covid19:superDivision': st1_super,
 						},
 
 						[st1_super]: {

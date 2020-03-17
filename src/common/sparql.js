@@ -30,8 +30,35 @@ const query = p_endpoint => async(srq_query) => {
 	return d_res.data.results.bindings;
 };
 
+const update = p_endpoint => async(srq_query) => {
+	let d_res;
+	try {
+		d_res = await axios({
+			method: 'POST',
+			url: p_endpoint.replace(/\/query$/, '/update'),
+			data: qs.stringify({
+				update: S_PREFIXES+'\n'+srq_query,
+			}),
+			headers: {
+				// accept: 'application/sparql-results+json',
+				// 'content-type': 'application/sparql-update',
+				'content-type': 'application/x-www-form-urlencoded',
+			},
+		});
+	}
+	catch(e_req) {
+		debugger;
+		console.warn(e_req);
+		return null;
+	}
+
+	return d_res.data;
+};
+
 module.exports = {
-	local: query(process.env.STKO_ROUTES_GLOBAL_ENDPOINT),
+	global: query(process.env.STKO_ROUTES_GLOBAL_ENDPOINT),
 	suspensions: query(process.env.STKO_ROUTES_SUSPENSIONS_ENDPOINT),
+	local: query(process.env.STKO_INTERNAL_ENDPOINT),
+	update: update(process.env.STKO_INTERNAL_ENDPOINT),
 	wikidata: query('https://query.wikidata.org/sparql'),
 };
