@@ -1,35 +1,11 @@
 const axios = require('axios');
 const qs = require('qs');
-const ttl_reader = require('@graphy/content.ttl.read');
 const factory = require('@graphy/core.data.factory');
+const sparql = require('../common/sparql.js');
 const H_PREFIXES = require('../common/prefixes.js');
 
 const S_PREFIXES = Object.entries(H_PREFIXES).reduce((s_out, [si_prefix, p_iri]) => `${s_out}
 	prefix ${si_prefix}: <${p_iri}>`, '');
-
-const query = async(srq_query) => {
-	let d_res;
-	try {
-		d_res = await axios({
-			method: 'POST',
-			url: process.env.STKO_ROUTES_ENDPOINT,
-			data: qs.stringify({
-				query: S_PREFIXES+'\n'+srq_query,
-			}),
-			headers: {
-				accept: 'application/sparql-results+json',
-				'content-type': 'application/x-www-form-urlencoded',
-			},
-		});
-	}
-	catch(e_req) {
-		debugger;
-		console.warn(e_req);
-		return null;
-	}
-
-	return d_res.data.results.bindings;
-};
 
 const construct = async(srq_query) => {
 	let d_res;
@@ -37,7 +13,7 @@ const construct = async(srq_query) => {
 		d_res = await axios({
 			method: 'POST',
 			// responseType: 'stream',
-			url: process.env.STKO_ROUTES_ENDPOINT,
+			url: process.env.STKO_ROUTES_GLOBAL_ENDPOINT,
 			data: qs.stringify({
 				query: S_PREFIXES+'\n'+srq_query,
 			}),
@@ -78,6 +54,11 @@ const between_places = (s_type, sc1_place_a, sc1_place_b) => {
 const places = (s_type, a_places) => {
 	let akt_places = a_places.map(sc1_place => factory.c1(sc1_place, H_PREFIXES));
 
+	// wildcard
+	if(a_places.includes('*')) {
+		debugger;
+	}
+
 	// all named nodes
 	if(akt_places.every(kt => kt.isNamedNode)) {
 		let s_places = akt_places.map(kt => kt.terse(H_PREFIXES)).join(' ');
@@ -91,33 +72,50 @@ const places = (s_type, a_places) => {
 				${s_places}
 			}
 
-			filter(?departs_${s_type} != ?arrives_${s_type})
+			filter(?departs_country != ?arrives_country)
 		`;
 	}
 	else {
-		return '{\n\t'+akt_places.flatMap((kt_place) => {
+		let srq = `
+			filter(?departs_country != ?arrives_country)
+
+			?departs_${s_type} rdfs:label ?departs_${s_type}_label .
+			?arrives_${s_type} rdfs:label ?arrives_${s_type}_label .
+		`;
+
+		srq += 'filter('+akt_places.flatMap((kt_place) => {
 			let sc1_place = kt_place.terse(H_PREFIXES);
 
 			if(kt_place.isNamedNode) {
-				return [
-					`filter(?departs_${s_type} = ${sc1_place})`,
-					`filter(?arrives_${s_type} = ${sc1_place})`,
-				];
+				return `?departs_${s_type} = ${sc1_place}`;
 			}
 			else if(kt_place.isLanguaged) {
-				return [
-					`?departs_${s_type} rdfs:label ${sc1_place}`,
-					`?arrives_${s_type} rdfs:label ${sc1_place}`,
-				];
+				return `?departs_${s_type}_label = ${sc1_place}`;
 			}
 			else {
 				console.warn(`Unhandled RDF term type for place: ${kt_place.verbose()}`);
 			}
 
 			return [];
-		}).join(`\n} union {\n\t`)+`}
-			filter(?departs_${s_type} != ?arrives_${s_type})
-		`;
+		}).join(' || ')+')\n';
+
+		srq += 'filter('+akt_places.flatMap((kt_place) => {
+			let sc1_place = kt_place.terse(H_PREFIXES);
+
+			if(kt_place.isNamedNode) {
+				return `?arrives_${s_type} = ${sc1_place}`;
+			}
+			else if(kt_place.isLanguaged) {
+				return `?arrives_${s_type}_label = ${sc1_place}`;
+			}
+			else {
+				console.warn(`Unhandled RDF term type for place: ${kt_place.verbose()}`);
+			}
+
+			return [];
+		}).join(' || ')+')\n';
+
+		return srq;
 	}
 };
 
@@ -262,7 +260,7 @@ module.exports = {
 				if(b_debug) console.warn(`[DEBUG] ${s_rule}: """\n${srq_query}\n"""`);
 
 				// fetch results
-				let a_results = await query(srq_query);
+				let a_results = await sparql.global(srq_query);
 
 				// no results
 				if(!a_results || !a_results.length) {
@@ -277,10 +275,20 @@ module.exports = {
 				let srq_construct = /* syntax: sparql */ `
 					construct {
 						?route ?p ?o .
+						?o ?op ?oo .
 					}
 					where {
 						?route a covid19:Route ;
 							?p ?o .
+
+						optional {
+							?o ?op ?oo .
+							filter not exists {
+								?o a covid19:Route .
+							}
+
+							filter(?op != covid19:country)
+						}
 
 						filter(?p != covid19:departsCountry)
 						filter(?p != covid19:arrivesCountry)
