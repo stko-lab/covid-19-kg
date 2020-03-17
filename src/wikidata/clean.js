@@ -4,12 +4,28 @@ const axios = require('axios');
 (async() => {
 	// consolidate sameAs nodes
 	await sparql.update(/* syntax: sparql */ `
+		insert {
+			?s ?p ?o .
+		} where {
+			{
+				?s owl:sameAs ?wde .
+				?wde ?p ?o .
+				filter(?p != owl:sameAs)
+			} union {
+				?o owl:sameAs ?wde .
+				?s ?p ?wde .
+				filter(?p != owl:sameAs)
+			}
+		}
+	`);
+
+	// consolidate sameAs nodes
+	await sparql.update(/* syntax: sparql */ `
 		delete {
 			?s owl:sameAs ?wde .
 			?o owl:sameAs ?wde .
-		}
-		insert {
-			?s ?p ?o .
+			?wde ?p ?o .
+			?s ?p ?wde .
 		} where {
 			{
 				?s owl:sameAs ?wde .
