@@ -154,6 +154,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 					// geocode place
 					let s_place = `${s_state? s_state+', ': ''}${s_country}`;
+
 					let g_place = await geocoder.place(s_place);
 
 					if(!g_place) {
@@ -212,7 +213,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:Region',
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									'covid19:country': sc1_country,
+									// 'covid19:country': sc1_country,
 								},
 							});
 
@@ -221,6 +222,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 						// place
 						case 'airforce base':
+						case 'locality':
+						case 'district':
 						case 'county':
 						case 'place': {
 							let sc1p_place_type = 'Place';
@@ -238,6 +241,13 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
 
 								sc1p_place_type = 'Airforce_Base';
+							}
+							// locality
+							else if('locality' === g_place.type || 'district' === g_place.type) {
+								// mint place iri
+								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
+
+								sc1p_place_type = g_place.type[0].toUpperCase()+g_place.type.substr(1);
 							}
 							// city
 							else {
@@ -262,7 +272,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:'+sc1p_place_type,
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									'covid19:country': sc1_country,
+									// 'covid19:country': sc1_country,
 								},
 							});
 
@@ -278,11 +288,14 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					// relate record to place
 					Object.assign(hc2_record, {
 						'covid19:location': sc1_place,
-						'covid19:country': sc1_country,
+						// 'covid19:country': sc1_country,
 					});
 
+					// // add to affeced places
+					// as_affected.add(sc1_place);
+
 					// add to affeced places
-					as_affected.add(sc1_place);
+					as_affected.add(sc1_country);
 
 					geocoder.save();
 				}
