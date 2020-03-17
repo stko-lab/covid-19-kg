@@ -213,7 +213,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:Region',
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									'covid19:country': sc1_country,
+									// 'covid19:country': sc1_country,
 								},
 							});
 
@@ -263,7 +263,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:'+sc1p_place_type,
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									'covid19:country': sc1_country,
+									// 'covid19:country': sc1_country,
 								},
 							});
 
@@ -279,7 +279,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					// relate record to place
 					Object.assign(hc2_record, {
 						'covid19:location': sc1_place,
-						'covid19:country': sc1_country,
+						// 'covid19:country': sc1_country,
 					});
 
 					// // add to affeced places

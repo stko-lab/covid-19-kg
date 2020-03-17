@@ -286,6 +286,8 @@ module.exports = {
 							filter not exists {
 								?o a covid19:Route .
 							}
+
+							filter(?op != covid19:country)
 						}
 
 						filter(?p != covid19:departsCountry)
