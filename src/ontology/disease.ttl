@@ -1,32 +1,37 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix time: <http://www.w3.org/2006/time#> .
-@prefix timezone: <https://www.timeanddate.com/worldclock/results.html?query=> .
-@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
-@prefix covid19: <https://covid.geog.ucsb.edu/lod/ontology/> .
-@prefix covid19-airline: <https://covid.geog.ucsb.edu/lod/airline/> .
-@prefix covid19-airport: <https://covid.geog.ucsb.edu/lod/airport/> .
-@prefix covid19-route: <https://covid.geog.ucsb.edu/lod/route/> .
-@prefix covid19-city: <https://covid.geog.ucsb.edu/lod/city/> .
+@prefix covid19-country: <https://covid.geog.ucsb.edu/lod/country/> .
 @prefix covid19-region: <https://covid.geog.ucsb.edu/lod/region/> .
-@prefix covid19-subregion: <https://covid.geog.ucsb.edu/lod/subregion/> .
-@prefix covid19-continent: <https://covid.geog.ucsb.edu/lod/continent/> .
-@prefix covid19-suspension: <https://covid.geog.ucsb.edu/lod/suspension/> .
-@prefix covid19-record: <https://covid.geog.ucsb.edu/lod/record/> .
-@prefix covid19-interval: <https://covid.geog.ucsb.edu/lod/interval/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix wdt:   <http://www.wikidata.org/prop/direct/> .
+@prefix timezone: <https://www.timeanddate.com/worldclock/results.html?query=> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix covid19-instant: <https://covid.geog.ucsb.edu/lod/instant/> .
+@prefix wd:    <http://www.wikidata.org/entity/> .
+@prefix covid19-city: <https://covid.geog.ucsb.edu/lod/city/> .
+@prefix covid19-route: <https://covid.geog.ucsb.edu/lod/route/> .
+@prefix covid19-subregion: <https://covid.geog.ucsb.edu/lod/subregion/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix covid19-interval: <https://covid.geog.ucsb.edu/lod/interval/> .
+@prefix covid19-suspension: <https://covid.geog.ucsb.edu/lod/suspension/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix covid19-disease: <https://covid.geog.ucsb.edu/lod/disease/> .
-@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix covid19-airline: <https://covid.geog.ucsb.edu/lod/airline/> .
+@prefix covid19-county: <https://covid.geog.ucsb.edu/lod/county/> .
+@prefix covid19-airport: <https://covid.geog.ucsb.edu/lod/airport/> .
+@prefix covid19: <https://covid.geog.ucsb.edu/lod/ontology/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix covid19-continent: <https://covid.geog.ucsb.edu/lod/continent/> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix covid19-place: <https://covid.geog.ucsb.edu/lod/place/> .
+@prefix covid19-record: <https://covid.geog.ucsb.edu/lod/record/> .
+@prefix fr24:  <https://www.flightradar24.com/data/airports/> .
 
 
 covid19-disease:COVID-19_DiseaseOutbreak	a covid19:DiseaseOutbreak;
 	covid19:origin covid19-city:WUH ;
-	covid19:deaths 3160 ;
-	covid19:confirmed 92740 ;
+	covid19:deaths 10030 ;
+	covid19:confirmed 244517 ;
 	time:hasTime  covid19-interval:2019-12-01_PRESENT ;
 	covid19:virusStrain covid19-disease:SARS-COV-2 ;
 	.
