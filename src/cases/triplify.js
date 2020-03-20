@@ -239,7 +239,9 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:Region',
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									// 'covid19:country': sc1_country,
+									...inject(si_iso3166_alpha2_country, {
+										'covid19:country': sc1_country,
+									}),
 								},
 							});
 
@@ -298,7 +300,11 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a: 'covid19:'+sc1p_place_type,
 									'rdfs:label': `@en"${s_state}, ${s_country}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									// 'covid19:country': sc1_country,
+
+									// only emit triples for region --> country
+									// ...inject(si_iso3166_alpha2_country, {
+									// 	'covid19:country': sc1_country,
+									// }),
 								},
 							});
 
