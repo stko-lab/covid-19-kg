@@ -6,7 +6,7 @@ const PDR_DATA = require('../common/paths.js').data;
 const H_CODES_TO_NAMES_STATES = require('../common/states_codes-to-names.json');
 const P_PLACES = path.join(PDR_DATA, 'mapbox/geocoded-places.json');
 
-const R_COUNTY = /^([^\s]+)\s+County,\s*(?:(\w{2}),\s*)?US$/;
+const R_COUNTY = /^(.+)\s+County,\s*(?:(\w{2}),\s*)?US$/;
 
 let a_api_keys = process.env.MAPBOX_API_KEY.split(/\//g);
 
@@ -81,7 +81,7 @@ async function try_fallback(s_input) {
 		let s_state_expand = H_CODES_TO_NAMES_STATES[s_state];
 
 		if(s_state_expand) {
-			return await wikidata_us_county(`${s_county} County, ${s_state_expand}`);
+			return await wikidata_us_county(`${s_county.trim()} County, ${s_state_expand}`);
 		}
 		else {
 			debugger;
@@ -104,7 +104,7 @@ async function place(s_input) {
 		let s_state_expand = H_CODES_TO_NAMES_STATES[s_state];
 
 		if(s_state_expand) {
-			let g_res = await wikidata_us_county(`${s_county} County, ${s_state_expand}`);
+			let g_res = await wikidata_us_county(`${s_county.trim()} County, ${s_state_expand}`);
 			if(g_res) return g_res;
 		}
 	}

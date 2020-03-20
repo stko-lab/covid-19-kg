@@ -22,6 +22,9 @@ const H_NAMES_TO_CODES_COUNTRIES = Object.entries(H_CODES_TO_NAMES_COUNTRIES)
 		[s_value]: si_key,
 	}), {});
 
+// add name for China
+H_NAMES_TO_CODES_COUNTRIES.China = 'CN';
+
 // CLI inputs
 let a_inputs = process.argv.slice(2);
 
@@ -112,7 +115,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					.replace(/\s{2,}/, ' ');
 
 				// cruise ships
-				if(/\b(cruise|ship)\b/i.test(s_state)) {
+				if(/\b(cruise|ship|princess)\b/i.test(s_state)) {
 					// diamond princess
 					if(/diamond\s+princess/i.test(s_state)) {
 						s_state = 'Diamond Princess Cruise Ship';
@@ -120,6 +123,10 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					// grand princess
 					else if(/grand\s+princess/i.test(s_state)) {
 						s_state = 'Grand Princess Cruise Ship';
+					}
+					// grand princess
+					else if(/diamond\s+princess/i.test(s_state)) {
+						s_state = 'Diamond Princess Cruise Ship';
 					}
 					// unspecified
 					else if('Cruise Ship' === s_state) {
