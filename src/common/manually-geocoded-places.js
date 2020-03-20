@@ -14,4 +14,9 @@ module.exports = {
 		place_wikidata: 'Q26895',
 		country_wikidata: 'Q30',
 	},
+	'Travis, CA, US': {
+		type: 'airforce base',
+		place_wikidata: 'Q3497425',
+		country_wikidata: 'Q30',
+	},
 };
