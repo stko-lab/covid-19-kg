@@ -32,20 +32,23 @@ if [[ -n $AE ]]; then
 	npx emk -f 'data/aviation-edge/*.json'
 fi
 
-# # triplify cases
-# npx emk build/cases/global.ttl
+# triplify cases
+npx emk build/cases/global.ttl
 
-# # triplify all routes
-# npx emk build/air-travel/global.ttl
+# triplify all routes
+npx emk build/air-travel/global.ttl
 
-# # triplify suspensions
-# npx emk build/air-travel/suspensions.ttl
+# triplify suspensions
+npx emk build/air-travel/suspensions.ttl
 
-# # align airports
-# npx emk build/wikidata/airports.ttl
+# align airports
+npx emk build/wikidata/airports.ttl
 
-# # align places
-# npx emk build/wikidata/places.ttl
+# align places
+npx emk build/wikidata/places.ttl
+
+# triplify disease ontology
+npx emk build/cases/disease.ttl
 
 
 # do everything

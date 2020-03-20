@@ -4,6 +4,7 @@ S_READY_STRING="INFO  Start Fuseki"
 
 # create global ttl file
 cat build/air-travel/suspensions.ttl \
+	build/cases/disease.ttl \
 	build/cases/global.ttl \
 	build/wikidata/airports.ttl \
 	build/wikidata/places.ttl \

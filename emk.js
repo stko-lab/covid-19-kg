@@ -72,6 +72,15 @@ module.exports = {
 			},
 
 			cases: {
+				'disease.ttl': () => ({
+					deps: [
+						'src/ontology/disease.js',
+					],
+					run: /* syntax: bash */ `
+						node $1 > $@
+					`,
+				}),
+
 				'global.ttl': () => ({
 					deps: [
 						'src/cases/triplify.js',
