@@ -31,6 +31,17 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 				],
 			},
 			{
+				info: 'All flights between Canada and Italy;',
+				dates: [
+					'Jan 30, 2020 Z',
+					'Apr 30, 2020 Z',
+				],
+				countries: [
+					'covid19-country:CA',
+					'covid19-country:IT',
+				],
+			},
+			{
 				info: 'flights between Toronto and Hong Kong;',
 				dates: [
 					'Jan 30, 2020 Z',
@@ -137,6 +148,39 @@ const suffix_date = dt => null === dt? 'PRESENT': dt.toISOString().replace(/T.+$
 					'@en"Shanghai',
 					'@en"Chengdu',
 					'@en"Hong Kong',
+				],
+			},
+		],
+		'@en"China Airlines': [
+			{
+				info: 'Flights between Taiwan and Wuhan',
+				dates: [
+					'Jan 23, 2020, Z',
+					'Feb 29, 2020 Z',
+				],
+				cities: [
+					'@en"Taipei',
+					'@en"Wuhan',
+				],
+			},
+		],
+		'@en"Korean Air': [
+			{
+				info: 'Flights between Incheon and Wuhan, Huangshan, Zhangjiajie, Changsha, Kunming, Tel Aviv, Daegu',
+				dates: [
+					'Jan 24, 2020, Z',
+					'May 31, 2020 Z',
+				],
+				cities: [
+					'@en"Incheon',
+					'@en"Wuhan',
+					'@en"Huangshan',
+					'@en"Zhangjiajie',
+					'@en"Changsha',
+					'@en"Kunming',
+					'@en"Changsha',
+					'@en"Tel Aviv Yafo',
+					'@en"Daegu',
 				],
 			},
 		],
