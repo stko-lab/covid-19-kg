@@ -35,5 +35,6 @@ module.exports = {
 		'interval',
 		'instant',
 		'disease',
+		'quarantine',
 	]),
 };
