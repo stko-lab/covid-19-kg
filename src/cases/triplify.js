@@ -114,6 +114,9 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					Suspected: s_suspected,
 				} = g_row;
 
+				// skip new structure for now.... >_>
+				if(!s_country) return fk_write();
+
 				s_country = s_country.replace(/\*/g, '');
 
 				let hc2_record = {};
@@ -423,6 +426,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 		}
 		catch(e_pipeline) {
 			debugger;
+			throw e_pipeline;
 		}
 	}
 
