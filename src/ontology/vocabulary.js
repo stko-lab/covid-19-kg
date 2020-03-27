@@ -6,7 +6,7 @@ let ds_writer = ttl_write({
 });
 
 const property = (g, hc3) => ({
-	'rdf:label': '@en"'+g.label,
+	'rdfs:label': '@en"'+g.label,
 	'rdfs:domain': g.domain || 'owl:Thing',
 	'rdfs:range': g.range || 'owl:Thing',
 	...hc3,
