@@ -71,7 +71,7 @@ module.exports = {
 				}),
 			},
 
-			cases: {
+			ontology: {
 				'disease.ttl': () => ({
 					deps: [
 						'src/ontology/disease.js',
@@ -81,6 +81,17 @@ module.exports = {
 					`,
 				}),
 
+				'vocabulary.ttl': () => ({
+					deps: [
+						'src/ontology/vocabulary.js',
+					],
+					run: /* syntax: bash */ `
+						node $1 > $@
+					`,
+				}),
+			},
+
+			cases: {
 				'global.ttl': () => ({
 					deps: [
 						'src/cases/triplify.js',
@@ -133,6 +144,7 @@ module.exports = {
 						'build/air-travel/*.ttl',
 						'build/cases/*.ttl',
 						'build/wikidata/*.ttl',
+						'build/ontology/*.ttl',
 					],
 					run: /* syntax: bash */ `
 						# launch internal triplestore
