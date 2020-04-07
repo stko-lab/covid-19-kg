@@ -3,7 +3,7 @@
 S_READY_STRING="INFO  Start Fuseki"
 
 # create global ttl file
-cat build/air-travel/global.ttl build/cases/global.ttl > build/global.ttl
+cat build/air-travel/global.ttl build/cases/global*.ttl > build/global.ttl
 
 si_container=ncov-global
 
