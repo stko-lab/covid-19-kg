@@ -16,6 +16,12 @@ const H_PREFIXES = require('../common/prefixes.js');
 // maps iso3166_alpha2_country codes to names
 const H_CODES_TO_NAMES_COUNTRIES = require('../common/countries_codes-to-names.json');
 
+const PDR_DATA = require('../common/paths.js').data;
+const P_FIPS_PLACES = path.join(PDR_DATA, 'wikidata/wikidata_fips.json');
+
+// load cache
+let h_fips_places = require(P_FIPS_PLACES);
+
 // inverse mapping
 const H_NAMES_TO_CODES_COUNTRIES = Object.entries(H_CODES_TO_NAMES_COUNTRIES)
 	.reduce((h_out, [si_key, s_value]) => ({
@@ -90,7 +96,7 @@ const place = s => suffix(s.replace(/^([^,]+),\s*(.+)$/, (s_, s_1, s_2) => (s_2?
 // inject hash based on test
 const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
-const zeroPad = (num, places) => String(num).padStart(places, '0');
+// const zeroPad = (num, places) => String(num).padStart(places, '0');
 
 // main
 (async() => {
@@ -198,33 +204,42 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 					let sc1_country;
 					let g_place = null;
 					let s_fips_code  = null;
+					let a_wikidata_place = null;
 
-					if(s_fips && s_fips !== ""){
-						let n_fips = parseInt(s_fips);
+					if(s_fips){
+						// let n_fips = parseInt(s_fips);
+						// let s_fips_code = zeroPad(n_fips, 5);
+						let s_fips_code = s_fips.padStart(5, '0');
 
-						let s_fips_code = zeroPad(n_fips, 5);
 
-						let a_wikidata_res = await sparql.wikidata(/* syntax: sparql */ `
-							select ?place {
-								?place wdt:P882 ?fips.
-  								filter(str(?fips) = "${s_fips_code}")
+						if(h_fips_places[s_fips_code]){
+							a_wikidata_place = h_fips_places[s_fips_code];
+						}else{
+							let a_wikidata_res = await sparql.wikidata(/* syntax: sparql */ `
+								select ?place {
+									?place wdt:P882 "${s_fips_code}" .
+								}
+							`);
+
+							let a_wikidata_place = null;
+							if(a_wikidata_res){
+								if(a_wikidata_res.length > 0){
+									a_wikidata_place = a_wikidata_res[0].place.value;
+								}
 							}
-						`);
 
-						let a_wikidata_place = null;
-						if(a_wikidata_res){
-							if(a_wikidata_res.length > 0){
-								a_wikidata_place = a_wikidata_res[0].place.value;
+							if(a_wikidata_place){
+								g_place = {
+									type: 'county',
+									place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
+									country_wikidata: 'Q30',
+								};
+
+								h_fips_places[s_fips_code] = a_wikidata_place;
 							}
 						}
 
-						if(a_wikidata_place){
-							g_place = {
-								type: 'county',
-								place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
-								country_wikidata: 'Q30',
-							};
-						}
+						
 					}
 
 					if(!g_place){
@@ -262,13 +277,14 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 						case 'country': {
 							if(si_iso3166_alpha2_country) {
 								// mint place iri
-								sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
+								// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
+								sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
 
 								// make sure country exists
 								hc3_flush[sc1_place] = {
 									a: 'covid19:Country',
 									'rdfs:label': '@en"'+s_country,
-									'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 								};
 							}
 
@@ -278,25 +294,27 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 						// region
 						case 'region': {
 							// mint place iri
-							sc1_place = `covid19-region:${sc1p_place_short}`;
+							// sc1_place = `covid19-region:${sc1p_place_short}`;
+							sc1_place = 'wd:'+g_place.place_wikidata;
 
 							// mint country iri
-							sc1_country = `covid19-country:${sc1p_country}`;
+							// sc1_country = `covid19-country:${sc1p_country}`;
+							sc1_country = 'wd:'+g_place.country_wikidata;
 
 							// make sure country and region exist
 							Object.assign(hc3_flush, {
 								[sc1_country]: {
 									a: 'covid19:Country',
 									'rdfs:label': `@en"${s_country}`,
-									...inject(g_place.country_wikidata, {
-										'owl:sameAs': 'wd:'+g_place.country_wikidata,
-									}),
+									// ...inject(g_place.country_wikidata, {
+									// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
+									// }),
 								},
 
 								[sc1_place]: {
 									a: 'covid19:Region',
 									'rdfs:label': `@en"${s_combined_key}`,
-									'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 									...inject(si_iso3166_alpha2_country, {
 										'covid19:country': sc1_country,
 									}),
@@ -314,55 +332,57 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 						case 'place': {
 							let sc1p_place_type = 'Place';
 
-
+							sc1_place = 'wd:'+g_place.place_wikidata;
 
 							// us county
 							if('county' === g_place.type || ('place' === g_place.type && 'US' === sc1p_country)) {
 								// mint place iri
-								sc1_place = `covid19-county:${sc1p_place_short}`;
+								// sc1_place = `covid19-county:${sc1p_place_short}`;
 
 								sc1p_place_type = 'County';
 							}
 							// airforce base
 							else if('airforce base' === g_place.type) {
 								// mint place iri
-								sc1_place = `covid19-place:${sc1p_place_short}`;
+								// sc1_place = `covid19-place:${sc1p_place_short}`;
 
 								sc1p_place_type = 'Airforce_Base';
 							}
 							// locality
 							else if('locality' === g_place.type || 'district' === g_place.type) {
 								// mint place iri
-								sc1_place = `covid19-place:${sc1p_place_short}`;
+								// sc1_place = `covid19-place:${sc1p_place_short}`;
 
 								sc1p_place_type = g_place.type[0].toUpperCase()+g_place.type.substr(1);
 							}
 							// city
-							else {
-								// mint place iri
-								sc1_place = `covid19-city:${sc1p_place_short}`;
-							}
+							// else {
+							// 	// mint place iri
+							// 	// sc1_place = `covid19-city:${sc1p_place_short}`;
+							// 	sc1_place = 'wd:'+g_place.place_wikidata;
+							// }
 
 							// mint country iri
-							sc1_country = `covid19-country:${sc1p_country}`;
+							// sc1_country = `covid19-country:${sc1p_country}`;
+							sc1_country = 'wd:'+g_place.country_wikidata;
 
 							// make sure country and place exist
 							Object.assign(hc3_flush, {
 								[sc1_country]: {
 									a: 'covid19:Country',
 									'rdfs:label': `@en"${s_country}`,
-									...inject(g_place.country_wikidata, {
-										'owl:sameAs': 'wd:'+g_place.country_wikidata,
-									}),
+									// ...inject(g_place.country_wikidata, {
+									// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
+									// }),
 								},
 
 								[sc1_place]: {
 									a: 'covid19:'+sc1p_place_type,
 									'rdfs:label': `@en"${s_combined_key}`,
-									'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 
 									// only emit triples for region --> country
-									...inject(si_iso3166_alpha2_country, {
+									...inject(sc1_country, {
 										'covid19:country': sc1_country,
 									}),
 								},
@@ -379,21 +399,52 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 
 					// add fips code
 					if(s_fips_code){
-						Object.assign(hc3_flush[sc1_place], {
-							'covid19:fips': s_fips_code,
-						});
+						if(hc3_flush[sc1_place]){
+							Object.assign(hc3_flush[sc1_place], {
+								'covid19:fips': s_fips_code,
+							});
+						}else{
+							hc3_flush[sc1_place] = {
+								'covid19:fips': s_fips_code,
+							};
+						}
+						
 					}
 					
 
-					// let s_geo = null;
+					let s_geo = null;
 
-					// if(s_lat && s_long){
-					// 	let lat = parseFloat(s_lat);
-					// 	let long = parseFloat(s_long);
-					// 	if(lat !== 0 || long !== 0){
-					// 		s_geo = `<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(${long} ${lat})^^"geo-sf:WKTLiteral`;
-					// 	}
-					// }
+					if(sc1_place){
+
+					}
+					if(s_lat && s_long){
+						let lat = parseFloat(s_lat);
+						let long = parseFloat(s_long);
+						if(lat !== 0 || long !== 0){
+
+							s_geo = `^geosparql:wktLiteral"<http://www.opengis.net/def/crs/EPSG/0/4326>POINT(${long} ${lat})`;
+						}
+					}
+
+					if(s_geo){
+						let sc1_geometry = `covid19-geometry:${sc1p_place_short}.Geometry`;
+						if(hc3_flush[sc1_place]){
+							Object.assign(hc3_flush[sc1_place], {
+								'geosparql:hasGeometry': sc1_geometry,
+							});
+						}else{
+							hc3_flush[sc1_place] = {
+								'geosparql:hasGeometry': sc1_geometry,
+							};
+						}
+						
+
+						hc3_flush[sc1_geometry] = {
+							a: 'sf:Point',
+							'geosparql:asWKT': s_geo,
+						}
+
+					}
 
 					// relate record to place
 					Object.assign(hc2_record, {
@@ -517,6 +568,14 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 			delete hc3_flush[sc1_key];
 		}
 	}
+
+
+	
+	let s_dump = JSON.stringify(h_fips_places, null, '\t');
+	fs.writeFileSync(P_FIPS_PLACES, s_dump);
+
+	console.log(hc3_flush);
+	
 
 	// flush all pending triples
 	ds_writer.write({

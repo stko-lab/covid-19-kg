@@ -15,6 +15,7 @@ module.exports = {
 	time: 'http://www.w3.org/2006/time#',
 	timezone: 'https://www.timeanddate.com/worldclock/results.html?query=',
 	geosparql: 'http://www.opengis.net/ont/geosparql#',
+	sf:  'http://www.opengis.net/ont/sf#',
 	fr24: 'https://www.flightradar24.com/data/airports/',
 	wd: 'http://www.wikidata.org/entity/',
 	wdt: 'http://www.wikidata.org/prop/direct/',
@@ -36,5 +37,6 @@ module.exports = {
 		'instant',
 		'disease',
 		'quarantine',
+		'geometry',
 	]),
 };

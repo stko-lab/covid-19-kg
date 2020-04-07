@@ -24,7 +24,14 @@
 
 
 covid19:AirlineChange       a    owl:Class ;
-                            rdfs:label   "Airline Change"@en .
+                            rdfs:label   "Airline Change"@en ;
+                            owl:equivalentClass [
+                                a owl:Class ;
+                                owl:oneOf (
+                                        covid19:AirlineFrequencyReduction
+                                        covid19:AirlineSuspension                                  
+                                    ) ;
+                                ] .
 
 covid19:AirlineFrequencyReduction    a    owl:Class ;
                                     rdfs:subClassOf     covid19:AirlineChange ;
@@ -35,9 +42,67 @@ covid19:AirlineSuspension    a    owl:Class ;
                             rdfs:subClassOf     covid19:AirlineChange ;
                             rdfs:label   "Airline Suspension"@en .
 
-covid19:previousFrequency   a     owl:DatatypeProperty ;
-                            rdfs:domain    covid19:AirlineFrequencyReduction .
 
-covid19:currentFrequency    a     owl:DatatypeProperty ;
-                            rdfs:domain    covid19:AirlineFrequencyReduction .
-                             
+covid19:previousWeeklyFrequency   a     owl:DatatypeProperty ;
+                            rdfs:label "The Weekly Frequency of a Route Before an Airline Change"@en ;
+                            rdfs:domain    covid19:AirlineFrequencyReduction ;
+                            rdfs:range     covid19:weeklyfrequency .
+
+covid19:currentWeeklyFrequency    a     owl:DatatypeProperty ;
+                            rdfs:label "The Weekly Frequency of a Route After an Airline Change"@en ;
+                            rdfs:domain    covid19:AirlineFrequencyReduction ;
+                            rdfs:range     covid19:weeklyfrequency .
+
+covid19:affectedRoute      a      owl:ObjectProperty ;
+                            rdfs:label     "the affected Route of an Airline Change"@en ;
+                            rdfs:domain    covid19:AirlineChange ;
+                            rdfs:range     covid19:Route .
+
+covid19:time               a     owl:ObjectProperty ;
+                            rdfs:label     "the time interval"@en ;
+                            rdfs:domain    covid19:AirlineChange ;
+                            rdfs:range     time:Interval .  
+
+
+covid19:weeklyfrequency    a rdfs:Datatype .
+
+
+covid19:Route       a    owl:Class ;
+                    rdfs:label   "Airline Route"@en .
+
+covid19:Airport     a    owl:Class ;
+                    rdfs:label   "Airport"@en .
+
+covid19:City        a    owl:Class ;
+                    rdfs:label   "City"@en .
+                    
+covid19:Airline        a    owl:Class ;
+                    rdfs:label   "Airline"@en .
+
+covid19:airline             a     owl:ObjectProperty ;
+                            rdfs:label "The Operated Airline of a Route"@en ;
+                            rdfs:domain   covid19:Route ;
+                            rdfs:range    covid19:Airline.
+
+covid19:arrivesAirport      a     owl:ObjectProperty ;
+                            rdfs:label "Arrived Airport of a Route"@en ;
+                            rdfs:domain   covid19:Route ;
+                            rdfs:range    covid19:Airport.
+
+
+covid19:departsAirport      a     owl:ObjectProperty ;
+                            rdfs:label "Departure Airport of a Route"@en ;
+                            rdfs:domain   covid19:Route ;
+                            rdfs:range    covid19:Airport.
+
+
+covid19:arrivesCity         a     owl:ObjectProperty ;
+                            rdfs:label "Arrived Airport of a Route"@en ;
+                            rdfs:domain   covid19:Route ;
+                            rdfs:range    covid19:City.
+
+
+covid19:departsCity         a     owl:ObjectProperty ;
+                            rdfs:label "Departure Airport of a Route"@en ;
+                            rdfs:domain   covid19:Route ;
+                            rdfs:range    covid19:City.

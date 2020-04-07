@@ -106,8 +106,11 @@ module.exports = {
 						'src/cases/triplify_new.js',
 						'submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/*.csv',
 					],
+					// node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-22-2020.csv > $@
 					run: /* syntax: bash */ `
-						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
+						rm build/cases/global_0322_new.ttl
+						
+						node $1 ./scrap/03-22-2020.csv > $@
 					`,
 				}),
 			},
