@@ -8,6 +8,7 @@ const once = require('events').once;
 const pipeline = util.promisify(stream.pipeline);
 
 const geocoder = require('../common/geocoder.js');
+const sparql = require('../common/sparql.js');
 
 const H_PREFIXES = require('../common/prefixes.js');
 
@@ -60,7 +61,7 @@ let a_inputs = process.argv.slice(2);
 			a_inputs.push(
 				...fs.readdirSync(pr_input)
 					.filter(s => s.endsWith('.csv'))
-					.filter(s => (new Date(s.replace(/\.csv$/, ''))).getTime() < new Date('03-22-2020').getTime())
+					.filter(s => (new Date(s.replace(/\.csv$/, ''))).getTime() >= new Date('03-22-2020').getTime())
 					.map(s => path.join(pr_input, s)));
 		}
 	}
@@ -89,6 +90,8 @@ const place = s => suffix(s.replace(/^([^,]+),\s*(.+)$/, (s_, s_1, s_2) => (s_2?
 // inject hash based on test
 const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
+const zeroPad = (num, places) => String(num).padStart(places, '0');
+
 // main
 (async() => {
 	for(let pr_input of a_inputs) {
@@ -106,13 +109,22 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 				// destructure row
 				let {
-					'Province/State': s_state,
-					'Country/Region': s_country,
-					'Last Update': s_last_update,
+					FIPS: s_fips,
+					Admin2: s_admin2,
+					Province_State: s_state,
+					// 'Province/State': s_state,
+					Country_Region: s_country,
+					// 'Country/Region': s_country,
+					Last_Update: s_last_update,
+					// 'Last Update': s_last_update,
+					Lat: s_lat,
+					Long_: s_long,
 					Confirmed: s_confirmed,
 					Deaths: s_deaths,
 					Recovered: s_recovered,
+					Active: s_active,
 					Suspected: s_suspected,
+					Combined_Key: s_combined_key,
 				} = g_row;
 
 				// skip new structure for now.... >_>
@@ -129,29 +141,38 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 				let sc1_place;
 
+				let sc1p_place_short;
+
 				// remove diamond princess qualifier
-				s_state = s_state.trim()
-					.replace(/(Unassigned Location(,\s*)?)/i, '').trim()
-					.replace(/\(?From Diamond Princess\)?/i, '').trim()
-					.replace(/\s{2,}/, ' ');
+				// s_state = s_state.trim()
+				// 	.replace(/(Unassigned?)/i, '').trim()
+				// 	.replace(/\(?From Diamond Princess\)?/i, '').trim()
+				// 	.replace(/\s{2,}/, ' ');
+
+				s_admin2 = s_admin2.trim()
+					.replace(/(Unassigned(,\s*)?)/i, '').trim();
+
+				s_combined_key = s_combined_key.trim()
+					.replace(/(Unassigned(,\s*)?)/i, '').trim();
+
 
 				// cruise ships
-				if(/\b(cruise|ship|princess)\b/i.test(s_state)) {
+				if(/\b(cruise|ship|princess)\b/i.test(s_combined_key)) {
 					// diamond princess
-					if(/diamond\s+princess/i.test(s_state)) {
+					if(/diamond\s+princess/i.test(s_combined_key)) {
 						s_state = 'Diamond Princess Cruise Ship';
 					}
 					// grand princess
-					else if(/grand\s+princess/i.test(s_state)) {
+					else if(/grand\s+princess/i.test(s_combined_key)) {
 						s_state = 'Grand Princess Cruise Ship';
 					}
 					// unspecified
-					else if('Cruise Ship' === s_state) {
+					else if('Cruise Ship' === s_country) {
 						s_state = 'Unspecified Cruise Ship';
 					}
 					// other
 					else {
-						console.warn(`Unhandled cruise ship: '${s_state}'`);
+						console.warn(`Unhandled cruise ship: '${s_combined_key}'`);
 						debugger;
 					}
 
@@ -175,28 +196,65 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 				// geocode
 				else {
 					let sc1_country;
+					let g_place = null;
+					let s_fips_code  = null;
 
-					// geocode place
-					let s_place = `${s_state? s_state+', ': ''}${s_country}`;
+					if(s_fips && s_fips !== ""){
+						let n_fips = parseInt(s_fips);
 
-					let g_place = await geocoder.place(s_place);
+						let s_fips_code = zeroPad(n_fips, 5);
 
-					if(!g_place) {
-						debugger;
-						console.warn(`No wikidata place for "${s_place}"`);
+						let a_wikidata_res = await sparql.wikidata(/* syntax: sparql */ `
+							select ?place {
+								?place wdt:P882 ?fips.
+  								filter(str(?fips) = "${s_fips_code}")
+							}
+						`);
 
-						return fk_write();
+						let a_wikidata_place = null;
+						if(a_wikidata_res){
+							if(a_wikidata_res.length > 0){
+								a_wikidata_place = a_wikidata_res[0].place.value;
+							}
+						}
+
+						if(a_wikidata_place){
+							g_place = {
+								type: 'county',
+								place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
+								country_wikidata: 'Q30',
+							};
+						}
 					}
+
+					if(!g_place){
+						// geocode place
+						let s_place = s_combined_key.trim();
+
+						g_place = await geocoder.place(s_place);
+
+						if(!g_place) {
+							debugger;
+							console.warn(`No wikidata place for "${s_place}"`);
+
+							return fk_write();
+						}
+
+					}
+
+					
 
 
 					// county
-					if(/\bCounty\b/i.test(s_state)) {
+					if(/\bCounty\b/i.test(s_admin2)) {
 						g_place.type = 'county';
 					}
 
 					// // coerce
 					// if('locality' === g_place.type) {
 					// }
+
+					sc1p_place_short = `${sc1p_country}${s_state? '.'+suffix(s_state): ''}${s_admin2? '.'+suffix(s_admin2): ''}`;
 
 					// depending on place type
 					switch(g_place.type) {
@@ -220,7 +278,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						// region
 						case 'region': {
 							// mint place iri
-							sc1_place = `covid19-region:${sc1p_country}.${place(s_state)}`;
+							sc1_place = `covid19-region:${sc1p_place_short}`;
 
 							// mint country iri
 							sc1_country = `covid19-country:${sc1p_country}`;
@@ -237,7 +295,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 								[sc1_place]: {
 									a: 'covid19:Region',
-									'rdfs:label': `@en"${s_state}, ${s_country}`,
+									'rdfs:label': `@en"${s_combined_key}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
 									...inject(si_iso3166_alpha2_country, {
 										'covid19:country': sc1_country,
@@ -256,31 +314,33 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						case 'place': {
 							let sc1p_place_type = 'Place';
 
+
+
 							// us county
 							if('county' === g_place.type || ('place' === g_place.type && 'US' === sc1p_country)) {
 								// mint place iri
-								sc1_place = `covid19-county:${sc1p_country}.${place(s_state)}`;
+								sc1_place = `covid19-county:${sc1p_place_short}`;
 
 								sc1p_place_type = 'County';
 							}
 							// airforce base
 							else if('airforce base' === g_place.type) {
 								// mint place iri
-								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
+								sc1_place = `covid19-place:${sc1p_place_short}`;
 
 								sc1p_place_type = 'Airforce_Base';
 							}
 							// locality
 							else if('locality' === g_place.type || 'district' === g_place.type) {
 								// mint place iri
-								sc1_place = `covid19-place:${sc1p_country}.${place(s_state)}`;
+								sc1_place = `covid19-place:${sc1p_place_short}`;
 
 								sc1p_place_type = g_place.type[0].toUpperCase()+g_place.type.substr(1);
 							}
 							// city
 							else {
 								// mint place iri
-								sc1_place = `covid19-city:${sc1p_country}.${place(s_state)}`;
+								sc1_place = `covid19-city:${sc1p_place_short}`;
 							}
 
 							// mint country iri
@@ -298,7 +358,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 								[sc1_place]: {
 									a: 'covid19:'+sc1p_place_type,
-									'rdfs:label': `@en"${s_state}, ${s_country}`,
+									'rdfs:label': `@en"${s_combined_key}`,
 									'owl:sameAs': 'wd:'+g_place.place_wikidata,
 
 									// only emit triples for region --> country
@@ -316,6 +376,24 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							console.warn(`place type not handled: "${g_place.type}"`);
 						}
 					}
+
+					// add fips code
+					if(s_fips_code){
+						Object.assign(hc3_flush[sc1_place], {
+							'covid19:fips': s_fips_code,
+						});
+					}
+					
+
+					// let s_geo = null;
+
+					// if(s_lat && s_long){
+					// 	let lat = parseFloat(s_lat);
+					// 	let long = parseFloat(s_long);
+					// 	if(lat !== 0 || long !== 0){
+					// 		s_geo = `<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(${long} ${lat})^^"geo-sf:WKTLiteral`;
+					// 	}
+					// }
 
 					// relate record to place
 					Object.assign(hc2_record, {
@@ -348,7 +426,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 				};
 
 				// create record IRI
-				let sc1_record = `covid19-record:${sc1p_country}${s_state? '.'+place(s_state):''}.${suffix(s_date_formatted)}`;
+				// let sc1_record = `covid19-record:${sc1p_country}${s_state? '.'+place(s_state):''}.${suffix(s_date_formatted)}`;
+				let sc1_record = `covid19-record:${sc1p_place_short}.${suffix(s_date_formatted)}`;
 
 				if(!hc2_record['covid19:location']) {
 					debugger;
@@ -375,8 +454,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					value: {
 						[sc1_record]: {
 							a: 'covid19:Record',
-							'rdfs:label': `@en"${dt_updated.toISOString()} cases in ${s_state? s_state+', ': ''}${s_country}`,
-							'dct:description': `@en"The COVID-19 cases record for ${s_state? s_state+', ': ''}${s_country}, on ${dt_updated.toGMTString()}`,
+							'rdfs:label': `@en"${dt_updated.toISOString()} cases in ${s_combined_key}`,
+							'dct:description': `@en"The COVID-19 cases record for ${s_combined_key}, on ${dt_updated.toGMTString()}`,
 							'covid19:lastUpdate': s_time_instant,
 
 							...hc2_record,
@@ -391,6 +470,10 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 							...inject(s_recovered, {
 								'covid19:recovered': +s_recovered,
+							}),
+
+							...inject(s_active, {
+								'covid19:active': +s_active,
 							}),
 
 							...inject(s_suspected, {

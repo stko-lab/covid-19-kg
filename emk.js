@@ -101,6 +101,15 @@ module.exports = {
 						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
 					`,
 				}),
+				'global_0322_new.ttl': () => ({
+					deps: [
+						'src/cases/triplify_new.js',
+						'submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/*.csv',
+					],
+					run: /* syntax: bash */ `
+						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
+					`,
+				}),
 			},
 
 			wikidata: {
@@ -163,6 +172,7 @@ module.exports = {
 			'COVID-19': () => ({
 				run: /* syntax: bash */ `
 					git submodule update --init --recursive
+					git submodule update --recursive --remote
 				`,
 			}),
 		},
