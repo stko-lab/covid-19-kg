@@ -214,16 +214,27 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						// country
 						case 'country': {
 							// if(si_iso3166_alpha2_country) {
-								// mint place iri
-								// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
-								sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
+								if(s_state){
+									sc1_place = 'wd:'+g_place.place_wikidata;
+									// make sure country exists
+									hc3_flush[sc1_place] = {
+										a: 'covid19:Place',
+										'rdfs:label': `@en"${s_place}`,
+										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									};
+								}else{
+									// mint place iri
+									// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
+									sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
 
-								// make sure country exists
-								hc3_flush[sc1_place] = {
-									a: 'covid19:Country',
-									'rdfs:label': '@en"'+s_country,
-									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-								};
+									// make sure country exists
+									hc3_flush[sc1_place] = {
+										a: 'covid19:Country',
+										'rdfs:label': '@en"'+s_country,
+										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									};
+								}
+								
 							// }
 
 							break;

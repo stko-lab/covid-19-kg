@@ -162,6 +162,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 				let sc1p_place_short;
 
+				s_combined_key = `${s_admin2 ? s_admin2+", " : ""}${s_state ? s_state+", " : ""}${s_country}`;
+
 
 				// remove diamond princess qualifier
 				// s_state = s_state.trim()
@@ -311,16 +313,11 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 					if(!g_place){
 						// geocode place
-						let s_place = `${s_admin2 ? s_admin2+", " : ""}${s_state ? s_state+", " : ""}${s_country}`
+						let s_place = s_combined_key;
 
 						g_place = await geocoder.place(s_place);
 
-						// if(s_combined_key === "Dona Ana,New Mexico,US"){
-						// 	console.log("Hi!");
-						// 	console.log(g_row);
-						// 	console.log(s_place);
-						// 	console.log(g_place);
-						// }
+						
 
 
 						if(!g_place) {
@@ -351,17 +348,46 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						// country
 						case 'country': {
 							// if(si_iso3166_alpha2_country) {
-								// mint place iri
-								// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
-								sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
+								if(s_state || s_admin2)
+								{
+									sc1_place = 'wd:'+g_place.place_wikidata;
 
-								// make sure country exists
-								hc3_flush[sc1_place] = {
-									a: 'covid19:Country',
-									'rdfs:label': '@en"'+s_country,
-									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-								};
+									if(g_place.country_wikidata){
+										sc1_country = 'wd:'+g_place.country_wikidata;
+
+										hc3_flush[sc1_country] = {
+											a: 'covid19:Country',
+											'rdfs:label': '@en"'+s_country,
+											// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+										};
+									}
+									
+									// make sure country exists
+									hc3_flush[sc1_place] = {
+										a: 'covid19:Place',
+										'rdfs:label': `@en"${s_combined_key}`,
+										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+										...inject(sc1_country, {
+											'covid19:country': sc1_country,
+										}),
+									};
+								}else{
+									// mint place iri
+									// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
+									sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
+
+									// make sure country exists
+									hc3_flush[sc1_place] = {
+										a: 'covid19:Country',
+										'rdfs:label': '@en"'+s_country,
+										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									};
+								}
+								
+
+								
 							// }
+							
 
 							break;
 						}
