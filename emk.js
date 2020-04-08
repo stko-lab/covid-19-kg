@@ -97,7 +97,11 @@ module.exports = {
 						'src/cases/triplify.js',
 						'submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/*.csv',
 					],
+					// node $1 ./scrap/03-21-2020.csv > $@
+					// node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
 					run: /* syntax: bash */ `
+						rm build/cases/global.ttl
+
 						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
 					`,
 				}),
@@ -106,11 +110,13 @@ module.exports = {
 						'src/cases/triplify_new.js',
 						'submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/*.csv',
 					],
-					// node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-22-2020.csv > $@
+					// rm build/cases/global_0322_new.ttl
+					// node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
+					// node $1 ./scrap/03-22-2020.csv > $@
 					run: /* syntax: bash */ `
 						rm build/cases/global_0322_new.ttl
 						
-						node $1 ./scrap/03-22-2020.csv > $@
+						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
 					`,
 				}),
 			},

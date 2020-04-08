@@ -39,6 +39,11 @@ Object.assign(H_NAMES_TO_CODES_COUNTRIES, {
 	Eswatini: 'SZ',
 });
 
+const H_MANNUAL_COUNTRY_MATCH = {
+	Czechia: 'Czech Republic',
+	Burma: 'Myanmar',
+};
+
 
 // CLI inputs
 let a_inputs = process.argv.slice(2);
@@ -113,12 +118,18 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					Deaths: s_deaths,
 					Recovered: s_recovered,
 					Suspected: s_suspected,
+					Latitude: s_lat,
+					Longitude: s_long,
 				} = g_row;
 
 				// skip new structure for now.... >_>
 				if(!s_country) return fk_write();
 
 				s_country = s_country.replace(/\*/g, '');
+
+				if(H_MANNUAL_COUNTRY_MATCH[s_country.trim()]){
+					s_country = H_MANNUAL_COUNTRY_MATCH[s_country.trim()];
+				}
 
 				let hc2_record = {};
 
@@ -202,7 +213,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					switch(g_place.type) {
 						// country
 						case 'country': {
-							if(si_iso3166_alpha2_country) {
+							// if(si_iso3166_alpha2_country) {
 								// mint place iri
 								// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
 								sc1_country = sc1_place = 'wd:'+g_place.place_wikidata;
@@ -213,7 +224,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									'rdfs:label': '@en"'+s_country,
 									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 								};
-							}
+							// }
 
 							break;
 						}
@@ -321,6 +332,40 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							debugger;
 							console.warn(`place type not handled: "${g_place.type}"`);
 						}
+					}
+
+					let s_geo = null;
+					let sc1p_place_short = `${sc1p_country}.${place(s_state)}`;
+					
+					if(s_lat && s_long){
+						let lat = parseFloat(s_lat);
+						let long = parseFloat(s_long);
+						if(lat !== 0 || long !== 0){
+
+							s_geo = `^geosparql:wktLiteral"<http://www.opengis.net/def/crs/EPSG/0/4326>POINT(${long} ${lat})`;
+						}
+					}
+
+					if(s_geo){
+						let sc1_geometry = `covid19-geometry:${sc1p_place_short}.Geometry`;
+						if(hc3_flush[sc1_place]){
+							Object.assign(hc3_flush[sc1_place], {
+								'geosparql:hasGeometry': sc1_geometry,
+							});
+						}
+						// else{
+						// 	debugger
+						// 	hc3_flush[sc1_place] = {
+						// 		'geosparql:hasGeometry': sc1_geometry,
+						// 	};
+						// }
+						
+
+						hc3_flush[sc1_geometry] = {
+							a: 'sf:Point',
+							'geosparql:asWKT': s_geo,
+						}
+
 					}
 
 					// relate record to place
