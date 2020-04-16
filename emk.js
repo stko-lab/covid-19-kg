@@ -116,7 +116,7 @@ module.exports = {
 					run: /* syntax: bash */ `
 						rm build/cases/global_0322_new.ttl
 						
-						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/ > $@
+						node $1 ./submodules/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-22-2020.csv > $@
 					`,
 				}),
 			},
