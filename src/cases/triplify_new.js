@@ -468,16 +468,29 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							sc1_country = 'wd:'+g_place.country_wikidata;
 
 							// make sure country and place exist
-							Object.assign(hc3_flush, {
-								[sc1_country]: {
+							if(! hc3_flush[sc1_country]){
+								hc3_flush[sc1_country] = {
 									a: 'covid19:Country',
 									'rdfs:label': `@en"${s_country}`,
 									// ...inject(g_place.country_wikidata, {
 									// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
 									// }),
-								},
+								};
+							}else{
+								if(!hc3_flush[sc1_country]['a']){
+									Object.assign(hc3_flush[sc1_place], {
+										a: 'covid19:Country',
+									});
+								}
+								if(!hc3_flush[sc1_country]['rdfs:label']){
+									Object.assign(hc3_flush[sc1_place], {
+										'rdfs:label': `@en"${s_country}`,
+									});
+								}
+							}
 
-								[sc1_place]: {
+							if(! hc3_flush[sc1_place]){
+								hc3_flush[sc1_place] = {
 									a: 'covid19:'+sc1p_place_type,
 									'rdfs:label': `@en"${s_combined_key}`,
 									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
@@ -486,8 +499,42 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									...inject(sc1_country, {
 										'covid19:country': sc1_country,
 									}),
-								},
-							});
+								};
+							}else{
+								
+								Object.assign(hc3_flush[sc1_place], {
+									a: 'covid19:'+sc1p_place_type,
+									'rdfs:label': `@en"${s_combined_key}`,
+									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+
+									// only emit triples for region --> country
+									...inject(sc1_country, {
+										'covid19:country': sc1_country,
+									}),
+								});
+								
+							}
+
+							// Object.assign(hc3_flush, {
+							// 	[sc1_country]: {
+							// 		a: 'covid19:Country',
+							// 		'rdfs:label': `@en"${s_country}`,
+							// 		// ...inject(g_place.country_wikidata, {
+							// 		// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
+							// 		// }),
+							// 	},
+
+							// 	[sc1_place]: {
+							// 		a: 'covid19:'+sc1p_place_type,
+							// 		'rdfs:label': `@en"${s_combined_key}`,
+							// 		// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+
+							// 		// only emit triples for region --> country
+							// 		...inject(sc1_country, {
+							// 			'covid19:country': sc1_country,
+							// 		}),
+							// 	},
+							// });
 
 							break;
 						}
