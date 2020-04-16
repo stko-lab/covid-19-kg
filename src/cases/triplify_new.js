@@ -53,6 +53,10 @@ const H_MANNUAL_COUNTRY_MATCH = {
 	Burma: 'Myanmar',
 };
 
+const add_country_triples = function(){
+
+}
+
 
 // CLI inputs
 let a_inputs = process.argv.slice(2);
@@ -152,7 +156,10 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 				let hc2_record = {};
 
 				let si_iso3166_alpha2_country = H_NAMES_TO_CODES_COUNTRIES[s_country];
-				if(!si_iso3166_alpha2_country && s_country in H_CODES_TO_NAMES_COUNTRIES) si_iso3166_alpha2_country = s_country;
+				if(!si_iso3166_alpha2_country && s_country in H_CODES_TO_NAMES_COUNTRIES) {
+					si_iso3166_alpha2_country = s_country;
+					s_country = H_CODES_TO_NAMES_COUNTRIES[s_country];
+				}
 
 				let sc1p_country = si_iso3166_alpha2_country || suffix(s_country);
 
@@ -279,30 +286,45 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						// let s_fips_code = zeroPad(n_fips, 5);
 						s_fips_code = s_fips.padStart(5, '0');
 
+						if(/^000/i.test(s_fips_code)){
+							s_fips_code = s_fips_code.replace(/^000/i, "");
+						}
+
+
 
 						if(h_fips_places[s_fips_code]){
 							a_wikidata_place = h_fips_places[s_fips_code];
 						}else{
-							let a_wikidata_res = await sparql.wikidata(/* syntax: sparql */ `
-								select ?place {
-									?place wdt:P882 "${s_fips_code}" .
+							let a_wikidata_res;
+							
+
+							a_wikidata_res = await sparql.wikidata(/* syntax: sparql */ `
+								select ?place ?fips{
+									?place ${s_fips_code.length === 2 ? "wdt:P5087" : "wdt:P882"} "${s_fips_code}" .
 								}
 							`);
-
 							
+
 							if(a_wikidata_res){
 								if(a_wikidata_res.length > 0){
 									a_wikidata_place = a_wikidata_res[0].place.value;
 									h_fips_places[s_fips_code] = a_wikidata_place;
 								}
 							}
+							
+
+							
+							
 						}
 
 						if(a_wikidata_place){
 							g_place = {
 								type: 'county',
 								place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
+								place_name: null,
 								country_wikidata: 'Q30',
+								country_name: "United States of America",
+								context: null,
 							};
 
 							
@@ -314,6 +336,11 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					if(!g_place){
 						// geocode place
 						let s_place = s_combined_key;
+
+						// if(/\bUS\b$/i.test(s_place)){
+						// 	s_place = s_place.replace(/\bUS\b$/i, "United States");
+						// }
+
 
 						g_place = await geocoder.place(s_place);
 
@@ -343,6 +370,9 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 					sc1p_place_short = `${sc1p_country}${s_state? '.'+suffix(s_state): ''}${s_admin2? '.'+suffix(s_admin2): ''}`;
 
+					let place_name = g_place.place_name ? g_place.place_name : s_combined_key;
+					let country_name = g_place.country_name ? g_place.country_name : s_country;
+
 					// depending on place type
 					switch(g_place.type) {
 						// country
@@ -355,22 +385,68 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									if(g_place.country_wikidata){
 										sc1_country = 'wd:'+g_place.country_wikidata;
 
-										hc3_flush[sc1_country] = {
-											a: 'covid19:Country',
-											'rdfs:label': '@en"'+s_country,
-											// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-										};
+										if(! hc3_flush[sc1_country]){
+											hc3_flush[sc1_country] = {
+												a: 'covid19:Country',
+												'rdfs:label': `@en"${country_name}`,
+												// ...inject(g_place.country_wikidata, {
+												// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
+												// }),
+											};
+										}else{
+											if(!hc3_flush[sc1_country]['a']){
+												Object.assign(hc3_flush[sc1_place], {
+													a: 'covid19:Country',
+												});
+											}
+											if(!hc3_flush[sc1_country]['rdfs:label']){
+												Object.assign(hc3_flush[sc1_place], {
+													'rdfs:label': `@en"${country_name}`,
+												});
+											}
+										}
 									}
+
+									// if(/\bHong Kong/i.test(s_combined_key) 
+									// 	|| /\bMacau/i.test(s_combined_key)){
+									// 	sc1_country = 'wd:Q148';
+									// }
 									
 									// make sure country exists
-									hc3_flush[sc1_place] = {
-										a: 'covid19:Place',
-										'rdfs:label': `@en"${s_combined_key}`,
-										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-										...inject(sc1_country, {
-											'covid19:country': sc1_country,
-										}),
-									};
+									// hc3_flush[sc1_place] = {
+									// 	a: 'covid19:Place',
+									// 	'rdfs:label': `@en"${place_name}`,
+									// 	// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+									// 	...inject(sc1_country, {
+									// 		'covid19:country': sc1_country,
+									// 	}),
+									// };
+									let sc1p_place_type = 'Region';
+									if(! hc3_flush[sc1_place]){
+										hc3_flush[sc1_place] = {
+											a: 'covid19:'+sc1p_place_type,
+											'rdfs:label': `@en"${place_name}`,
+											// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+
+											// only emit triples for region --> country
+											...inject(sc1_country, {
+												'covid19:country': sc1_country,
+											}),
+										};
+									}else{
+										
+										Object.assign(hc3_flush[sc1_place], {
+											a: 'covid19:'+sc1p_place_type,
+											'rdfs:label': `@en"${place_name}`,
+											// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+
+											// only emit triples for region --> country
+											...inject(sc1_country, {
+												'covid19:country': sc1_country,
+											}),
+										});
+										
+									}
 								}else{
 									// mint place iri
 									// sc1_country = sc1_place = `covid19-country:${si_iso3166_alpha2_country}`;
@@ -379,7 +455,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									// make sure country exists
 									hc3_flush[sc1_place] = {
 										a: 'covid19:Country',
-										'rdfs:label': '@en"'+s_country,
+										'rdfs:label': `@en"${g_place.place_name ? g_place.place_name : s_country}`,
 										// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 									};
 								}
@@ -394,6 +470,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 						// region
 						case 'region': {
+							let sc1p_place_type = 'Region';
+
 							// mint place iri
 							// sc1_place = `covid19-region:${sc1p_place_short}`;
 							sc1_place = 'wd:'+g_place.place_wikidata;
@@ -402,25 +480,73 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							// sc1_country = `covid19-country:${sc1p_country}`;
 							sc1_country = 'wd:'+g_place.country_wikidata;
 
+
+
 							// make sure country and region exist
-							Object.assign(hc3_flush, {
-								[sc1_country]: {
+							if(! hc3_flush[sc1_country]){
+								hc3_flush[sc1_country] = {
 									a: 'covid19:Country',
-									'rdfs:label': `@en"${s_country}`,
+									'rdfs:label': `@en"${country_name}`,
 									// ...inject(g_place.country_wikidata, {
 									// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
 									// }),
-								},
+								};
+							}else{
+								if(!hc3_flush[sc1_country]['a']){
+									Object.assign(hc3_flush[sc1_place], {
+										a: 'covid19:Country',
+									});
+								}
+								if(!hc3_flush[sc1_country]['rdfs:label']){
+									Object.assign(hc3_flush[sc1_place], {
+										'rdfs:label': `@en"${country_name}`, 
+									});
+								}
+							}
 
-								[sc1_place]: {
-									a: 'covid19:Region',
-									'rdfs:label': `@en"${s_combined_key}`,
+							if(! hc3_flush[sc1_place]){
+								hc3_flush[sc1_place] = {
+									a: 'covid19:'+sc1p_place_type,
+									'rdfs:label': `@en"${place_name}`, 
 									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-									...inject(si_iso3166_alpha2_country, {
+
+									// only emit triples for region --> country
+									...inject(sc1_country, {
 										'covid19:country': sc1_country,
 									}),
-								},
-							});
+								};
+							}else{
+								
+								Object.assign(hc3_flush[sc1_place], {
+									a: 'covid19:'+sc1p_place_type,
+									'rdfs:label': `@en"${place_name}`, 
+									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+
+									// only emit triples for region --> country
+									...inject(sc1_country, {
+										'covid19:country': sc1_country,
+									}),
+								});
+								
+							}
+							// Object.assign(hc3_flush, {
+							// 	[sc1_country]: {
+							// 		a: 'covid19:Country',
+							// 		'rdfs:label': `@en"${s_country}`,
+							// 		// ...inject(g_place.country_wikidata, {
+							// 		// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
+							// 		// }),
+							// 	},
+
+							// 	[sc1_place]: {
+							// 		a: 'covid19:Region',
+							// 		'rdfs:label': `@en"${s_combined_key}`,
+							// 		// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
+							// 		...inject(si_iso3166_alpha2_country, {
+							// 			'covid19:country': sc1_country,
+							// 		}),
+							// 	},
+							// });
 
 							break;
 						}
@@ -471,7 +597,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							if(! hc3_flush[sc1_country]){
 								hc3_flush[sc1_country] = {
 									a: 'covid19:Country',
-									'rdfs:label': `@en"${s_country}`,
+									'rdfs:label': `@en"${country_name}`, 
 									// ...inject(g_place.country_wikidata, {
 									// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
 									// }),
@@ -484,7 +610,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 								}
 								if(!hc3_flush[sc1_country]['rdfs:label']){
 									Object.assign(hc3_flush[sc1_place], {
-										'rdfs:label': `@en"${s_country}`,
+										'rdfs:label': `@en"${country_name}`, 
 									});
 								}
 							}
@@ -492,7 +618,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 							if(! hc3_flush[sc1_place]){
 								hc3_flush[sc1_place] = {
 									a: 'covid19:'+sc1p_place_type,
-									'rdfs:label': `@en"${s_combined_key}`,
+									'rdfs:label': `@en"${place_name}`, 
 									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 
 									// only emit triples for region --> country
@@ -504,7 +630,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 								
 								Object.assign(hc3_flush[sc1_place], {
 									a: 'covid19:'+sc1p_place_type,
-									'rdfs:label': `@en"${s_combined_key}`,
+									'rdfs:label': `@en"${place_name}`, 
 									// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 
 									// only emit triples for region --> country
@@ -548,9 +674,16 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					// add fips code
 					if(s_fips_code){
 						if(hc3_flush[sc1_place]){
-							Object.assign(hc3_flush[sc1_place], {
-								'covid19:fips': `"${s_fips_code}`,
-							});
+							if(s_fips_code.length === 2){
+								Object.assign(hc3_flush[sc1_place], {
+									'covid19:areaFIPS': `"${s_fips_code}`,
+								});
+							}else{
+								Object.assign(hc3_flush[sc1_place], {
+									'covid19:countyFIPS': `"${s_fips_code}`,
+								});
+							}
+							
 						}
 						// else{
 						// 	hc3_flush[sc1_place] = {

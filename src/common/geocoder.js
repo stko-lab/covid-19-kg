@@ -68,7 +68,10 @@ async function wikidata_us_county(s_input) {
 	return h_places[s_input] = {
 		type: 'county',
 		place_wikidata: si_wikidata,
+		place_name: null,
 		country_wikidata: 'Q30',
+		country_name: "United States of America",
+		context: null,
 	};
 }
 
@@ -150,6 +153,11 @@ async function place(s_input) {
 	// first feature
 	let g_feature = a_features[0];
 
+	if(g_feature.relevance <= 0.5)
+		return null;
+
+	let place_name = g_feature.place_name;
+
 	let si_wikidata = g_feature.properties.wikidata;
 
 	// no wikidata tag, try fallback
@@ -162,7 +170,10 @@ async function place(s_input) {
 	return h_places[s_input] = {
 		type: g_feature.place_type[0],
 		place_wikidata: si_wikidata,
+		place_name: place_name,
 		country_wikidata: a_contexts && a_contexts.length? a_contexts[a_contexts.length-1].wikidata: null,
+		country_name: a_contexts && a_contexts.length? a_contexts[a_contexts.length-1].text: null,
+		context: a_contexts ? a_contexts : null,
 	};
 }
 
