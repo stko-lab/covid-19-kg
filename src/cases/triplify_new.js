@@ -9,6 +9,7 @@ const pipeline = util.promisify(stream.pipeline);
 
 const geocoder = require('../common/geocoder.js');
 const sparql = require('../common/sparql.js');
+const utils = require('./utils.js');
 
 const H_PREFIXES = require('../common/prefixes.js');
 
@@ -53,105 +54,7 @@ const H_MANNUAL_COUNTRY_MATCH = {
 	Burma: 'Myanmar',
 };
 
-const  toTitleCase = function(str) {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
 
-const add_country_triples = function(hc3_flush, sc1_country, country_name){
-	if(sc1_country){
-		if(! hc3_flush[sc1_country]){
-			hc3_flush[sc1_country] = {
-				a: 'covid19:Country',
-				'rdfs:label': `@en"${country_name}`,
-				// ...inject(g_place.country_wikidata, {
-				// 	'owl:sameAs': 'wd:'+g_place.country_wikidata,
-				// }),
-			};
-		}else{
-			if(!hc3_flush[sc1_country]['a']){
-				Object.assign(hc3_flush[sc1_country], {
-					a: 'covid19:Country',
-				});
-			}
-			if(!hc3_flush[sc1_country]['rdfs:label']){
-				Object.assign(hc3_flush[sc1_country], {
-					'rdfs:label': `@en"${country_name}`,
-				});
-			}
-		}
-	}
-	
-	return hc3_flush;
-}
-
-
-const add_place_triples = function(hc3_flush, sc1_place, sc1_country, place_name, sc1p_place_type){
-	if(sc1_place){
-		if(! hc3_flush[sc1_place]){
-			hc3_flush[sc1_place] = {
-				a: 'covid19:'+sc1p_place_type,
-				'rdfs:label': `@en"${place_name}`,
-				// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-
-				// only emit triples for region --> country
-				...inject(sc1_country, {
-					'covid19:country': sc1_country,
-				}),
-			};
-		}else{
-			
-			Object.assign(hc3_flush[sc1_place], {
-				a: 'covid19:'+sc1p_place_type,
-				'rdfs:label': `@en"${place_name}`,
-				// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
-
-				// only emit triples for region --> country
-				...inject(sc1_country, {
-					'covid19:country': sc1_country,
-				}),
-			});
-			
-		}
-	}
-	
-	return hc3_flush;
-}
-
-const add_context_place_hierachy_triples = function(hc3_flush, a_contexts, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type){
-	let sc1_sub = sc1_place;
-	let s_sub_name = place_name;
-	let s_sub_type = sc1p_place_type;
-	if(a_contexts && a_contexts.length){
-		for (var i = 0; i < a_contexts.length; i++){
-			hc3_flush = add_place_triples(hc3_flush = hc3_flush, 
-											sc1_place = sc1_sub, 
-											sc1_country = i === a_contexts.length - 1 ? null : sc1_country, 
-											place_name = s_sub_name, 
-											sc1p_place_type = s_sub_type);
-			let sc1_super = 'wd:' + a_contexts[i].wikidata;
-			Object.assign(hc3_flush[sc1_sub], {
-				'covid19:superdivision': sc1_super,
-			});
-			sc1_sub = sc1_super;
-			s_sub_name = a_contexts[i].text;
-			s_sub_type = toTitleCase( a_contexts[i].id.split(".")[0] );
-		}
-
-	}else{
-		hc3_flush = add_place_triples(hc3_flush = hc3_flush, 
-											sc1_place = sc1_place, 
-											sc1_country = null, 
-											place_name = place_name, 
-											sc1p_place_type = sc1p_place_type);
-	}
-
-	hc3_flush = add_country_triples(hc3_flush, sc1_country, country_name);
-
-	return hc3_flush;
-
-}
 
 
 
@@ -263,6 +166,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 				let sc1_place = null;
 				let sc1_country = null;
 				let g_place = null;
+				let g_place_fips = null;
 
 				let sc1p_place_short;
 
@@ -314,7 +218,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 						if(!g_place) {
 							// debugger;
-							console.warn(`No wikidata place for "${s_place}"`);
+							console.warn(`No wikidata COUNTRY for "${s_place}"`);
 
 							return fk_write();
 						}
@@ -326,6 +230,8 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 						sc1_place = `covid19-place:${sc1p_place_short}`;
 
 						// make sure country and region exist
+						// hc3_flush = utils.add_country_triples(hc3_flush, sc1_country, country_name = s_country);
+						// hc3_flush = utils.add_place_triples(hc3_flush, sc1_place, sc1_country, place_name = `${s_state}, ${s_country}`, sc1p_place_type = 'Place');
 						Object.assign(hc3_flush, {
 							[sc1_country]: {
 								a: 'covid19:Country',
@@ -411,22 +317,54 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									a_wikidata_place = a_wikidata_res[0].place.value;
 									h_fips_places[s_fips_code] = a_wikidata_place;
 								}
-							}
-							
-
-							
-							
+							}						
 						}
 
 						if(a_wikidata_place){
-							g_place = {
-								type: 'county',
-								place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
-								place_name: null,
-								country_wikidata: 'Q30',
-								country_name: "United States of America",
-								context: null,
-							};
+							let s_superdivision = `${s_state ? s_state+", " : ""}${s_country}`;
+
+
+							let g_state = await geocoder.place(s_superdivision);
+
+							if(!g_state){
+								// debugger;
+								console.warn(`No wikidata STATE for "${g_state}"`);
+
+								g_place = {
+									type: 'county',
+									place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
+									place_name: s_combined_key,
+									country_wikidata: 'Q30',
+									country_name: "United States of America",
+									context: null,
+								};
+
+							}else{
+								let a_contexts = [
+									{
+										"id": g_state.type,
+										"wikidata": g_state.place_wikidata,
+										"text": g_state.place_name
+									},
+									{
+										"id": "country.19352517729256050",
+										"short_code": "us",
+										"wikidata": "Q30",
+										"text": "United States"
+									}
+								]
+
+								g_place = {
+									type: 'county',
+									place_wikidata: a_wikidata_place.replace("http://www.wikidata.org/entity/", ""),
+									place_name: s_combined_key,
+									country_wikidata: 'Q30',
+									country_name: "United States of America",
+									context: a_contexts,
+								};
+							}
+
+							
 
 							
 						}
@@ -454,6 +392,12 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 							return fk_write();
 						}
+
+						// if(g_place_fips){
+						// 	if(g_place_fips.place_wikidata !== g_place.place_wikidata){
+						// 		g_place = g_place_fips;
+						// 	}
+						// }
 
 					}
 
@@ -489,7 +433,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 										sc1_country = null;
 									}
 									let sc1p_place_type = 'Region';
-									hc3_flush = add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
+									hc3_flush = utils.add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
 
 									
 									
@@ -505,7 +449,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 									// 	'rdfs:label': `@en"${g_place.place_name ? g_place.place_name : s_country}`,
 									// 	// 'owl:sameAs': 'wd:'+g_place.place_wikidata,
 									// };
-									hc3_flush = add_country_triples(hc3_flush, sc1_country, g_place.place_name ? g_place.place_name : s_country);
+									hc3_flush = utils.add_country_triples(hc3_flush, sc1_country, g_place.place_name ? g_place.place_name : s_country);
 								}
 								
 
@@ -532,7 +476,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 							// make sure country and region exist
 
-							hc3_flush = add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
+							hc3_flush = utils.add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
 
 							
 							// Object.assign(hc3_flush, {
@@ -601,7 +545,7 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 
 							// make sure country and place exist
 
-							hc3_flush = add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
+							hc3_flush = utils.add_context_place_hierachy_triples(hc3_flush, g_place.context, sc1_place, place_name, sc1_country, country_name,  sc1p_place_type);
 							
 
 							// Object.assign(hc3_flush, {
