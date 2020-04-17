@@ -20,6 +20,27 @@ module.exports = {
 			}
 		],
 	},
+	'San Benito, CA, United States': {
+		type: 'county',
+		place_wikidata: 'Q109656',
+		place_name: "San Benito County, California, United States",
+		country_wikidata: 'Q30',
+		country_name: "United States of America",
+		context: [
+			{
+				id: "region.9697035897738010",
+				short_code: "US-CA",
+				wikidata: "Q99",
+				text: "California"
+			},
+			{
+				id: "country.19352517729256050",
+				short_code: "us",
+				wikidata: "Q30",
+				text: "United States"
+			}
+		],
+	},
 	'Lackland, TX, US': {
 		type: 'airforce base',
 		place_wikidata: 'Q1416857',
@@ -28,13 +49,26 @@ module.exports = {
 		country_name: "United States of America",
 		context: [
 			{
-				id: "postcode.15714983192300430",
-				text: "78236"
+				id: "region.10515736414342410",
+				short_code: "US-TX",
+				wikidata: "Q1439",
+				text: "Texas"
 			},
 			{
-				id: "place.9570490501296520",
-				text: "Lackland"
-			},
+				id: "country.19352517729256050",
+				short_code: "us",
+				wikidata: "Q30",
+				text: "United States"
+			}
+		]
+	},
+	'Lackland, TX, United States': {
+		type: 'airforce base',
+		place_wikidata: 'Q1416857',
+		place_name: "Lackland Air Force Base, Texas, United States",
+		country_wikidata: 'Q30',
+		country_name: "United States of America",
+		context: [
 			{
 				id: "region.10515736414342410",
 				short_code: "US-TX",
@@ -50,6 +84,27 @@ module.exports = {
 		]
 	},
 	'Fort Bend County, TX, US': {
+		type: 'county',
+		place_wikidata: 'Q26895',
+		place_name: "Fort Bend County, Texas, United States",
+		country_wikidata: 'Q30',
+		country_name: "United States of America",
+		context: [
+			{
+				id: "region.10515736414342410",
+				short_code: "US-TX",
+				wikidata: "Q1439",
+				text: "Texas"
+			},
+			{
+				id: "country.19352517729256050",
+				short_code: "us",
+				wikidata: "Q30",
+				text: "United States"
+			}
+		]
+	},
+	'Fort Bend County, TX, United States': {
 		type: 'county',
 		place_wikidata: 'Q26895',
 		place_name: "Fort Bend County, Texas, United States",
@@ -91,10 +146,67 @@ module.exports = {
 			}
 		],
 	},
+	'Travis, CA, United States': {
+		type: 'airforce base',
+		place_wikidata: 'Q3497425',
+		place_name: "Travis Air Force Base, California, United States",
+		country_wikidata: 'Q30',
+		country_name: "United States of America",
+		context: [
+			{
+				id: "region.9697035897738010",
+				short_code: "US-CA",
+				wikidata: "Q99",
+				text: "California"
+			},
+			{
+				id: "country.19352517729256050",
+				short_code: "us",
+				wikidata: "Q30",
+				text: "United States"
+			}
+		],
+	},
 	"Hong Kong, China": {
 		"type": "region",
 		"place_wikidata": "Q8646",
-		"place_name": "Hong Kong",
+		"place_name": "Hong Kong, China",
+		"country_wikidata": "Q148",
+		"country_name": "People's Republic of China",
+		"context": [
+			{
+				"id": "country.10628297404157440",
+				"short_code": "cn",
+				"wikidata": "Q148",
+				"text_en": "People's Republic of China",
+				"language_en": "en",
+				"text": "People's Republic of China",
+				"language": "en"
+			}
+		]
+	},
+	"Hong Kong": {
+		"type": "region",
+		"place_wikidata": "Q8646",
+		"place_name": "Hong Kong, China",
+		"country_wikidata": "Q148",
+		"country_name": "People's Republic of China",
+		"context": [
+			{
+				"id": "country.10628297404157440",
+				"short_code": "cn",
+				"wikidata": "Q148",
+				"text_en": "People's Republic of China",
+				"language_en": "en",
+				"text": "People's Republic of China",
+				"language": "en"
+			}
+		]
+	},
+	"Hong Kong, Hong Kong SAR": {
+		"type": "region",
+		"place_wikidata": "Q8646",
+		"place_name": "Hong Kong, China",
 		"country_wikidata": "Q148",
 		"country_name": "People's Republic of China",
 		"context": [
@@ -112,7 +224,43 @@ module.exports = {
 	"Macau, China": {
 		"type": "region",
 		"place_wikidata": "Q14773",
-		"place_name": "Macau",
+		"place_name": "Macau, China",
+		"country_wikidata": "Q148",
+		"country_name": "People's Republic of China",
+		"context": [
+			{
+				"id": "country.10628297404157440",
+				"short_code": "cn",
+				"wikidata": "Q148",
+				"text_en": "People's Republic of China",
+				"language_en": "en",
+				"text": "People's Republic of China",
+				"language": "en"
+			}
+		]
+	},
+	"Macau": {
+		"type": "region",
+		"place_wikidata": "Q14773",
+		"place_name": "Macau, China",
+		"country_wikidata": "Q148",
+		"country_name": "People's Republic of China",
+		"context": [
+			{
+				"id": "country.10628297404157440",
+				"short_code": "cn",
+				"wikidata": "Q148",
+				"text_en": "People's Republic of China",
+				"language_en": "en",
+				"text": "People's Republic of China",
+				"language": "en"
+			}
+		]
+	},
+	"Macau, Macao SAR": {
+		"type": "region",
+		"place_wikidata": "Q14773",
+		"place_name": "Macau, China",
 		"country_wikidata": "Q148",
 		"country_name": "People's Republic of China",
 		"context": [
@@ -135,6 +283,30 @@ module.exports = {
 		"country_name": null,
 		"context": null
 	},
+	"Taiwan, Taipei and environs": {
+		"type": "region",
+		"place_wikidata": "Q865",
+		"place_name": "Taiwan",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
+	},
+	"Iran (Islamic Republic of)": {
+		"type": "country",
+		"place_wikidata": "Q794",
+		"place_name": "Iran",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
+	},
+	"Gambia, The": {
+		"type": "country",
+		"place_wikidata": "Q1005",
+		"place_name": "Gambia",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
+	},
 	"Guam, United States": {
 		"type": "region",
 		"place_wikidata": "Q16635",
@@ -151,6 +323,24 @@ module.exports = {
 		],
 	},
 	"Virgin Islands, United States": {
+		"type": "region",
+		"place_wikidata": "Q11703",
+		"place_name": "Virgin Islands, United States",
+		"country_wikidata": "Q30",
+		"country_name": "United States of America",
+		"context": [
+			{
+				"id": "country.19352517729256050",
+				"short_code": "us",
+				"wikidata": "Q30",
+				"text_en": "United States of America",
+				"language_en": "en",
+				"text": "United States of America",
+				"language": "en"
+			}
+		]
+	},
+	"Virgin Islands, U.S., US": {
 		"type": "region",
 		"place_wikidata": "Q11703",
 		"place_name": "Virgin Islands, United States",
@@ -222,6 +412,24 @@ module.exports = {
 			}
 		]
 	},
+	"Puerto Rico, US": {
+		"type": "region",
+		"place_wikidata": "Q1183",
+		"place_name": "Puerto Rico, United States",
+		"country_wikidata": "Q30",
+		"country_name": "United States of America",
+		"context": [
+			{
+				"id": "country.19352517729256050",
+				"short_code": "us",
+				"wikidata": "Q30",
+				"text_en": "United States of America",
+				"language_en": "en",
+				"text": "United States of America",
+				"language": "en"
+			}
+		]
+	},
 	"Dona Ana, New Mexico, United States": {
 		"type": "region",
 		"place_wikidata": "Q112953",
@@ -234,6 +442,26 @@ module.exports = {
 				short_code: "US-NM",
 				wikidata: "Q1522",
 				text: "New Mexico"
+			},
+			{
+				id: "country.19352517729256050",
+				short_code: "us",
+				wikidata: "Q30",
+				text: "United States"
+			}
+		]
+	},
+	"Weber, Utah, United States": {
+		"type": "region",
+		"place_wikidata": "Q26754",
+		"place_name": "Weber County, Utah, United States",
+		"country_wikidata": "Q30",
+		"country_name": "United States of America",
+		"context": [
+			{
+				id: "region.9999100000670350",
+				wikidata: "Q829",
+				text: "Utah"
 			},
 			{
 				id: "country.19352517729256050",
@@ -280,6 +508,24 @@ module.exports = {
 		]
 	},
 	"French Guiana, France": {
+		"type": "region",
+		"place_wikidata": "Q3769",
+		"place_name": "French Guiana",
+		"country_wikidata": "Q142",
+		"country_name": "France",
+		"context": [
+			{
+				"id": "country.15996870960641660",
+				"short_code": "fr",
+				"wikidata": "Q142",
+				"text_en": "France",
+				"language_en": "en",
+				"text": "France",
+				"language": "en"
+			}
+		]
+	},
+	"Fench Guiana, France": {
 		"type": "region",
 		"place_wikidata": "Q3769",
 		"place_name": "French Guiana",
@@ -377,6 +623,24 @@ module.exports = {
 			}
 		]
 	},
+	"Bonaire, Sint Eustatius and Saba, Netherlands": {
+		"type": "region",
+		"place_wikidata": "Q27561",
+		"place_name": "Caribbean Netherlands",
+		"country_wikidata": "Q55",
+		"country_name": "Netherlands",
+		"context": [
+			{
+				"id": "country.9286111800622050",
+				"short_code": "nl",
+				"wikidata": "Q55",
+				"text_en": "Netherlands",
+				"language_en": "en",
+				"text": "Netherlands",
+				"language": "en"
+			}
+		]
+	},
 	"Curacao, Netherlands": {
 		"type": "region",
 		"place_wikidata": "Q25279",
@@ -425,6 +689,22 @@ module.exports = {
 			}
 		]
 	},
+	"Republic of Moldova": {
+		"type": "country",
+		"place_wikidata": "Q217",
+		"place_name": "Moldova",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
+	},
+	"Republic of Ireland": {
+		"type": "country",
+		"place_wikidata": "Q27",
+		"place_name": "Ireland",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
+	},
 	"Cayman Islands, United Kingdom": {
 		"type": "region",
 		"place_wikidata": "Q5785",
@@ -439,5 +719,43 @@ module.exports = {
 				"language": "en"
 			}
 		]
+	},
+	"North Ireland": {
+		"type": "region",
+		"place_wikidata": "Q26",
+		"place_name": "North Ireland",
+		"country_wikidata": "Q145",
+		"country_name": "United Kingdom",
+		"context": [
+			{
+				"id": "country.10368356586814600",
+				"wikidata": "Q145",
+				"text": "United Kingdom",
+				"language": "en"
+			}
+		]
+	},
+	"Falkland Islands (Islas Malvinas), United Kingdom": {
+		"type": "region",
+		"place_wikidata": "Q9648",
+		"place_name": "Falkland Islands (Islas Malvinas), United Kingdom",
+		"country_wikidata": "Q145",
+		"country_name": "United Kingdom",
+		"context": [
+			{
+				"id": "country.10368356586814600",
+				"wikidata": "Q145",
+				"text": "United Kingdom",
+				"language": "en"
+			}
+		]
+	},
+	"West Bank and Gaza": {
+		"type": "region",
+		"place_wikidata": "Q407199",
+		"place_name": "West Bank and Gaza",
+		"country_wikidata": null,
+		"country_name": null,
+		"context": null
 	},
 };

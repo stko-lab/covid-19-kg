@@ -165,15 +165,24 @@ async function place(s_input) {
 
 	// contexts
 	let a_contexts = g_feature.context;
+	let a_contexts_new = [];
+	if(a_contexts && a_contexts.length){
+		for (var i = 0; i < a_contexts.length; i++) {
+			if(a_contexts[i].wikidata){
+				a_contexts_new.push(a_contexts[i]);
+			}
+		}
+	}
+	
 
 	// save association
 	return h_places[s_input] = {
 		type: g_feature.place_type[0],
 		place_wikidata: si_wikidata,
 		place_name: place_name,
-		country_wikidata: a_contexts && a_contexts.length? a_contexts[a_contexts.length-1].wikidata: null,
-		country_name: a_contexts && a_contexts.length? a_contexts[a_contexts.length-1].text: null,
-		context: a_contexts ? a_contexts : null,
+		country_wikidata: a_contexts_new.length? a_contexts_new[a_contexts_new.length-1].wikidata: null,
+		country_name: a_contexts_new.length? a_contexts_new[a_contexts_new.length-1].text: null,
+		context: a_contexts_new.length ? a_contexts_new : null,
 	};
 }
 
