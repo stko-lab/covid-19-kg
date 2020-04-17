@@ -134,7 +134,11 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 				let hc2_record = {};
 
 				let si_iso3166_alpha2_country = H_NAMES_TO_CODES_COUNTRIES[s_country];
-				if(!si_iso3166_alpha2_country && s_country in H_CODES_TO_NAMES_COUNTRIES) si_iso3166_alpha2_country = s_country;
+				
+				if(!si_iso3166_alpha2_country && s_country in H_CODES_TO_NAMES_COUNTRIES) {
+					si_iso3166_alpha2_country = s_country;
+					// s_country = H_CODES_TO_NAMES_COUNTRIES[s_country];
+				}
 
 				let sc1p_country = si_iso3166_alpha2_country || suffix(s_country);
 
@@ -188,7 +192,13 @@ const inject = (w_test, hc3_inject) => w_test? hc3_inject: {};
 					let sc1_country;
 
 					// geocode place
-					let s_place = `${s_state? s_state+', ': ''}${s_country}`;
+					let s_place;
+					if(s_state === s_country){
+						s_place = `${s_country}`;
+					}else{
+						s_place = `${s_state? s_state+', ': ''}${s_country}`;
+					}
+					
 
 					let g_place = await geocoder.place(s_place);
 
