@@ -8,6 +8,7 @@ const once = require('events').once;
 const pipeline = util.promisify(stream.pipeline);
 
 const geocoder = require('../common/geocoder.js');
+const utils = require('./utils.js');
 
 const H_PREFIXES = require('../common/prefixes.js');
 
